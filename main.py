@@ -1,6 +1,6 @@
 import pyrev
 from pyrev import Position
-import ab_ex
+import mcts_ex
 
 
 def color_name(color) -> str:
@@ -51,7 +51,7 @@ def human_turn(pos: Position):
 
 
 def cpu_turn(pos: Position):
-    move = ab_ex.alpha_beta(pos, depth=3)  # 深さ3で探索
+    move = mcts_ex.mcts(pos, playout_num=100)  # 100回のプレイアウトで探索
 
     pos.do_move_at(move)
     print(f"エージェントの着手: {pyrev.coord_to_str(move)}")
