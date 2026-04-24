@@ -1,12 +1,23 @@
 import pyrev
 from pyrev import Position
 
+# 作成したエージェントを import する
+# select_agent_move関数内でエージェント名と実装を対応させる
+
 import random_agent
 import ab_ex
 import mcts_ex
+import MCTS
 
 ab_depth = 3
 mcts_depth = 500
+num_games = 100
+
+
+# 対戦させるエージェントを select_agent_move 関数で定義した名前で指定する
+AGENT_A = "mcts_fukuda"
+AGENT_B = "mcts_ueki"
+
 def play_game(black_agent, white_agent):
     pos = Position()
 
@@ -46,8 +57,10 @@ def select_agent_move(agent_name, pos):
         return random_agent.select_move(pos)
     if agent_name == "ab":
         return ab_ex.alpha_beta(pos, depth=ab_depth)
-    if agent_name == "mcts":
+    if agent_name == "mcts_fukuda":
         return mcts_ex.mcts(pos, mcts_depth)
+    if agent_name == "mcts_ueki":
+        return MCTS.mctsAction(pos, mcts_depth)
     raise ValueError(f"unknown agent: {agent_name}")
 
 
@@ -59,27 +72,26 @@ def run_matches(num_games):
     }
 
     for i in range(num_games):
-        # 先手後手の偏りをなくすために交互に入れ替える
         if i % 2 == 0:
-            black_agent = "mcts"
-            white_agent = "random"
-            mcts_is_black = True
+            agent_a = AGENT_A
+            agent_b = AGENT_B
+            a_is_black = True
         else:
-            black_agent = "random"
-            white_agent = "mcts"
-            mcts_is_black = False
+            agent_a = AGENT_B
+            agent_b = AGENT_A
+            a_is_black = False
 
-        winner = play_game(black_agent, white_agent)
+        winner = play_game(agent_a, agent_b)
 
         if winner == "draw":
             results["draw"] += 1
         elif winner == "black":
-            if mcts_is_black:
+            if a_is_black:
                 results["agent_a_win"] += 1
             else:
                 results["agent_b_win"] += 1
         elif winner == "white":
-            if mcts_is_black:
+            if a_is_black:
                 results["agent_b_win"] += 1
             else:
                 results["agent_a_win"] += 1
@@ -96,18 +108,19 @@ def print_results(results, num_games):
     draw = results["draw"]
 
     print("\n===== 対戦結果 =====")
+    print("エージェントA: ", AGENT_A)
+    print("エージェントB: ", AGENT_B)
     print(f"総対戦数: {num_games}")
-    print(f"エージェントA勝利: {agent_a_win}")
-    print(f"エージェントB勝利: {agent_b_win}")
+    print(f"{AGENT_A}勝利: {agent_a_win}")
+    print(f"{AGENT_B}勝利: {agent_b_win}")
     print(f"引き分け: {draw}")
     print()
-    print(f"エージェントA勝率: {agent_a_win / num_games:.3f}")
-    print(f"エージェントB勝率: {agent_b_win / num_games:.3f}")
+    print(f"{AGENT_A}勝率: {agent_a_win / num_games:.3f}")
+    print(f"{AGENT_B}勝率: {agent_b_win / num_games:.3f}")
     print(f"引き分け率: {draw / num_games:.3f}")
 
 
 def main():
-    num_games = 100
 
     results = run_matches(num_games)
     print_results(results, num_games)
