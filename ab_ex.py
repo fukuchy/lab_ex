@@ -14,11 +14,27 @@ EVAL_TABLE = [
     120, -20,  20,   5,   5,  20, -20, 120,
 ]
 
-# 石差、位置評価
 def evaluate(pos, my_color):
     opp_color = pyrev.to_opponent_color(my_color)
 
-    stone_score = pos.get_disc_count_of(my_color) - pos.get_disc_count_of(opp_color)
+    # 石差
+    my_count = pos.get_disc_count_of(my_color)
+    opp_count = pos.get_disc_count_of(opp_color)
+
+    total_discs = my_count + opp_count
+    stone_score = my_count - opp_count
+
+    # 着手可能数
+
+    my_moves = len(list(pos.get_legal_moves()))
+
+    copy_pos = pos.copy()
+    copy_pos.do_pass()
+    opp_moves = len(list(copy_pos.get_legal_moves()))
+
+    mobility_score = my_moves - opp_moves
+
+    # 位置評価
 
     pos_score = 0
     for board_index in range(64):
@@ -27,7 +43,20 @@ def evaluate(pos, my_color):
         elif pos.get_square_color_at(board_index) == opp_color:
             pos_score -= EVAL_TABLE[board_index]
     
-    return stone_score + pos_score
+    if total_discs <= 20:
+        w_stone = -2.0
+        w_mobile = 8.0
+        w_pos = 0.5
+    elif total_discs <= 40:
+        w_stone = 0.2
+        w_mobile = 6.0
+        w_pos = 1.5
+    else:
+        w_stone = 8.0
+        w_mobile = 1.0
+        w_pos = 0.3
+
+    return w_stone * stone_score + w_mobile * mobility_score + w_pos * pos_score
 
 def alpha_beta_rec(pos, alpha, beta, depth):
     if depth == 0 or pos.is_gameover():
