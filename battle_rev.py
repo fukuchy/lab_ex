@@ -11,12 +11,12 @@ import MCTS
 
 ab_depth = 3
 mcts_depth = 500
-num_games = 100
+num_games = 500
 
 
 # 対戦させるエージェントを select_agent_move 関数で定義した名前で指定する
-AGENT_A = "mcts_fukuda"
-AGENT_B = "mcts_ueki"
+AGENT_A = "ab"
+AGENT_B = "random"
 
 def play_game(black_agent, white_agent):
     pos = Position()
@@ -111,12 +111,12 @@ def print_results(results, num_games):
     print("エージェントA: ", AGENT_A)
     print("エージェントB: ", AGENT_B)
     print(f"総対戦数: {num_games}")
-    print(f"{AGENT_A}勝利: {agent_a_win}")
-    print(f"{AGENT_B}勝利: {agent_b_win}")
+    print(f"エージェントA勝利: {agent_a_win}")
+    print(f"エージェントB勝利: {agent_b_win}")
     print(f"引き分け: {draw}")
     print()
-    print(f"{AGENT_A}勝率: {agent_a_win / num_games:.3f}")
-    print(f"{AGENT_B}勝率: {agent_b_win / num_games:.3f}")
+    print(f"エージェントA勝率: {agent_a_win / num_games:.3f}")
+    print(f"エージェントB勝率: {agent_b_win / num_games:.3f}")
     print(f"引き分け率: {draw / num_games:.3f}")
 
 
