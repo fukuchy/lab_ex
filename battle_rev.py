@@ -8,7 +8,7 @@ import random_agent
 import ab_ex
 import mcts_ex
 import MCTS
-import mcts_ai
+import mcts_murayama
 
 ab_depth = 3
 mcts_depth = 500
@@ -63,7 +63,7 @@ def select_agent_move(agent_name, pos):
     if agent_name == "mcts_ueki":
         return MCTS.mctsAction(pos, mcts_depth)
     if agent_name == "mcts_murayama":
-        return mcts_ai.mctsAction(pos, mcts_depth)
+        return mcts_murayama.mctsAction(pos, mcts_depth)
     raise ValueError(f"unknown agent: {agent_name}")
 
 
