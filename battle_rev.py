@@ -8,6 +8,7 @@ import random_agent
 import ab_ex
 import mcts_ex
 import MCTS
+import mcts_ai
 
 ab_depth = 3
 mcts_depth = 500
@@ -15,8 +16,8 @@ num_games = 500
 
 
 # 対戦させるエージェントを select_agent_move 関数で定義した名前で指定する
-AGENT_A = "ab"
-AGENT_B = "random"
+AGENT_A = "mcts_fukuda"
+AGENT_B = "mcts_murayama"
 
 def play_game(black_agent, white_agent):
     pos = Position()
@@ -61,6 +62,8 @@ def select_agent_move(agent_name, pos):
         return mcts_ex.mcts(pos, mcts_depth)
     if agent_name == "mcts_ueki":
         return MCTS.mctsAction(pos, mcts_depth)
+    if agent_name == "mcts_murayama":
+        return mcts_ai.mctsAction(pos, mcts_depth)
     raise ValueError(f"unknown agent: {agent_name}")
 
 
