@@ -15,11 +15,11 @@ mcts_depth = 500
 
 # ===== 設定 =====
 OPPONENT_AGENT = "random"   # "random", "ab", "mcts_fukuda", "mcts_ueki"
-NUM_GAMES = 10000
+NUM_GAMES = 100000
 SAVE_INTERVAL = 1000
 LOG_INTERVAL = 100
-WEIGHT_FILE = "td_weights.pkl"
-
+FROM_FILE = "td_weights_random.pkl"
+SAVE_FILE = "td_weights_random2.pkl"
 
 def select_opponent_move(agent_name, pos):
     if agent_name == "random":
@@ -30,7 +30,6 @@ def select_opponent_move(agent_name, pos):
         return mcts_ex.mcts(pos, mcts_depth)
     if agent_name == "mcts_ueki":
         return MCTS.mctsAction(pos, mcts_depth)
-
     raise ValueError(f"unknown opponent agent: {agent_name}")
 
 
@@ -141,12 +140,12 @@ def train(num_games=NUM_GAMES):
     print(f"opponent: {OPPONENT_AGENT}")
     print(f"num_games: {num_games}")
 
-    if os.path.exists(WEIGHT_FILE):
-        td_agent.load_v(WEIGHT_FILE)
-        print(f"既存の {WEIGHT_FILE} を読み込みました")
+    if os.path.exists(FROM_FILE):
+        td_agent.load_v(FROM_FILE)
+        print(f"既存の {FROM_FILE} を読み込みました")
         print("initial weights:", td_agent.agent.weights)
     else:
-        print(f"{WEIGHT_FILE} がないため、新規重みで開始します")
+        print(f"{FROM_FILE} がないため、新規重みで開始します")
 
     result_history = []
     black_results = []
@@ -192,11 +191,11 @@ def train(num_games=NUM_GAMES):
 
         if (i + 1) % SAVE_INTERVAL == 0:
             print("weights:", td_agent.agent.weights)
-            td_agent.save_v(WEIGHT_FILE)
+            td_agent.save_v(SAVE_FILE)
 
-    td_agent.save_v(WEIGHT_FILE)
+    td_agent.save_v(SAVE_FILE)
 
-    print("学習完了:", WEIGHT_FILE, "に保存しました")
+    print("学習完了:", SAVE_FILE, "に保存しました")
     print("final weights:", td_agent.agent.weights)
 
 

@@ -4,7 +4,7 @@ import pyrev
 
 
 class TDAgent:
-    def __init__(self, alpha=0.003, gamma=1.0, epsilon=0.1): # 初回学習以降は alphaを下げる
+    def __init__(self, alpha=0.001, gamma=1.0, epsilon=0.1): # 初回学習以降は alpha、epsilon を下げる
         self.alpha = alpha
         self.gamma = gamma
         self.epsilon = epsilon
@@ -53,15 +53,16 @@ class TDAgent:
             piece_diff = (my_discs - opp_discs) / total_discs
 
         # 自分の合法手数
-        my_moves = len(list(pos.get_legal_moves()))
+        # my_moves = len(list(pos.get_legal_moves()))
 
         # 相手の合法手数を見るため、一度パスして相手番にする
-        opp_pos = pos.copy()
-        if opp_pos.can_pass():
-            opp_pos.do_pass()
-            opp_moves = len(list(opp_pos.get_legal_moves()))
-        else:
-            opp_moves = 0
+        # opp_pos = pos.copy()
+        # if opp_pos.can_pass():
+        #     opp_pos.do_pass()
+        #     opp_moves = len(list(opp_pos.get_legal_moves()))
+        # else:
+        #     opp_moves = 0
+        opp_moves = len(list(pos.get_legal_moves()))
 
         mobility = 0.0
         if my_moves + opp_moves > 0:

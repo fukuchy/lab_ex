@@ -1,7 +1,8 @@
 import pyrev
 from pyrev import Position
 import mcts_ex
-
+import ab_opening
+import ab_ex
 
 def color_name(color) -> str:
     if color == pyrev.BLACK:
@@ -51,7 +52,7 @@ def human_turn(pos: Position):
 
 
 def cpu_turn(pos: Position):
-    move = mcts_ex.mcts(pos, playout_num=100)  # 100回のプレイアウトで探索
+    move = ab_ex.alpha_beta(pos, depth=4)  # 深さ5でAlpha-Beta探索
 
     pos.do_move_at(move)
     print(f"エージェントの着手: {pyrev.coord_to_str(move)}")

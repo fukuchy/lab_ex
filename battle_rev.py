@@ -5,19 +5,23 @@ from pyrev import Position
 # select_agent_move関数内でエージェント名と実装を対応させる
 
 import random_agent
+import ab_randomWalk
 import ab_ex
 import mcts_ex
 import MCTS
 import mcts_murayama
+import mcts_ai
+import ab_opening
+import ab_ending
 
-ab_depth = 3
-mcts_depth = 500
-num_games = 500
+ab_depth = 4
+mcts_depth = 100
+num_games = 100
 
 
 # 対戦させるエージェントを select_agent_move 関数で定義した名前で指定する
 AGENT_A = "mcts_fukuda"
-AGENT_B = "mcts_murayama"
+AGENT_B = "ab_opening"
 
 def play_game(black_agent, white_agent):
     pos = Position()
@@ -63,7 +67,13 @@ def select_agent_move(agent_name, pos):
     if agent_name == "mcts_ueki":
         return MCTS.mctsAction(pos, mcts_depth)
     if agent_name == "mcts_murayama":
-        return mcts_murayama.mctsAction(pos, mcts_depth)
+        return mcts_ai.mctsAction(pos, mcts_depth)
+    if agent_name == "ab_opening":
+        return ab_opening.alpha_beta(pos, depth=ab_depth)
+    if agent_name == "ab_ending":
+        return ab_ending.alpha_beta(pos, depth=ab_depth)
+    if agent_name == "ab_randomWalk":
+        return ab_randomWalk.alpha_beta(pos, depth=ab_depth)
     raise ValueError(f"unknown agent: {agent_name}")
 
 
