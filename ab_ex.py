@@ -56,14 +56,19 @@ def evaluate(pos, my_color):
         w_mobile = 1.0
         w_pos = 0.3
 
+
     return w_stone * stone_score + w_mobile * mobility_score + w_pos * pos_score
+    # return w_stone * stone_score + w_pos * pos_score
 
 def alpha_beta_rec(pos, alpha, beta, depth):
     if depth == 0 or pos.is_gameover():
         return evaluate(pos, pos.side_to_move)
 
-    actions = pos.get_legal_moves()
-    if not actions:
+    # actions = pos.get_legal_moves()
+    actions = list(pos.get_legal_moves())
+
+    # if not actions:
+    if len(actions) == 0:
         next_pos = pos.copy()
         next_pos.do_pass()
         return -alpha_beta_rec(next_pos, -beta, -alpha, depth - 1)
@@ -84,7 +89,11 @@ def alpha_beta(pos, depth):
     best_action = -1
     alpha = -1 * math.inf
     beta = math.inf
-    actions = pos.get_legal_moves()
+    # actions = pos.get_legal_moves()
+    actions = list(pos.get_legal_moves())
+    if len(actions) == 0:
+        return best_action
+    
     for action in actions:
         next_pos = pos.copy()
         next_pos.do_move_at(action)
