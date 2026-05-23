@@ -46,7 +46,7 @@ BASE_MIDDLE_WEIGHTS: Dict[str, float] = copy.deepcopy(agent.FEATURE_WEIGHTS["mid
 BASE_ALL_WEIGHTS: Dict[str, Dict[str, float]] = copy.deepcopy(agent.FEATURE_WEIGHTS)
 
 # 探索深さ。学習中は速度優先で小さめ推奨
-DEPTH = 3
+DEPTH = 4
 
 # 定石を使うか。
 # middle重みの学習だけに集中したい場合は True でもよいが、
@@ -55,17 +55,17 @@ USE_BOOK = True
 
 # 1個体を評価するための試合数。
 # 偶数にして、先手・後手を同じ回数にする。
-GAMES_PER_INDIVIDUAL = 4
+GAMES_PER_INDIVIDUAL = 100
 
 # 集団サイズと世代数
-POPULATION_SIZE = 12
-GENERATIONS = 15
+POPULATION_SIZE = 100
+GENERATIONS = 100
 
 # 上位何個体を無条件で残すか
 ELITE_SIZE = 2
 
 # トーナメント選択で何個体から親を選ぶか
-TOURNAMENT_SIZE = 3
+TOURNAMENT_SIZE = 20
 
 # 交叉率・突然変異率
 CROSSOVER_RATE = 0.8
