@@ -89,7 +89,7 @@ RANDOM_SEED = 0
 
 # 並列実行に使うプロセス数。
 # None の場合は CPU コア数を使う。Mac / Windows では if __name__ == "__main__" の中から main() を呼ぶこと。
-MAX_WORKERS = None
+MAX_WORKERS = 20
 
 
 @dataclass

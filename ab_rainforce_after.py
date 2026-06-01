@@ -24,7 +24,7 @@ USE_OPENING_BOOK = True
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OPENING_LINES_FILE = os.path.join(BASE_DIR, "opening_lines.json")
-GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_best_weights.json")
+GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_100_5th.json")
 
 # Trueにすると、各手で定石か探索かを出力
 BOOK_TEST_MODE = False
@@ -149,11 +149,11 @@ EDGES = [
 ]
 
 # 8方向
-DIRECTIONS = [
-    (-1, -1), (-1, 0), (-1, 1),
-    (0, -1),           (0, 1),
-    (1, -1),  (1, 0),  (1, 1),
-]
+# DIRECTIONS = [
+#     (-1, -1), (-1, 0), (-1, 1),
+#     (0, -1),           (0, 1),
+#     (1, -1),  (1, 0),  (1, 1),
+# ]
 
 
 # 各局面段階ごとの初期重み
@@ -345,24 +345,24 @@ def is_empty(pos, index):
     return color != pyrev.BLACK and color != pyrev.WHITE
 
 
-def has_empty_neighbor(pos, index):
-    """
-    指定マスの周囲8方向に空きマスがあるか。
-    """
-    row = index // 8
-    col = index % 8
+# def has_empty_neighbor(pos, index):
+#     """
+#     指定マスの周囲8方向に空きマスがあるか。
+#     """
+#     row = index // 8
+#     col = index % 8
 
-    for dr, dc in DIRECTIONS:
-        nr = row + dr
-        nc = col + dc
+#     for dr, dc in DIRECTIONS:
+#         nr = row + dr
+#         nc = col + dc
 
-        if 0 <= nr < 8 and 0 <= nc < 8:
-            neighbor_index = nr * 8 + nc
+#         if 0 <= nr < 8 and 0 <= nc < 8:
+#             neighbor_index = nr * 8 + nc
 
-            if is_empty(pos, neighbor_index):
-                return True
+#             if is_empty(pos, neighbor_index):
+#                 return True
 
-    return False
+#     return False
 
 
 # def count_frontier_score(pos, my_color, opp_color):

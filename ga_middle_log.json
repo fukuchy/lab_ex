@@ -1,257 +1,1702 @@
 [
     {
         "generation": 1,
-        "best_fitness": 1.2850000000000001,
-        "wins": 4,
+        "best_fitness": 0.9835000000000004,
+        "wins": 79,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 28.5,
+        "losses": 21,
+        "avg_disc_diff": 19.35,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 7.074400331034321,
-            "position": 0.3897567254723795,
-            "corner": 28.581544725208328,
-            "x_square": -28.2186438197609,
-            "c_square": -11.77051586595039,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 4.647612383640352,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -24.46796487254776,
+            "c_square": -6.167670856663139,
+            "edge": 3.5230956316925224
         }
     },
     {
         "generation": 2,
-        "best_fitness": 0.9599999999999999,
-        "wins": 3,
-        "draws": 0,
-        "losses": 1,
-        "avg_disc_diff": 21.0,
+        "best_fitness": 1.0482000000000007,
+        "wins": 83,
+        "draws": 1,
+        "losses": 16,
+        "avg_disc_diff": 21.32,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 7.074400331034321,
-            "position": 0.3897567254723795,
-            "corner": 28.581544725208328,
-            "x_square": -28.2186438197609,
-            "c_square": -11.77051586595039,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 4.647612383640352,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -24.46796487254776,
+            "c_square": -6.167670856663139,
+            "edge": 3.5230956316925224
         }
     },
     {
         "generation": 3,
-        "best_fitness": 1.125,
-        "wins": 4,
-        "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 12.5,
+        "best_fitness": 1.1846000000000003,
+        "wins": 91,
+        "draws": 1,
+        "losses": 8,
+        "avg_disc_diff": 26.96,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.17945192022918,
-            "position": 0.3897567254723795,
-            "corner": 28.581544725208328,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 4.647612383640352,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -24.46796487254776,
+            "c_square": -6.6616681135104026,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 4,
-        "best_fitness": 1.295,
-        "wins": 4,
+        "best_fitness": 1.1484000000000008,
+        "wins": 90,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 29.5,
+        "losses": 10,
+        "avg_disc_diff": 24.84,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.17945192022918,
-            "position": 0.3897567254723795,
-            "corner": 28.581544725208328,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 4.647612383640352,
+            "position": 0.179283792665065,
+            "corner": 20.634025381327902,
+            "x_square": -24.46796487254776,
+            "c_square": -6.6616681135104026,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 5,
-        "best_fitness": 1.2425,
-        "wins": 4,
+        "best_fitness": 1.2354000000000012,
+        "wins": 96,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 24.25,
+        "losses": 4,
+        "avg_disc_diff": 27.54,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.17945192022918,
-            "position": 0.3897567254723795,
-            "corner": 28.581544725208328,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 4.647612383640352,
+            "position": 0.179283792665065,
+            "corner": 20.648235321283718,
+            "x_square": -25.566351368682415,
+            "c_square": -7.186582115520939,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 6,
-        "best_fitness": 1.1875,
-        "wins": 4,
+        "best_fitness": 1.1767000000000005,
+        "wins": 92,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 18.75,
+        "losses": 8,
+        "avg_disc_diff": 25.67,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 20.184666053012126,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -12.079100169258087,
+            "c_square": -7.186582115520939,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 7,
-        "best_fitness": 1.18,
-        "wins": 4,
+        "best_fitness": 1.2102000000000006,
+        "wins": 94,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 18.0,
+        "losses": 6,
+        "avg_disc_diff": 27.02,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 20.184666053012126,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -15.446837952719282,
+            "c_square": -5.558132272893953,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 8,
-        "best_fitness": 1.18,
-        "wins": 4,
+        "best_fitness": 1.2162000000000013,
+        "wins": 96,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 18.0,
+        "losses": 4,
+        "avg_disc_diff": 25.62,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 20.184666053012126,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 20.648235321283718,
+            "x_square": -9.079860151367095,
+            "c_square": -8.08452447860317,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 9,
-        "best_fitness": 1.19,
-        "wins": 4,
+        "best_fitness": 1.2286000000000008,
+        "wins": 96,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 19.0,
+        "losses": 4,
+        "avg_disc_diff": 26.86,
         "best_middle_weights": {
-            "stone": 0.4389696992365105,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 20.184666053012126,
-            "x_square": -29.20537984363209,
-            "c_square": -9.254036050754502,
-            "edge": 3.0977293717290006
+            "stone": -0.6765282350783204,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 10.305064826590204,
+            "x_square": -10.522775959318079,
+            "c_square": -5.893883207718456,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 10,
-        "best_fitness": 1.1600000000000001,
-        "wins": 4,
+        "best_fitness": 1.2562000000000006,
+        "wins": 99,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 16.0,
+        "losses": 1,
+        "avg_disc_diff": 26.62,
         "best_middle_weights": {
-            "stone": 0.2936941198738549,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 19.894863079824596,
-            "x_square": -33.17577119582429,
-            "c_square": -6.994479723756043,
-            "edge": 3.0977293717290006
+            "stone": -0.2079921332693897,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 23.091619944140955,
+            "x_square": -6.521218408856724,
+            "c_square": -7.593532943087136,
+            "edge": 4.839460782074728
         }
     },
     {
         "generation": 11,
-        "best_fitness": 1.335,
-        "wins": 4,
+        "best_fitness": 1.2888000000000006,
+        "wins": 100,
         "draws": 0,
         "losses": 0,
-        "avg_disc_diff": 33.5,
+        "avg_disc_diff": 28.88,
         "best_middle_weights": {
-            "stone": 1.2085296046629808,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 21.325154395293694,
-            "x_square": -30.37655989307176,
-            "c_square": -9.254036050754502,
-            "edge": 2.21764693977169
+            "stone": -0.25423289096360374,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 15.116819594911876,
+            "x_square": -8.052559216885403,
+            "c_square": -8.08452447860317,
+            "edge": 4.508800083617343
         }
     },
     {
         "generation": 12,
-        "best_fitness": 1.185,
-        "wins": 4,
+        "best_fitness": 1.2448000000000006,
+        "wins": 97,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 18.5,
+        "losses": 3,
+        "avg_disc_diff": 27.48,
         "best_middle_weights": {
-            "stone": 1.2085296046629808,
-            "mobility": 3.3638800570526532,
-            "position": 0.3897567254723795,
-            "corner": 21.325154395293694,
-            "x_square": -30.37655989307176,
-            "c_square": -9.254036050754502,
-            "edge": 2.21764693977169
+            "stone": -0.2747372479764745,
+            "mobility": 4.70609596548563,
+            "position": 0.179283792665065,
+            "corner": 18.47715830057689,
+            "x_square": -6.964101440514884,
+            "c_square": -8.08452447860317,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 13,
-        "best_fitness": 1.25,
-        "wins": 4,
+        "best_fitness": 1.2462000000000009,
+        "wins": 98,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 25.0,
+        "losses": 2,
+        "avg_disc_diff": 26.62,
         "best_middle_weights": {
-            "stone": 0.2936941198738549,
-            "mobility": 6.0,
-            "position": 0.3897567254723795,
-            "corner": 40.0,
-            "x_square": -20.48169990106087,
-            "c_square": -10.09953386474362,
-            "edge": 3.0
+            "stone": -0.2079921332693897,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 17.175093904522516,
+            "x_square": -7.884942655227556,
+            "c_square": -8.69114037549993,
+            "edge": 4.839460782074728
         }
     },
     {
         "generation": 14,
-        "best_fitness": 1.2449999999999999,
-        "wins": 4,
+        "best_fitness": 1.2624000000000002,
+        "wins": 98,
         "draws": 0,
-        "losses": 0,
-        "avg_disc_diff": 24.5,
+        "losses": 2,
+        "avg_disc_diff": 28.24,
         "best_middle_weights": {
-            "stone": 0.2936941198738549,
-            "mobility": 6.0,
-            "position": 0.3897567254723795,
-            "corner": 40.0,
-            "x_square": -20.48169990106087,
-            "c_square": -10.09953386474362,
-            "edge": 3.0
+            "stone": -0.2079921332693897,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 15.772284224909601,
+            "x_square": -6.394378079725184,
+            "c_square": -8.08452447860317,
+            "edge": 4.089508628398475
         }
     },
     {
         "generation": 15,
-        "best_fitness": 1.27,
-        "wins": 4,
+        "best_fitness": 1.2684000000000006,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 28.84,
+        "best_middle_weights": {
+            "stone": -0.5332855261528824,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 14.964017164616843,
+            "x_square": -6.394378079725184,
+            "c_square": -8.08452447860317,
+            "edge": 4.839460782074728
+        }
+    },
+    {
+        "generation": 16,
+        "best_fitness": 1.2525000000000002,
+        "wins": 97,
+        "draws": 0,
+        "losses": 3,
+        "avg_disc_diff": 28.25,
+        "best_middle_weights": {
+            "stone": -0.5332855261528824,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 24.053888666318464,
+            "x_square": -6.964101440514884,
+            "c_square": -8.08452447860317,
+            "edge": 4.827569346587007
+        }
+    },
+    {
+        "generation": 17,
+        "best_fitness": 1.2860000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.6,
+        "best_middle_weights": {
+            "stone": -0.5332855261528824,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 17.175093904522516,
+            "x_square": -6.964101440514884,
+            "c_square": -8.418524376466749,
+            "edge": 4.9916501241600315
+        }
+    },
+    {
+        "generation": 18,
+        "best_fitness": 1.2620000000000002,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 27.2,
+        "best_middle_weights": {
+            "stone": -0.42201814060044973,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 15.276334753971085,
+            "x_square": -6.964101440514884,
+            "c_square": -8.08452447860317,
+            "edge": 4.782964284563895
+        }
+    },
+    {
+        "generation": 19,
+        "best_fitness": 1.2677000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 27.77,
+        "best_middle_weights": {
+            "stone": -0.6271060823608046,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 17.175093904522516,
+            "x_square": -6.475206304183908,
+            "c_square": -8.098381375987044,
+            "edge": 5.263398546689356
+        }
+    },
+    {
+        "generation": 20,
+        "best_fitness": 1.2656000000000005,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 28.56,
+        "best_middle_weights": {
+            "stone": -0.42201814060044973,
+            "mobility": 5.413566833150048,
+            "position": 0.179283792665065,
+            "corner": 15.276334753971085,
+            "x_square": -5.986641780599829,
+            "c_square": -8.08452447860317,
+            "edge": 4.782964284563895
+        }
+    },
+    {
+        "generation": 21,
+        "best_fitness": 1.2682000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 27.82,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.413566833150048,
+            "position": 0.20315857397652043,
+            "corner": 16.088996876544815,
+            "x_square": -5.663063395961527,
+            "c_square": -8.418524376466749,
+            "edge": 6.114326408974973
+        }
+    },
+    {
+        "generation": 22,
+        "best_fitness": 1.2792000000000001,
+        "wins": 100,
         "draws": 0,
         "losses": 0,
-        "avg_disc_diff": 27.0,
+        "avg_disc_diff": 27.92,
         "best_middle_weights": {
-            "stone": 1.2085296046629808,
-            "mobility": 6.0,
-            "position": 0.3897567254723795,
-            "corner": 19.51220988341579,
-            "x_square": -19.247261134726234,
-            "c_square": -10.09953386474362,
-            "edge": 2.21764693977169
+            "stone": -0.4016312248223632,
+            "mobility": 5.615009382067056,
+            "position": 0.20315857397652043,
+            "corner": 9.731298712920541,
+            "x_square": -7.655324621370079,
+            "c_square": -8.418524376466749,
+            "edge": 5.2706914987420435
+        }
+    },
+    {
+        "generation": 23,
+        "best_fitness": 1.2916000000000003,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.16,
+        "best_middle_weights": {
+            "stone": -0.42201814060044973,
+            "mobility": 5.615009382067056,
+            "position": 0.20315857397652043,
+            "corner": 11.298351782469988,
+            "x_square": -9.255960469093163,
+            "c_square": -8.08452447860317,
+            "edge": 5.018579569266948
+        }
+    },
+    {
+        "generation": 24,
+        "best_fitness": 1.2874000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.74,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.615009382067056,
+            "position": 0.20315857397652043,
+            "corner": 14.964017164616843,
+            "x_square": -5.663063395961527,
+            "c_square": -8.08452447860317,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 25,
+        "best_fitness": 1.2948000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.48,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -7.312556604817926,
+            "c_square": -8.08452447860317,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 26,
+        "best_fitness": 1.2930000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.3,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.615009382067056,
+            "position": 0.20315857397652043,
+            "corner": 13.044415374214424,
+            "x_square": -7.312556604817926,
+            "c_square": -8.08452447860317,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 27,
+        "best_fitness": 1.2966000000000002,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.66,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -7.312556604817926,
+            "c_square": -7.128494428106393,
+            "edge": 5.0120062141475135
+        }
+    },
+    {
+        "generation": 28,
+        "best_fitness": 1.2842000000000002,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.42,
+        "best_middle_weights": {
+            "stone": -0.7216423702612228,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -7.429948579952239,
+            "c_square": -7.422223896427615,
+            "edge": 5.0120062141475135
+        }
+    },
+    {
+        "generation": 29,
+        "best_fitness": 1.2948000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.48,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 9.731298712920541,
+            "x_square": -6.059044676757298,
+            "c_square": -8.08452447860317,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 30,
+        "best_fitness": 1.2916000000000005,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.16,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -7.312556604817926,
+            "c_square": -6.331266455970039,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 31,
+        "best_fitness": 1.2851000000000006,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.51,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.677748494673827,
+            "x_square": -7.312556604817926,
+            "c_square": -7.043802209785932,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 32,
+        "best_fitness": 1.2935000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.35,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.677748494673827,
+            "x_square": -7.312556604817926,
+            "c_square": -7.043802209785932,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 33,
+        "best_fitness": 1.315200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.52,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -6.86653614913527,
+            "c_square": -7.043802209785932,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 34,
+        "best_fitness": 1.2957000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.57,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -7.312556604817926,
+            "c_square": -7.570777438918212,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 35,
+        "best_fitness": 1.2961000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.61,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -9.140930740143942,
+            "c_square": -5.909792790960822,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 36,
+        "best_fitness": 1.315200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.52,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.602480956881168,
+            "x_square": -9.140930740143942,
+            "c_square": -5.909792790960822,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 37,
+        "best_fitness": 1.2818000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.18,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.821166269931815,
+            "x_square": -6.507779936517322,
+            "c_square": -5.909792790960822,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 38,
+        "best_fitness": 1.2886000000000004,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.86,
+        "best_middle_weights": {
+            "stone": -0.6333992496237281,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -7.917057523227906,
+            "c_square": -6.740953963320734,
+            "edge": 4.98519605501924
+        }
+    },
+    {
+        "generation": 39,
+        "best_fitness": 1.316200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.62,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.759553520078876,
+            "x_square": -9.140930740143942,
+            "c_square": -6.793054936002372,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 40,
+        "best_fitness": 1.310800000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.08,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 8.680708791453513,
+            "x_square": -9.140930740143942,
+            "c_square": -6.793054936002372,
+            "edge": 4.98519605501924
+        }
+    },
+    {
+        "generation": 41,
+        "best_fitness": 1.2916000000000005,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.16,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 12.833589901729352,
+            "x_square": -8.937561011105384,
+            "c_square": -6.793054936002372,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 42,
+        "best_fitness": 1.2861000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.61,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -8.346298801418854,
+            "c_square": -6.331266455970039,
+            "edge": 5.014827174733991
+        }
+    },
+    {
+        "generation": 43,
+        "best_fitness": 1.2854000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.54,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.5266790127793755,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -9.377290323292518,
+            "c_square": -6.57088134294599,
+            "edge": 4.98519605501924
+        }
+    },
+    {
+        "generation": 44,
+        "best_fitness": 1.2955000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.55,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 8.750527778374849,
+            "x_square": -7.917057523227906,
+            "c_square": -6.793054936002372,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 45,
+        "best_fitness": 1.2854000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.54,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -8.516659746590967,
+            "c_square": -6.57088134294599,
+            "edge": 5.078509314089353
+        }
+    },
+    {
+        "generation": 46,
+        "best_fitness": 1.2916000000000005,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.16,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 13.056911273011965,
+            "x_square": -8.516659746590967,
+            "c_square": -6.57088134294599,
+            "edge": 5.078509314089353
+        }
+    },
+    {
+        "generation": 47,
+        "best_fitness": 1.316200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.62,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -8.516659746590967,
+            "c_square": -6.57088134294599,
+            "edge": 5.078509314089353
+        }
+    },
+    {
+        "generation": 48,
+        "best_fitness": 1.2785000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 28.85,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 10.463404506563023,
+            "x_square": -8.516659746590967,
+            "c_square": -6.57088134294599,
+            "edge": 4.770573856128424
+        }
+    },
+    {
+        "generation": 49,
+        "best_fitness": 1.2735,
+        "wins": 98,
+        "draws": 1,
+        "losses": 1,
+        "avg_disc_diff": 28.85,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.916452762247514,
+            "x_square": -9.713294167090687,
+            "c_square": -6.57088134294599,
+            "edge": 4.8652017962321645
+        }
+    },
+    {
+        "generation": 50,
+        "best_fitness": 1.2966000000000002,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.66,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 8.750527778374849,
+            "x_square": -8.819207893926182,
+            "c_square": -6.793054936002372,
+            "edge": 4.8652017962321645
+        }
+    },
+    {
+        "generation": 51,
+        "best_fitness": 1.2984000000000009,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.84,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -9.713294167090687,
+            "c_square": -6.57088134294599,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 52,
+        "best_fitness": 1.317000000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.7,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 11.916452762247514,
+            "x_square": -9.713294167090687,
+            "c_square": -6.57088134294599,
+            "edge": 4.627694178347993
+        }
+    },
+    {
+        "generation": 53,
+        "best_fitness": 1.2984000000000009,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.84,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.38474854798781,
+            "position": 0.20315857397652043,
+            "corner": 10.463404506563023,
+            "x_square": -6.965037615995374,
+            "c_square": -6.57088134294599,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 54,
+        "best_fitness": 1.2848000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.48,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 8.70130599498996,
+            "x_square": -8.819207893926182,
+            "c_square": -7.190026240023793,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 55,
+        "best_fitness": 1.2957000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.57,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 8.70130599498996,
+            "x_square": -8.819207893926182,
+            "c_square": -7.190026240023793,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 56,
+        "best_fitness": 1.2916000000000005,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.16,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -9.713294167090687,
+            "c_square": -6.57088134294599,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 57,
+        "best_fitness": 1.2955000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.55,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -9.713294167090687,
+            "c_square": -6.57088134294599,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 58,
+        "best_fitness": 1.2984000000000009,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.84,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.405448780700668,
+            "position": 0.20315857397652043,
+            "corner": 9.766172575479043,
+            "x_square": -10.84995664942964,
+            "c_square": -6.57088134294599,
+            "edge": 5.013629380189026
+        }
+    },
+    {
+        "generation": 59,
+        "best_fitness": 1.2954000000000006,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.54,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.458910491467474,
+            "x_square": -10.76806622012052,
+            "c_square": -7.190026240023793,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 60,
+        "best_fitness": 1.3020000000000007,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 30.2,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -5.951003894384411,
+            "c_square": -6.57088134294599,
+            "edge": 5.460869089684909
+        }
+    },
+    {
+        "generation": 61,
+        "best_fitness": 1.2955000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.55,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.458910491467474,
+            "x_square": -10.76806622012052,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 62,
+        "best_fitness": 1.315400000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.54,
+        "best_middle_weights": {
+            "stone": -0.7131771716854725,
+            "mobility": 5.419508409836767,
+            "position": 0.2062408782224313,
+            "corner": 11.269192961070388,
+            "x_square": -7.104764768283468,
+            "c_square": -6.57088134294599,
+            "edge": 5.460869089684909
+        }
+    },
+    {
+        "generation": 63,
+        "best_fitness": 1.315400000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.54,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 11.269192961070388,
+            "x_square": -5.951003894384411,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 64,
+        "best_fitness": 1.278400000000001,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 28.84,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 10.728282849236754,
+            "x_square": -5.7467785911129585,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 65,
+        "best_fitness": 1.2845000000000006,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 30.45,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 6.327388096811759,
+            "position": 0.20315857397652043,
+            "corner": 10.728282849236754,
+            "x_square": -9.722136212137361,
+            "c_square": -7.741656775344351,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 66,
+        "best_fitness": 1.2883000000000004,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.83,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -9.578753294213772,
+            "c_square": -7.519845725348867,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 67,
+        "best_fitness": 1.2984000000000009,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.84,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.389310705794102,
+            "x_square": -9.91409481303556,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 68,
+        "best_fitness": 1.316200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.62,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -7.5346283443216135,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 69,
+        "best_fitness": 1.2861000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.61,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -7.5346283443216135,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 70,
+        "best_fitness": 1.308800000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 30.88,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.77058130902153,
+            "x_square": -6.630169339327521,
+            "c_square": -7.098157510744004,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 71,
+        "best_fitness": 1.308800000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 30.88,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.77058130902153,
+            "x_square": -6.630169339327521,
+            "c_square": -7.098157510744004,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 72,
+        "best_fitness": 1.2841000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.41,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -9.725315748269203,
+            "c_square": -6.57088134294599,
+            "edge": 5.1280195241216715
+        }
+    },
+    {
+        "generation": 73,
+        "best_fitness": 1.288600000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.86,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.818344591631053,
+            "x_square": -6.573375238907813,
+            "c_square": -6.57088134294599,
+            "edge": 5.1280195241216715
+        }
+    },
+    {
+        "generation": 74,
+        "best_fitness": 1.292000000000001,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.2,
+        "best_middle_weights": {
+            "stone": -0.6481476028314547,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -6.630169339327521,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 75,
+        "best_fitness": 1.2793000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 28.93,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.177778993922592,
+            "x_square": -7.423167971985976,
+            "c_square": -6.57088134294599,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 76,
+        "best_fitness": 1.273800000000001,
+        "wins": 97,
+        "draws": 0,
+        "losses": 3,
+        "avg_disc_diff": 30.38,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 13.892612874755159,
+            "x_square": -7.423167971985976,
+            "c_square": -7.098157510744004,
+            "edge": 5.146623824928065
+        }
+    },
+    {
+        "generation": 77,
+        "best_fitness": 1.2860000000000003,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.6,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 10.762459859342108,
+            "x_square": -7.423167971985976,
+            "c_square": -7.575418279747151,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 78,
+        "best_fitness": 1.3020000000000007,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 30.2,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.6887771447085775,
+            "position": 0.20315857397652043,
+            "corner": 10.762459859342108,
+            "x_square": -7.423167971985976,
+            "c_square": -7.575418279747151,
+            "edge": 5.848939701885293
+        }
+    },
+    {
+        "generation": 79,
+        "best_fitness": 1.2955000000000008,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.55,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 10.762459859342108,
+            "x_square": -7.423167971985976,
+            "c_square": -7.098157510744004,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 80,
+        "best_fitness": 1.2672000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 27.72,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 13.855241707697607,
+            "x_square": -7.423167971985976,
+            "c_square": -7.098157510744004,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 81,
+        "best_fitness": 1.315200000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.52,
+        "best_middle_weights": {
+            "stone": -0.618251903229971,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 14.74179931527708,
+            "x_square": -8.962347328084782,
+            "c_square": -7.098157510744004,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 82,
+        "best_fitness": 1.2862000000000002,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.62,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 6.202140551610886,
+            "position": 0.20315857397652043,
+            "corner": 13.855241707697607,
+            "x_square": -7.423167971985976,
+            "c_square": -8.632816102609112,
+            "edge": 5.972497464253674
+        }
+    },
+    {
+        "generation": 83,
+        "best_fitness": 1.2946000000000006,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.46,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.6887771447085775,
+            "position": 0.20315857397652043,
+            "corner": 14.74179931527708,
+            "x_square": -7.423167971985976,
+            "c_square": -7.801148332701299,
+            "edge": 5.42121143874292
+        }
+    },
+    {
+        "generation": 84,
+        "best_fitness": 1.2957000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.57,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.6887771447085775,
+            "position": 0.20315857397652043,
+            "corner": 12.989950734501583,
+            "x_square": -10.080603436675192,
+            "c_square": -8.18906571508527,
+            "edge": 5.42121143874292
+        }
+    },
+    {
+        "generation": 85,
+        "best_fitness": 1.297400000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.74,
+        "best_middle_weights": {
+            "stone": -0.5092994510259735,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 8.30568888104845,
+            "x_square": -9.573494238511191,
+            "c_square": -7.801148332701299,
+            "edge": 5.391504538229068
+        }
+    },
+    {
+        "generation": 86,
+        "best_fitness": 1.2673000000000005,
+        "wins": 97,
+        "draws": 0,
+        "losses": 3,
+        "avg_disc_diff": 29.73,
+        "best_middle_weights": {
+            "stone": -0.541431392934076,
+            "mobility": 5.419508409836767,
+            "position": 0.17905181247744323,
+            "corner": 9.09196332919048,
+            "x_square": -8.679449403649267,
+            "c_square": -6.549510698419813,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 87,
+        "best_fitness": 1.2756000000000005,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 29.56,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.6887771447085775,
+            "position": 0.20315857397652043,
+            "corner": 14.364639397293661,
+            "x_square": -10.290264021431526,
+            "c_square": -7.801148332701299,
+            "edge": 5.391504538229068
+        }
+    },
+    {
+        "generation": 88,
+        "best_fitness": 1.2876000000000007,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.76,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 8.30568888104845,
+            "x_square": -6.894115064391378,
+            "c_square": -6.549510698419813,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 89,
+        "best_fitness": 1.2757000000000007,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 29.57,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 6.608925183552167,
+            "x_square": -6.894115064391378,
+            "c_square": -6.549510698419813,
+            "edge": 5.10188783072453
+        }
+    },
+    {
+        "generation": 90,
+        "best_fitness": 1.2876000000000007,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.76,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 12.989950734501583,
+            "x_square": -6.897631645421356,
+            "c_square": -6.549510698419813,
+            "edge": 5.150146819065736
+        }
+    },
+    {
+        "generation": 91,
+        "best_fitness": 1.315400000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 31.54,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 12.71286837701645,
+            "x_square": -7.169971429478596,
+            "c_square": -6.303207750282469,
+            "edge": 5.150146819065736
+        }
+    },
+    {
+        "generation": 92,
+        "best_fitness": 1.2821000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.21,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 12.107890842262798,
+            "x_square": -7.169971429478596,
+            "c_square": -6.422070227835313,
+            "edge": 5.150146819065736
+        }
+    },
+    {
+        "generation": 93,
+        "best_fitness": 1.2851000000000006,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.51,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 10.613003405519754,
+            "x_square": -6.077837742006905,
+            "c_square": -7.458143520527113,
+            "edge": 5.150146819065736
+        }
+    },
+    {
+        "generation": 94,
+        "best_fitness": 1.288600000000001,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 28.86,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.419508409836767,
+            "position": 0.20315857397652043,
+            "corner": 10.613003405519754,
+            "x_square": -6.5171683546648635,
+            "c_square": -6.6046198061806685,
+            "edge": 5.150146819065736
+        }
+    },
+    {
+        "generation": 95,
+        "best_fitness": 1.2748000000000006,
+        "wins": 98,
+        "draws": 0,
+        "losses": 2,
+        "avg_disc_diff": 29.48,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 11.606437401305978,
+            "x_square": -7.434227180781786,
+            "c_square": -7.458143520527113,
+            "edge": 5.0627530897388695
+        }
+    },
+    {
+        "generation": 96,
+        "best_fitness": 1.3060000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 31.6,
+        "best_middle_weights": {
+            "stone": -0.6434922177891571,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 11.606437401305978,
+            "x_square": -7.864398013184931,
+            "c_square": -7.458143520527113,
+            "edge": 5.0627530897388695
+        }
+    },
+    {
+        "generation": 97,
+        "best_fitness": 1.2935000000000005,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.35,
+        "best_middle_weights": {
+            "stone": -0.6434922177891571,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 10.621518194348317,
+            "x_square": -7.864398013184931,
+            "c_square": -7.354255492805917,
+            "edge": 5.0627530897388695
+        }
+    },
+    {
+        "generation": 98,
+        "best_fitness": 1.2966000000000002,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 30.66,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 13.964869601959576,
+            "x_square": -6.5171683546648635,
+            "c_square": -7.458143520527113,
+            "edge": 5.0627530897388695
+        }
+    },
+    {
+        "generation": 99,
+        "best_fitness": 1.2946000000000009,
+        "wins": 100,
+        "draws": 0,
+        "losses": 0,
+        "avg_disc_diff": 29.46,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 13.964869601959576,
+            "x_square": -6.788693605907003,
+            "c_square": -7.458143520527113,
+            "edge": 5.609051524195491
+        }
+    },
+    {
+        "generation": 100,
+        "best_fitness": 1.2844000000000007,
+        "wins": 99,
+        "draws": 0,
+        "losses": 1,
+        "avg_disc_diff": 29.44,
+        "best_middle_weights": {
+            "stone": -0.5892443848250077,
+            "mobility": 5.255651597800557,
+            "position": 0.20315857397652043,
+            "corner": 13.964869601959576,
+            "x_square": -6.70867512030268,
+            "c_square": -7.458143520527113,
+            "edge": 5.153309730733325
         }
     }
 ]
