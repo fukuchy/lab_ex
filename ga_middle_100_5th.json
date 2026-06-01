@@ -1,0 +1,29 @@
+{
+    "opening": {
+        "stone": -2.0,
+        "mobility": 8.0,
+        "position": 0.5,
+        "corner": 30.0,
+        "x_square": -20.0,
+        "c_square": -10.0,
+        "edge": 2.0
+    },
+    "middle": {
+        "stone": -0.520,
+        "mobility": 4.648,
+        "position": 0.179,
+        "corner": 17.705,
+        "x_square": -24.468,
+        "c_square": -6.168,
+        "edge": 3.972
+    },
+    "end": {
+        "stone": 8.0,
+        "mobility": 1.0,
+        "position": 0.3,
+        "corner": 50.0,
+        "x_square": -10.0,
+        "c_square": -5.0,
+        "edge": 5.0
+    }
+}

@@ -9,6 +9,8 @@ import mcts_ex
 import ab_opening
 import ab_ending
 import ab_randomWalk
+import ab_rainforce
+import ab_rainforce_after
 
 NUM_GAMES = 100
 AB_DEPTH = 4
@@ -33,6 +35,12 @@ def select_agent_move(agent_name, pos):
             return random_agent.select_move(pos)
         else:
             return ab_ending.alpha_beta(pos, depth=AB_DEPTH)
+        
+    if agent_name == "ab_rainforce":
+        return ab_rainforce.alpha_beta(pos, depth=AB_DEPTH)
+
+    if agent_name == "ab_rainforce_after":
+        return ab_rainforce_after.alpha_beta(pos, depth=AB_DEPTH)
 
     if agent_name == "mcts":
         return mcts_ex.mcts(pos, mcts_depth)
@@ -128,8 +136,9 @@ def main():
     agents = [
         # "random",
         # "ab",
-        "ab_opening",
+        # "ab_opening",
         # "ab_ending",
+        "ab_rainforce",
         # "mcts",
     ]
 

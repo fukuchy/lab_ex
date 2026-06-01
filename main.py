@@ -3,6 +3,7 @@ from pyrev import Position
 import mcts_ex
 import ab_opening
 import ab_ex
+import ab_rainforce_after
 
 def color_name(color) -> str:
     if color == pyrev.BLACK:
@@ -52,7 +53,7 @@ def human_turn(pos: Position):
 
 
 def cpu_turn(pos: Position):
-    move = ab_ex.alpha_beta(pos, depth=4)  # 深さ5でAlpha-Beta探索
+    move = ab_rainforce_after.alpha_beta(pos, depth=4)  # 深さ5でAlpha-Beta探索
 
     pos.do_move_at(move)
     print(f"エージェントの着手: {pyrev.coord_to_str(move)}")
