@@ -13,8 +13,54 @@ EVAL_TABLE = [
     120, -20,  20,   5,   5,  20, -20, 120,
 ]
 
-ENDGAME_EMPTY_LIMIT = 14
+ENDGAME_EMPTY_LIMIT = 11
 WIN_SCORE = 100000
+
+# ==============================
+# 置換表 (Transposition Table)
+# ==============================
+#
+# キー: position_key(pos) -> ハッシュ値
+# 値  : (depth, flag, score)
+#
+# - depth: その評価値を計算したときの残り深さ
+#          (終盤の完全読みは TT_FULL_DEPTH として扱う)
+# - flag : TT_EXACT  -> score は正確な値
+#          TT_LOWER  -> score は真の値の下限 (beta cutoffで打ち切った)
+#          TT_UPPER  -> score は真の値の上限 (alphaを更新できなかった)
+#
+# 置換表は alpha_beta_search_only() の呼び出しごとに新しく作成し、
+# その1回の探索 (=1手分の思考) でのみ使用する。
+# 評価重み (FEATURE_WEIGHTS) は対局中に手番側によって異なる値が
+# セットされるため、置換表を対局全体やプロセス全体で共有すると
+# 異なる重みで計算したスコアが混ざってしまい、正しさが保てない。
+# そのため、ここでは「1回の探索内でのみ有効な使い捨てテーブル」とする。
+
+TT_EXACT = 0
+TT_LOWER = 1
+TT_UPPER = 2
+
+# 終盤の完全読み(endgame_search)は深さ概念がないため、
+# 常にどんな depth の要求でも満たせるよう大きな値を入れておく。
+TT_FULL_DEPTH = 1 << 30
+
+# pyrev.Position が高速なハッシュ関数を持っている場合はそれを使う。
+# 持っていない場合は、盤面64マスから簡易キーを作る。
+_HAS_FAST_HASH = hasattr(pyrev.Position, "calc_hash_code")
+
+
+def position_key(pos):
+    """
+    置換表のキーを作る。
+
+    pyrev.Position に calc_hash_code() があればそれを使い、
+    なければ盤面64マス + 手番から簡易キーを作る。
+    """
+    if _HAS_FAST_HASH:
+        return (pos.calc_hash_code(), int(pos.side_to_move))
+
+    board = tuple(int(pos.get_square_color_at(i)) for i in range(64))
+    return (board, int(pos.side_to_move))
 
 
 # ==============================
@@ -318,20 +364,64 @@ def evaluate(pos, my_color):
     return score
 
 
+def quick_move_score(pos, action, my_color, opp_color):
+    """
+    手の並べ替え専用の軽量スコア。
+
+    フルの evaluate() (全特徴量・全マス走査) を毎手呼ぶのは高コストなので、
+    並べ替えには次の3つだけを使う。
+
+    - 着手マスの位置評価テーブル値 (EVAL_TABLE)
+    - 着手後の角の数の差 (自分 - 相手)
+    - 着手後の相手の着手可能数 (少ないほど良い)
+    """
+    next_pos = pos.copy()
+    next_pos.do_move_at(action)
+
+    score = EVAL_TABLE[int(action)]
+    score += count_corner_score(next_pos, my_color, opp_color) * 100
+
+    opp_moves = count_legal_moves_for(next_pos, opp_color)
+    score -= opp_moves * 10
+
+    return score
+
+
 def order_moves(pos, actions, my_color):
-    scored_actions = []
+    """
+    軽量スコアによる手の並べ替え。
+    """
+    opp_color = pyrev.to_opponent_color(my_color)
 
-    for action in actions:
-        next_pos = pos.copy()
-        next_pos.do_move_at(action)
-
-        score = evaluate(next_pos, my_color)
-
-        scored_actions.append((score, action))
+    scored_actions = [
+        (quick_move_score(pos, action, my_color, opp_color), action)
+        for action in actions
+    ]
 
     scored_actions.sort(reverse=True)
 
     return [action for score, action in scored_actions]
+
+
+def _store_tt(tt, key, depth, score, alpha, beta):
+    """
+    探索結果を置換表に格納する。
+
+    alpha/beta は探索開始時点の値 (original_alpha/original_beta) を渡す。
+    - score <= alpha  -> 真の値の上限 (この手では alpha を超えられなかった)
+    - score >= beta   -> 真の値の下限 (beta cutoffで打ち切った)
+    - それ以外        -> 正確な値
+    """
+    if score <= alpha:
+        flag = TT_UPPER
+    elif score >= beta:
+        flag = TT_LOWER
+    else:
+        flag = TT_EXACT
+
+    existing = tt.get(key)
+    if existing is None or existing[0] <= depth:
+        tt[key] = (depth, flag, score)
 
 
 def endgame_evaluate(pos, my_color):
@@ -365,9 +455,29 @@ def order_moves_endgame(pos, actions):
     return [action for score, action in scored_actions]
 
 
-def endgame_search(pos, alpha, beta, my_color):
+def endgame_search(pos, alpha, beta, my_color, tt):
     if pos.is_gameover():
         return endgame_evaluate(pos, my_color)
+
+    key = position_key(pos)
+    original_alpha = alpha
+    original_beta = beta
+
+    entry = tt.get(key)
+    if entry is not None:
+        _, flag, value = entry
+
+        if flag == TT_EXACT:
+            return value
+        elif flag == TT_LOWER:
+            if value > alpha:
+                alpha = value
+        elif flag == TT_UPPER:
+            if value < beta:
+                beta = value
+
+        if alpha >= beta:
+            return value
 
     actions = list(pos.get_legal_moves())
 
@@ -375,14 +485,20 @@ def endgame_search(pos, alpha, beta, my_color):
         next_pos = pos.copy()
         next_pos.do_pass()
 
-        return -endgame_search(
+        score = -endgame_search(
             next_pos,
             -beta,
             -alpha,
-            pyrev.to_opponent_color(my_color)
+            pyrev.to_opponent_color(my_color),
+            tt
         )
 
+        _store_tt(tt, key, TT_FULL_DEPTH, score, original_alpha, original_beta)
+        return score
+
     actions = order_moves_endgame(pos, actions)
+
+    best_score = -math.inf
 
     for action in actions:
         next_pos = pos.copy()
@@ -392,23 +508,30 @@ def endgame_search(pos, alpha, beta, my_color):
             next_pos,
             -beta,
             -alpha,
-            pyrev.to_opponent_color(my_color)
+            pyrev.to_opponent_color(my_color),
+            tt
         )
+
+        if score > best_score:
+            best_score = score
 
         # 勝てる手が一つあれば大差かどうかは見ない
         if score == WIN_SCORE:
+            _store_tt(tt, key, TT_FULL_DEPTH, WIN_SCORE, original_alpha, original_beta)
             return WIN_SCORE
 
         if score >= beta:
-            return score
+            alpha = score
+            break
 
         if score > alpha:
             alpha = score
 
-    return alpha
+    _store_tt(tt, key, TT_FULL_DEPTH, best_score, original_alpha, original_beta)
+    return best_score
 
 
-def alpha_beta_rec(pos, alpha, beta, depth):
+def alpha_beta_rec(pos, alpha, beta, depth, tt):
     my_color = pos.side_to_move
 
     my_count = pos.get_disc_count_of(my_color)
@@ -419,10 +542,31 @@ def alpha_beta_rec(pos, alpha, beta, depth):
     empty_count = 64 - my_count - opp_count
 
     if empty_count <= ENDGAME_EMPTY_LIMIT:
-        return endgame_search(pos, alpha, beta, my_color)
+        return endgame_search(pos, alpha, beta, my_color, tt)
 
     if depth == 0 or pos.is_gameover():
         return evaluate(pos, my_color)
+
+    key = position_key(pos)
+    original_alpha = alpha
+    original_beta = beta
+
+    entry = tt.get(key)
+    if entry is not None:
+        e_depth, flag, value = entry
+
+        if e_depth >= depth:
+            if flag == TT_EXACT:
+                return value
+            elif flag == TT_LOWER:
+                if value > alpha:
+                    alpha = value
+            elif flag == TT_UPPER:
+                if value < beta:
+                    beta = value
+
+            if alpha >= beta:
+                return value
 
     actions = list(pos.get_legal_moves())
 
@@ -430,14 +574,20 @@ def alpha_beta_rec(pos, alpha, beta, depth):
         next_pos = pos.copy()
         next_pos.do_pass()
 
-        return -alpha_beta_rec(
+        score = -alpha_beta_rec(
             next_pos,
             -beta,
             -alpha,
-            depth - 1
+            depth - 1,
+            tt
         )
 
+        _store_tt(tt, key, depth, score, original_alpha, original_beta)
+        return score
+
     actions = order_moves(pos, actions, my_color)
+
+    best_score = -math.inf
 
     for action in actions:
         next_pos = pos.copy()
@@ -447,21 +597,30 @@ def alpha_beta_rec(pos, alpha, beta, depth):
             next_pos,
             -beta,
             -alpha,
-            depth - 1
+            depth - 1,
+            tt
         )
 
+        if score > best_score:
+            best_score = score
+
         if score >= beta:
-            return score
+            alpha = score
+            break
 
         if score > alpha:
             alpha = score
 
-    return alpha
+    _store_tt(tt, key, depth, best_score, original_alpha, original_beta)
+    return best_score
 
 
 def alpha_beta_search_only(pos, depth):
     """
     通常のαβ探索（定石なし）。
+
+    置換表 (tt) はこの関数の呼び出しごとに新しく作成し、
+    1手分の探索が終わったら破棄する使い捨てテーブル。
     """
     best_action = -1
 
@@ -475,6 +634,8 @@ def alpha_beta_search_only(pos, depth):
     if not actions:
         return best_action
 
+    tt = {}
+
     actions = order_moves(pos, actions, my_color)
 
     for action in actions:
@@ -485,7 +646,8 @@ def alpha_beta_search_only(pos, depth):
             next_pos,
             -beta,
             -alpha,
-            depth - 1
+            depth - 1,
+            tt
         )
 
         if score > alpha:
