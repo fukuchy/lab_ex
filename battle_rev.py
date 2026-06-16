@@ -15,14 +15,17 @@ import ab_opening
 import ab_ending
 import ab_rainforce
 import ab_rainforce_after
+import ab_rainforce_no_book
 
 ab_depth = 4
 mcts_depth = 1000
 num_games = 100
 
+random_count = 4
+
 
 # 対戦させるエージェントを select_agent_move 関数で定義した名前で指定する
-AGENT_A = "mcts_fukuda"
+AGENT_A = "ab_rainforce_no_book"
 AGENT_B = "ab_rainforce_after"
 
 def play_game(black_agent, white_agent):
@@ -60,6 +63,9 @@ def play_game(black_agent, white_agent):
 
 
 def select_agent_move(agent_name, pos):
+    if pos.empty_square_count > 56:
+        # print(pos.empty_square_count)
+        return random_agent.select_move(pos)
     if agent_name == "random":
         return random_agent.select_move(pos)
     if agent_name == "ab":
@@ -80,6 +86,8 @@ def select_agent_move(agent_name, pos):
         return ab_rainforce.alpha_beta(pos, depth=ab_depth)
     if agent_name == "ab_rainforce_after":
         return ab_rainforce_after.alpha_beta(pos, depth=ab_depth)
+    if agent_name == "ab_rainforce_no_book":
+        return ab_rainforce_no_book.alpha_beta(pos, depth=ab_depth)
     raise ValueError(f"unknown agent: {agent_name}")
 
 
