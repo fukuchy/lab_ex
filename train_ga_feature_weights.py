@@ -48,7 +48,7 @@ FEATURE_NAMES = [
 ]
 
 # 最適化対象フェーズ。end は固定。
-TRAIN_PHASES = ["opening", "middle"]
+TRAIN_PHASES = ["opening", "middle", "end"]
 
 # スクリプト起動時点の全重みを保存（end フェーズ固定用・初期個体生成用）
 INITIAL_ALL_WEIGHTS: Dict[str, Dict[str, float]] = copy.deepcopy(agent.FEATURE_WEIGHTS)
@@ -513,16 +513,14 @@ def main() -> None:
         print_individual("BEST", best)
         print_individual("GLOBAL BEST", global_best)
 
-        # fitness > 0.5 = global_best に勝ち越している → global_best を更新
-        global_best_updated = best.fitness > 0.5
+        # 10世代ごとに global_best を今世代のベスト個体に更新する
+        global_best_updated = (generation % 10 == 0)
         if global_best_updated:
             global_best = copy.deepcopy(best)
-            # global_best が更新されたため、fitness / W/D/L は次世代以降の評価で上書きされる。
-            # ここではひとまず現世代の対戦結果をそのまま保持する。
-            print(f"[global_best UPDATE] fitness={best.fitness:.3f} で global_best を更新しました")
+            print(f"[global_best UPDATE] 世代 {generation} のトップ個体を次の対戦相手に設定")
             save_best_weights(global_best)
         else:
-            print(f"[global_best KEEP] fitness={best.fitness:.3f} <= 0.5 のため global_best は据え置き")
+            print(f"[global_best KEEP] 次の更新は世代 {10 * (generation // 10 + 1)}")
 
         log.append({
             "generation": generation,
