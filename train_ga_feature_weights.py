@@ -88,6 +88,17 @@ WEIGHT_MAX = 200.0
 # 勝ち: +1、引き分け: +0.5、負け: 0 をベースに石差を小さく加算する
 DISC_DIFF_BONUS_SCALE = 0.01
 
+# True にすると石差ボーナスを fitness に加算する。
+# False にすると勝敗のみで fitness を計算する（勝率を純粋に最大化したい場合に使う）。
+USE_DISC_DIFF_BONUS = True
+
+# 何世代ごとに global_best（対戦相手）の更新を試みるか
+OPPONENT_UPDATE_INTERVAL = 10
+
+# global_best を更新するために必要な勝率の閾値
+# (wins / GAMES_PER_INDIVIDUAL がこの値を超えた場合のみ更新する)
+OPPONENT_UPDATE_WIN_RATE = 0.90
+
 RANDOM_SEED = 0
 
 # 並列実行に使うプロセス数。None の場合は CPU コア数を使う
@@ -313,7 +324,8 @@ def evaluate_against_opponent(
                 draws += 1
 
         total_disc_diff += disc_diff
-        total_score += result_score + DISC_DIFF_BONUS_SCALE * disc_diff
+        bonus = DISC_DIFF_BONUS_SCALE * disc_diff if USE_DISC_DIFF_BONUS else 0.0
+        total_score += result_score + bonus
 
     individual.wins = wins
     individual.draws = draws
@@ -493,7 +505,8 @@ def main() -> None:
 
     # global_best: これまでの全世代で最も強かった個体。
     # 常にこの個体を対戦相手とする。
-    # 今世代のベスト個体が global_best に勝ち越した (fitness > 0.5) 場合のみ更新する。
+    # OPPONENT_UPDATE_INTERVAL 世代ごとに更新を試み、
+    # 勝率が OPPONENT_UPDATE_WIN_RATE を超えた場合のみ実際に更新する。
     global_best: Individual = initial_individual()
 
     log: List[dict] = []
@@ -513,18 +526,34 @@ def main() -> None:
         print_individual("BEST", best)
         print_individual("GLOBAL BEST", global_best)
 
-        # 10世代ごとに global_best を今世代のベスト個体に更新する
-        global_best_updated = (generation % 10 == 0)
-        if global_best_updated:
-            global_best = copy.deepcopy(best)
-            print(f"[global_best UPDATE] 世代 {generation} のトップ個体を次の対戦相手に設定")
-            save_best_weights(global_best)
+        # OPPONENT_UPDATE_INTERVAL 世代ごとに更新を試みる。
+        # ただし勝率が OPPONENT_UPDATE_WIN_RATE を超えた場合のみ実際に更新する。
+        win_rate = best.wins / GAMES_PER_INDIVIDUAL
+        is_update_timing = (generation % OPPONENT_UPDATE_INTERVAL == 0)
+        global_best_updated = is_update_timing and (win_rate > OPPONENT_UPDATE_WIN_RATE)
+
+        if is_update_timing:
+            if global_best_updated:
+                global_best = copy.deepcopy(best)
+                print(
+                    f"[global_best UPDATE] 勝率 {win_rate:.1%} > {OPPONENT_UPDATE_WIN_RATE:.0%} "
+                    f"→ 世代 {generation} のトップ個体を次の対戦相手に設定"
+                )
+                save_best_weights(global_best)
+            else:
+                next_timing = OPPONENT_UPDATE_INTERVAL * (generation // OPPONENT_UPDATE_INTERVAL + 1)
+                print(
+                    f"[global_best KEEP] 勝率 {win_rate:.1%} <= {OPPONENT_UPDATE_WIN_RATE:.0%} "
+                    f"→ 対戦相手は据え置き（次の試行: 世代 {next_timing}）"
+                )
         else:
-            print(f"[global_best KEEP] 次の更新は世代 {10 * (generation // 10 + 1)}")
+            next_timing = OPPONENT_UPDATE_INTERVAL * (generation // OPPONENT_UPDATE_INTERVAL + 1)
+            print(f"[global_best KEEP] 次の更新試行: 世代 {next_timing}")
 
         log.append({
             "generation": generation,
             "best_fitness": best.fitness,
+            "win_rate": win_rate,
             "wins": best.wins,
             "draws": best.draws,
             "losses": best.losses,
@@ -532,6 +561,7 @@ def main() -> None:
             "global_best_updated": global_best_updated,
             "best_opening_weights": copy.deepcopy(best.phase_weights["opening"]),
             "best_middle_weights": copy.deepcopy(best.phase_weights["middle"]),
+            "best_end_weights": copy.deepcopy(best.phase_weights["end"]),
         })
 
         save_log(log)
