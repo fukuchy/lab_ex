@@ -64,8 +64,8 @@ RANDOM_OPENING_PLIES = 4
 GAMES_PER_INDIVIDUAL = 100
 
 # 集団サイズと世代数
-POPULATION_SIZE = 100
-GENERATIONS = 100
+POPULATION_SIZE = 150
+GENERATIONS = 300
 
 # 上位何個体を無条件で次世代に残すか
 ELITE_SIZE = 2
@@ -90,10 +90,10 @@ DISC_DIFF_BONUS_SCALE = 0.01
 
 # True にすると石差ボーナスを fitness に加算する。
 # False にすると勝敗のみで fitness を計算する（勝率を純粋に最大化したい場合に使う）。
-USE_DISC_DIFF_BONUS = True
+USE_DISC_DIFF_BONUS = False
 
 # 何世代ごとに global_best（対戦相手）の更新を試みるか
-OPPONENT_UPDATE_INTERVAL = 10
+OPPONENT_UPDATE_INTERVAL = 20
 
 # global_best を更新するために必要な勝率の閾値
 # (wins / GAMES_PER_INDIVIDUAL がこの値を超えた場合のみ更新する)
