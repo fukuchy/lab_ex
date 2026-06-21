@@ -1,3 +1,22 @@
+"""
+agent.py - Optimized αβ agent (ab_rainforce_no_book.py の改良版)
+
+ab_rainforce_no_book.py からの改善点:
+  ④ copy_to() + do_move() + SearchContext による位置プール
+     - pos.copy() の代わりに既存オブジェクトへの copy_to() でオブジェクト生成コストを削減
+     - do_move_at() の代わりに合法手判定なしの do_move() で着手コストを削減
+     - order_moves 内で calc_flip_discs() を先行計算し、探索ループで再利用することで
+       calc_flip_discs() の二重呼び出しを排除
+  ⑤ 置換表キーを calc_hash_code() (Zobrist) に一本化
+     - PyRev が calc_hash_code() を持つことを GitHub README で確認済み
+     - 64マス走査のフォールバックを削除し、整数キーに一本化
+  ⑥ 特徴量計算の最適化
+     - player_disc_count / opponent_disc_count / empty_square_count プロパティで O(1) 取得
+     - get_square_owner_at() (条件分岐なし、README で推奨) でマス所有者を取得
+     - αβ 探索中に position_score を差分更新し、末端ノードでの 64 マスフル走査を排除
+       (mobility 以外の特徴量は安価なため、position_score のみ差分更新する)
+"""
+
 import math
 import os
 import json
@@ -39,33 +58,6 @@ EDGES = [
     15, 23, 31, 39, 47, 55,
     57, 58, 59, 60, 61, 62,
 ]
-EDGE_SET = frozenset(EDGES)
-
-
-# ==============================
-# ビットマスク定数 (② 差分更新用)
-# ==============================
-#
-# corner_score / edge_score を O(1) で差分更新するため、
-# 各特徴量に対応するマスをビット集合として事前計算しておく。
-# x_square_score / c_square_score は角の占有状態に依存するため、
-# 「角 or 危険マスのいずれかが変化したか」を判定する DANGER_MASK として使う。
-
-def _mask_from_squares(squares):
-    m = 0
-    for s in squares:
-        m |= (1 << s)
-    return m
-
-
-CORNER_MASK = _mask_from_squares(CORNERS)
-EDGE_MASK   = _mask_from_squares(EDGES)
-XSQ_MASK    = _mask_from_squares([sq for lst in X_SQUARES.values() for sq in lst])
-CSQ_MASK    = _mask_from_squares([sq for lst in C_SQUARES.values() for sq in lst])
-
-# 角・X-square・C-square のいずれかに触れた場合のみ
-# x_square_score / c_square_score の再計算が必要になる。
-DANGER_MASK = CORNER_MASK | XSQ_MASK | CSQ_MASK
 
 
 # ==============================
@@ -143,10 +135,8 @@ class SearchContext:
         order_moves / extract_features 内での一時的な局面計算専用。
         探索ループと競合しないよう、必ず使用後に上書きされる形で使う。
     """
-    # 盤面は64マスなので、パスを考慮しても ply が 64 を超えることは実質的にない。
-    # ⑥ で SearchContext を反復深化の全深さで使い回すようになったため、
-    # 安全マージンとして盤面サイズと同じ 64 に設定する。
-    MAX_PLY = 64
+    # DEPTH(4) + ENDGAME_EMPTY_LIMIT(14) + パスの余裕 = 40 で十分
+    MAX_PLY = 40
 
     def __init__(self, deadline: float = math.inf):
         self.pos_pool    = [pyrev.Position() for _ in range(self.MAX_PLY)]
@@ -223,15 +213,65 @@ def get_phase(pos):
 # 特徴量計算 (⑥ 最適化版)
 # ==============================
 
-def _compute_danger_squares_full(pos):
+def _compute_position_score_full(pos):
     """
-    x_square_score, c_square_score を pos から直接フル計算する。
+    pos の position_score を全マス走査でフル計算する。
+    alpha_beta_search_only の呼び出し時に一度だけ使う。
+    以降の差分更新のための初期値として使用する。
 
-    角が空いている場合のみ、その周辺マスを危険マスとして評価する。
-    DANGER_MASK に変化があった場合 (② のレアパス) にのみ呼ばれる。
-    呼び出し頻度が低いため、64マス全走査ではなく対象マスのみを
-    直接チェックする従来通りのロジックで十分高速。
+    get_square_owner_at() は get_square_color_at() より高速 (README 参照)。
+    PLAYER = side_to_move の石、OPPONENT = 相手の石。
     """
+    score = 0
+    for i in range(64):
+        owner = pos.get_square_owner_at(i)
+        if owner == pyrev.PLAYER:
+            score += EVAL_TABLE[i]
+        elif owner == pyrev.OPPONENT:
+            score -= EVAL_TABLE[i]
+    return score
+
+
+def extract_features(pos, ctx, cur_pos_score):
+    """
+    評価用の特徴量を取り出す。
+
+    cur_pos_score:
+        探索中に差分更新してきた position_score。
+        64 マスフル走査が不要なため、末端ノードの評価が高速になる。
+
+    get_square_owner_at() を全体的に使用:
+        PLAYER  = pos.side_to_move の石
+        OPPONENT = 相手の石
+        NULL_OWNER = 空マス
+    """
+    # ---- 石数 (O(1) プロパティ) ----
+    stone_score = pos.player_disc_count - pos.opponent_disc_count
+
+    # ---- 着手可能数 ----
+    my_moves = sum(1 for _ in pos.get_legal_moves())
+
+    # 相手の着手可能数: scratch_pos に do_pass() してカウント
+    # (pos.copy() を避け、事前確保の scratch_pos を使い回す)
+    pos.copy_to(ctx.scratch_pos)
+    ctx.scratch_pos.do_pass()
+    opp_moves = sum(1 for _ in ctx.scratch_pos.get_legal_moves())
+
+    mobility_score = my_moves - opp_moves
+
+    # ---- 位置スコア (差分更新済みの値を直接使用) ----
+    position_score = cur_pos_score
+
+    # ---- 角 ----
+    corner_score = 0
+    for c in CORNERS:
+        owner = pos.get_square_owner_at(c)
+        if owner == pyrev.PLAYER:
+            corner_score += 1
+        elif owner == pyrev.OPPONENT:
+            corner_score -= 1
+
+    # ---- X-square / C-square (角が空いている場合のみ危険マスとして評価) ----
     x_square_score = 0
     for corner, danger_squares in X_SQUARES.items():
         if pos.get_square_owner_at(corner) != pyrev.NULL_OWNER:
@@ -254,139 +294,19 @@ def _compute_danger_squares_full(pos):
             elif owner == pyrev.OPPONENT:
                 c_square_score -= 1
 
-    return x_square_score, c_square_score
-
-
-def _compute_full_feat_state(pos):
-    """
-    探索開始時 (alpha_beta_search_only の呼び出し時) に1回だけ呼ばれる、
-    feat_state = (position_score, corner_score, edge_score,
-                  x_square_score, c_square_score)
-    のフル計算。以降は _apply_move / _apply_pass で差分更新される。
-
-    position_score・corner_score・edge_score は1回の64マス走査でまとめて
-    計算する (それぞれ別ループにする必要がないため統合)。
-    x_square_score・c_square_score は角の占有状態に依存するため
-    _compute_danger_squares_full() に分離する。
-    """
-    pos_score    = 0
-    corner_score = 0
-    edge_score   = 0
-
-    for i in range(64):
-        owner = pos.get_square_owner_at(i)
-        bit = 1 << i
+    # ---- 辺 ----
+    edge_score = 0
+    for idx in EDGES:
+        owner = pos.get_square_owner_at(idx)
         if owner == pyrev.PLAYER:
-            pos_score += EVAL_TABLE[i]
-            if bit & CORNER_MASK:
-                corner_score += 1
-            if bit & EDGE_MASK:
-                edge_score += 1
+            edge_score += 1
         elif owner == pyrev.OPPONENT:
-            pos_score -= EVAL_TABLE[i]
-            if bit & CORNER_MASK:
-                corner_score -= 1
-            if bit & EDGE_MASK:
-                edge_score -= 1
-
-    xsq_score, csq_score = _compute_danger_squares_full(pos)
-
-    return (pos_score, corner_score, edge_score, xsq_score, csq_score)
-
-
-def _apply_move(action, flip_bits, next_pos, cur_feat):
-    """
-    ② 着手 (action, flip_bits) 適用後の feat_state を差分更新で計算する。
-
-    cur_feat: 着手前の feat_state (pos.side_to_move 視点)
-    next_pos: 着手後の局面 (do_move 済み)
-
-    戻り値は次ノード (next_pos.side_to_move 視点、つまり符号反転後) の feat_state。
-
-    - position_score: 着手マス + フリップマスの EVAL_TABLE 差分 (従来通り)
-    - corner_score  : 角はフリップされないため、着手マスが角かどうかのみで
-                      常に正確に差分更新できる (slow path 不要)
-    - edge_score    : フリップビットと EDGE_MASK の popcount で
-                      常に正確に差分更新できる (slow path 不要)
-    - x_square_score / c_square_score:
-        角の占有状態に依存するため、DANGER_MASK (角+X-square+C-square) に
-        触れた場合のみ next_pos からフル再計算する (slow path)。
-        触れていない場合は符号反転のみで済む (fast path、ほとんどのケース)。
-    """
-    action_int = int(action)
-    flip_int   = int(flip_bits)
-
-    cur_pos_score, cur_corner, cur_edge, cur_xsq, cur_csq = cur_feat
-
-    # position_score 差分 (従来通り)
-    delta_pos = EVAL_TABLE[action_int]
-    for fc in BoardCoordinateIterator(flip_bits):
-        delta_pos += 2 * EVAL_TABLE[int(fc)]
-
-    # corner_score 差分 (常に O(1)、角はフリップされないため着手マスのみ判定)
-    delta_corner = 1 if action_int in CORNER_SET else 0
-
-    # edge_score 差分 (常に O(1)、ビットマスク popcount)
-    flip_edge_hits = bin(flip_int & EDGE_MASK).count('1')
-    action_is_edge = 1 if action_int in EDGE_SET else 0
-    delta_edge = action_is_edge + 2 * flip_edge_hits
-
-    new_pos_score = -(cur_pos_score + delta_pos)
-    new_corner    = -(cur_corner + delta_corner)
-    new_edge      = -(cur_edge + delta_edge)
-
-    # x_square / c_square: 角 or 危険マスに変化があった場合のみフル再計算
-    touched_mask = (1 << action_int) | flip_int
-    if touched_mask & DANGER_MASK:
-        new_xsq, new_csq = _compute_danger_squares_full(next_pos)
-    else:
-        new_xsq = -cur_xsq
-        new_csq = -cur_csq
-
-    return (new_pos_score, new_corner, new_edge, new_xsq, new_csq)
-
-
-def _apply_pass(cur_feat):
-    """
-    パス時の feat_state 更新。盤面は変化しないため符号反転のみ。
-    """
-    a, b, c, d, e = cur_feat
-    return (-a, -b, -c, -d, -e)
-
-
-def extract_features(pos, ctx, feat_state):
-    """
-    評価用の特徴量を取り出す。
-
-    feat_state = (position_score, corner_score, edge_score,
-                  x_square_score, c_square_score)
-        探索中に _apply_move / _apply_pass で差分更新されてきた値。
-        ② により、これら4特徴量は末端ノードでの再計算が不要になっている。
-
-    mobility のみ、合法手生成が必要なため引き続き pos から直接計算する
-    (差分更新が困難なため、従来通り)。
-    stone は player_disc_count / opponent_disc_count で O(1) 取得。
-    """
-    pos_score, corner_score, edge_score, x_square_score, c_square_score = feat_state
-
-    # ---- 石数 (O(1) プロパティ) ----
-    stone_score = pos.player_disc_count - pos.opponent_disc_count
-
-    # ---- 着手可能数 ----
-    my_moves = sum(1 for _ in pos.get_legal_moves())
-
-    # 相手の着手可能数: scratch_pos に do_pass() してカウント
-    # (pos.copy() を避け、事前確保の scratch_pos を使い回す)
-    pos.copy_to(ctx.scratch_pos)
-    ctx.scratch_pos.do_pass()
-    opp_moves = sum(1 for _ in ctx.scratch_pos.get_legal_moves())
-
-    mobility_score = my_moves - opp_moves
+            edge_score -= 1
 
     return {
         "stone":    stone_score,
         "mobility": mobility_score,
-        "position": pos_score,
+        "position": position_score,
         "corner":   corner_score,
         "x_square": x_square_score,
         "c_square": c_square_score,
@@ -394,13 +314,13 @@ def extract_features(pos, ctx, feat_state):
     }
 
 
-def evaluate(pos, ctx, feat_state):
+def evaluate(pos, ctx, cur_pos_score):
     """
     特徴量 × 重みの線形評価関数。
-    feat_state は αβ 探索中に差分更新された (② 参照)。
+    cur_pos_score は αβ 探索中に差分更新された position_score。
     """
     phase    = get_phase(pos)
-    features = extract_features(pos, ctx, feat_state)
+    features = extract_features(pos, ctx, cur_pos_score)
     weights  = FEATURE_WEIGHTS[phase]
     return sum(weights[name] * value for name, value in features.items())
 
@@ -409,39 +329,56 @@ def evaluate(pos, ctx, feat_state):
 # 手の並べ替え (④⑥ 統合最適化版)
 # ==============================
 
-# フリップ数1個あたりの並べ替えペナルティ。
-# 多く取りすぎる手は中盤でモビリティを失いやすいという定番ヒューリスティック。
-_FLIP_ORDER_PENALTY = 2.0
-
-
-def order_moves_with_flips(pos, actions):
+def order_moves_with_flips(pos, actions, ctx):
     """
-    手の並べ替えを行い、(action, flip_bits) のペアリストを返す (① 軽量版)。
+    手の並べ替えを行い、(action, flip_bits) のペアリストを返す。
 
-    【旧実装の問題点】
-    候補手ごとに copy_to + do_move + 角4マス走査 + get_legal_moves を
-    行っており、これは中盤探索の全ノードに対して発生する重いコストだった。
+    ④ calc_flip_discs() を先行計算して返すことで、
+       呼び出し元の探索ループで do_move(action, flip) として再利用でき、
+       calc_flip_discs() の二重呼び出しを排除できる。
 
-    【改善点】
-    copy_to を一切行わず、以下の2指標のみで並べ替える。
+    並べ替えスコアは軽量な3指標で計算:
       - EVAL_TABLE[action] : 着手マスの位置評価
-                             (角+120, X-square-40, C-square-20 などを
-                              すでに内包しているため、これ単体でも十分な目安)
-      - フリップ数         : 取りすぎる手にペナルティを与える
-                             (calc_flip_discs() は do_move() に再利用するため
-                              どのみち必要であり、追加コストはほぼゼロ)
+      - 角スコア(100倍)     : 着手後の (自分の角 - 相手の角)
+      - 相手の着手可能数    : 着手後に相手が打てる手数 (少ないほど良い)
+
+    scratch_pos は 1 手ずつ上書き使用する (競合なし)。
+
+    角スコアは着手後の scratch_pos から get_square_owner_at() で取得する。
+    do_move() 後は side_to_move が相手に切り替わるため、
+      scratch_pos.PLAYER   = 相手の石
+      scratch_pos.OPPONENT = 自分 (元の side_to_move) の石
+    となる点に注意。
     """
     scored = []
     for action in actions:
         action_int = int(action)
         flip_bits  = pos.calc_flip_discs(action)
-        flip_count = bin(int(flip_bits)).count('1')
 
-        score = EVAL_TABLE[action_int] - flip_count * _FLIP_ORDER_PENALTY
+        # ④ scratch_pos に着手して後続の指標を計算
+        pos.copy_to(ctx.scratch_pos)
+        ctx.scratch_pos.do_move(action, flip_bits)
 
-        scored.append((-score, action, flip_bits))
+        # 位置評価テーブル
+        score = EVAL_TABLE[action_int]
 
-    scored.sort()
+        # 角スコア (do_move 後は PLAYER/OPPONENT が反転している)
+        corner_score = 0
+        for c in CORNERS:
+            owner = ctx.scratch_pos.get_square_owner_at(c)
+            if owner == pyrev.OPPONENT:    # 自分 (元 PLAYER) の石
+                corner_score += 1
+            elif owner == pyrev.PLAYER:    # 相手の石
+                corner_score -= 1
+        score += corner_score * 100
+
+        # 相手の着手可能数 (do_move 後は相手が side_to_move)
+        opp_moves = sum(1 for _ in ctx.scratch_pos.get_legal_moves())
+        score -= opp_moves * 10
+
+        scored.append((score, action, flip_bits))
+
+    scored.sort(reverse=True, key=lambda x: x[0])
     return [(a, f) for _, a, f in scored]
 
 
@@ -573,16 +510,19 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
 # αβ 探索 (メイン)
 # ==============================
 
-def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
+def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, cur_pos_score):
     """
     αβ 探索の再帰関数。
 
-    ply        : pos_pool のインデックス。子ノードは pool[ply] に copy_to する。
-    feat_state : (position_score, corner_score, edge_score,
-                  x_square_score, c_square_score) の差分更新済みタプル
-                 (pos.side_to_move 視点)。終端ノード評価で再走査を避けるために使用する。
+    ply         : pos_pool のインデックス。子ノードは pool[ply] に copy_to する。
+    cur_pos_score: 差分更新された position_score (pos.side_to_move 視点)。
+                  終端ノード評価で 64 マス再走査を避けるために使用する。
 
-    各特徴量の差分更新ルールは _apply_move / _apply_pass を参照。
+    差分更新ルール:
+      - 着手 (action, flip_bits) 後の位置スコア変化量:
+          delta = EVAL_TABLE[action] + 2 * sum(EVAL_TABLE[f] for f in flipped)
+      - 次ノード (相手視点) の cur_pos_score = -(cur_pos_score + delta)
+      - パス後: cur_pos_score = -cur_pos_score (視点反転のみ、盤面変化なし)
     """
     # 終盤読み切りへ移行
     if pos.empty_square_count <= ENDGAME_EMPTY_LIMIT:
@@ -590,7 +530,7 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
 
     # 末端ノード評価
     if depth == 0 or pos.is_gameover():
-        return evaluate(pos, ctx, feat_state)
+        return evaluate(pos, ctx, cur_pos_score)
 
     # 置換表ルックアップ (⑤ 整数キー)
     key        = _make_tt_key(pos)
@@ -622,14 +562,14 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
 
         score = -alpha_beta_rec(
             next_pos, -beta, -alpha, depth - 1, tt, ctx, ply + 1,
-            _apply_pass(feat_state)
+            -cur_pos_score  # 視点のみ反転
         )
 
         _store_tt(tt, key, depth, score, orig_alpha, orig_beta)
         return score
 
-    # ① flip を先行計算して返す (do_move での再計算を排除)
-    action_flip_pairs = order_moves_with_flips(pos, actions)
+    # ④ flip を先行計算して返す (do_move での再計算を排除)
+    action_flip_pairs = order_moves_with_flips(pos, actions, ctx)
 
     best_score = -math.inf
 
@@ -639,12 +579,15 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
         pos.copy_to(next_pos)
         next_pos.do_move(action, flip_bits)
 
-        # ② feat_state を差分更新
-        next_feat = _apply_move(action, flip_bits, next_pos, feat_state)
+        # ⑥ position_score を差分更新
+        delta = EVAL_TABLE[int(action)]
+        for fc in BoardCoordinateIterator(flip_bits):
+            delta += 2 * EVAL_TABLE[int(fc)]
+        next_pos_score = -(cur_pos_score + delta)
 
         score = -alpha_beta_rec(
             next_pos, -beta, -alpha, depth - 1, tt, ctx, ply + 1,
-            next_feat
+            next_pos_score
         )
 
         if score > best_score:
@@ -661,17 +604,13 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
     return best_score
 
 
-def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=None):
+def alpha_beta_search_only(pos, depth, deadline: float = math.inf):
     """
     αβ 探索のエントリポイント。
 
-    ⑥⑦ ctx / tt を外部 (do_move) から受け取れるようにし、反復深化の
-        全深さで使い回せるようにする。None の場合はこれまで通り
-        この呼び出し内だけで使い捨てる ctx / tt を新規生成する
-        (alpha_beta() からの単発呼び出しなど、反復深化を伴わない用途向け)。
-
-    feat0 = _compute_full_feat_state(pos) で初期値を計算し、
-    以降は _apply_move / _apply_pass による差分更新のみで末端ノードまで引き渡す。
+    SearchContext と置換表をここで生成し、探索が終わったら破棄する。
+    cur_pos_score を _compute_position_score_full() で初期化し、
+    以降は差分更新のみで末端ノードまで引き渡す。
 
     deadline : time.perf_counter() の絶対値。
                endgame_search がこの時刻を超えたら _SearchTimeout を送出する。
@@ -681,22 +620,16 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
     if not actions:
         return -1, None
 
-    if ctx is None:
-        ctx = SearchContext(deadline=deadline)
-    else:
-        ctx.deadline = deadline
-
-    if tt is None:
-        tt = {}
-
-    feat0 = _compute_full_feat_state(pos)  # ② 初期値計算 (1回のみ)
+    ctx           = SearchContext(deadline=deadline)
+    tt            = {}
+    cur_pos_score = _compute_position_score_full(pos)  # ⑥ 初期値計算 (1回のみ)
 
     best_action = -1
     alpha       = -math.inf
     beta        = math.inf
 
-    # ① flip を先行計算して返す
-    action_flip_pairs = order_moves_with_flips(pos, actions)
+    # ④ flip を先行計算して返す
+    action_flip_pairs = order_moves_with_flips(pos, actions, ctx)
 
     for action, flip_bits in action_flip_pairs:
         # ④ pool[0] を使って子ノードを生成
@@ -704,12 +637,15 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
         pos.copy_to(next_pos)
         next_pos.do_move(action, flip_bits)
 
-        # ② feat_state 差分更新
-        next_feat = _apply_move(action, flip_bits, next_pos, feat0)
+        # ⑥ position_score 差分更新
+        delta = EVAL_TABLE[int(action)]
+        for fc in BoardCoordinateIterator(flip_bits):
+            delta += 2 * EVAL_TABLE[int(fc)]
+        next_pos_score = -(cur_pos_score + delta)
 
         score = -alpha_beta_rec(
             next_pos, -beta, -alpha, depth - 1, tt, ctx, 1,
-            next_feat
+            next_pos_score
         )
 
         if score > alpha:
@@ -775,29 +711,18 @@ def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = F
     best_action = -1
     best_depth  = 0
 
-    deadline = start + time_limit_sec
-
-    # ⑥⑦ SearchContext と置換表を反復深化ループの外側で1回だけ生成し、
-    # 全深さで使い回す。
-    #   ⑥ SearchContext: 深さごとに 64個 (MAX_PLY) の Position オブジェクトを
-    #      再生成するコストを排除する。
-    #   ⑦ 置換表: _store_tt は既存エントリより深い探索結果でしか上書きしない
-    #      設計のため、浅い深さ (depth=1,2,3...) で得た結果を次の深さでも
-    #      安全に再利用できる。標準的な「反復深化 + 置換表」の手法そのもの。
-    ctx = SearchContext(deadline=deadline)
-    tt  = {}
-
     for depth in range(1, 64):
 
         # 探索開始前に残り時間を確認し、ゼロ以下なら即打ち切り
         if time.perf_counter() - start >= time_limit_sec:
             break
 
+        # endgame_search が参照する絶対時刻のデッドライン
+        deadline = start + time_limit_sec
+
         t0 = time.perf_counter()
         try:
-            action, score = alpha_beta_search_only(
-                position, depth, deadline=deadline, ctx=ctx, tt=tt
-            )
+            action, score = alpha_beta_search_only(position, depth, deadline=deadline)
         except _SearchTimeout:
             # 終盤読み切り中にタイムアウト → この深さの結果は不完全なので破棄
             # best_action は前の深さで確定したものをそのまま使う
