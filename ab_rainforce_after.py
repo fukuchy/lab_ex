@@ -13,7 +13,7 @@ EVAL_TABLE = [
     120, -20,  20,   5,   5,  20, -20, 120,
 ]
 
-ENDGAME_EMPTY_LIMIT = 14
+ENDGAME_EMPTY_LIMIT = 11
 WIN_SCORE = 100000
 
 
@@ -24,7 +24,7 @@ USE_OPENING_BOOK = True
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OPENING_LINES_FILE = os.path.join(BASE_DIR, "opening_lines.json")
-GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_100_5th.json")
+GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_best_weights.json")
 
 # Trueにすると、各手で定石か探索かを出力
 BOOK_TEST_MODE = False

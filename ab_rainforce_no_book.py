@@ -68,7 +68,7 @@ def position_key(pos):
 # ==============================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_best_weights.json")
+GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_feature_weights_best.json")
 
 
 def coord_str(move):
@@ -114,31 +114,31 @@ EDGES = [
 
 DEFAULT_FEATURE_WEIGHTS = {
     "opening": {
-        "stone": -2.0,
-        "mobility": 8.0,
-        "position": 0.5,
-        "corner": 30.0,
-        "x_square": -20.0,
-        "c_square": -10.0,
-        "edge": 2.0,
+        "stone": -7.582455331455142,
+        "mobility": 16.18866956229727,
+        "position": 0.12725804041507488,
+        "corner": 19.503799787093783,
+        "x_square": -40.8086233830389,
+        "c_square": -8.453664200147834,
+        "edge": 1.8249661016193859
     },
     "middle": {
-        "stone": 0.2,
-        "mobility": 6.0,
-        "position": 1.5,
-        "corner": 40.0,
-        "x_square": -25.0,
-        "c_square": -12.0,
-        "edge": 3.0,
+        "stone": -1.3604442968945822,
+        "mobility": 2.702777632920106,
+        "position": 0.10845898171496211,
+        "corner": 24.919928660762068,
+        "x_square": -14.297343155358652,
+        "c_square": -7.238055035591753,
+        "edge": 2.65844257698898
     },
     "end": {
-        "stone": 8.0,
-        "mobility": 1.0,
-        "position": 0.3,
-        "corner": 50.0,
-        "x_square": -10.0,
-        "c_square": -5.0,
-        "edge": 5.0,
+        "stone": 1.856383977915157,
+        "mobility": 1.3418858389925643,
+        "position": 4.733433589139915,
+        "corner": 52.43996828837947,
+        "x_square": -9.19687830824963,
+        "c_square": -4.671500311679356,
+        "edge": 2.850741580985523
     },
 }
 

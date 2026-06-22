@@ -57,7 +57,7 @@ EVAL_TABLE = [
     120, -20,  20,   5,   5,  20, -20, 120,
 ]
 
-ENDGAME_EMPTY_LIMIT = 14
+ENDGAME_EMPTY_LIMIT = 11
 WIN_SCORE = 100000
 
 # 角・危険マス・辺
@@ -199,16 +199,31 @@ GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_best_weights.json")
 
 DEFAULT_FEATURE_WEIGHTS = {
     "opening": {
-        "stone": -2.0, "mobility": 8.0, "position": 0.5,
-        "corner": 30.0, "x_square": -20.0, "c_square": -10.0, "edge": 2.0,
+        "stone": -1.057879575503218,
+        "mobility": 8.414318362549801,
+        "position": -0.009823972577531426,
+        "corner": 15.661617473189732,
+        "x_square": -106.74159322137517,
+        "c_square": -6.844459394295814,
+        "edge": -0.10787899484266494
     },
     "middle": {
-        "stone": 0.2, "mobility": 6.0, "position": 1.5,
-        "corner": 40.0, "x_square": -25.0, "c_square": -12.0, "edge": 3.0,
+        "stone": -1.8795933150765822,
+        "mobility": 2.5289310439091235,
+        "position": 0.013889032950499855,
+        "corner": 9.131581671319736,
+        "x_square": -22.964217605593127,
+        "c_square": -5.459317219241519,
+        "edge": 3.0695394948193213
     },
     "end": {
-        "stone": 8.0, "mobility": 1.0, "position": 0.3,
-        "corner": 50.0, "x_square": -10.0, "c_square": -5.0, "edge": 5.0,
+        "stone": 2.756986809785344,
+        "mobility": 1.8956620499677932,
+        "position": 0.5602700812797425,
+        "corner": 97.77476018333562,
+        "x_square": -14.224791094827243,
+        "c_square": -5.339905587801405,
+        "edge": 7.480266043841487
     },
 }
 

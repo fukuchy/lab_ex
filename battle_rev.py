@@ -36,12 +36,13 @@ import ab_rainforce_no_book
 import agent
 import agent_no_limit
 import agent_limit
+import agent_actual
 
 # ==============================
 # 設定
 # ==============================
 
-AGENT_A = "mcts_fukuda"
+AGENT_A = "agent_actual"
 AGENT_B = "agent_limit"
 
 ab_depth       = 4
@@ -78,6 +79,7 @@ def _build_dispatch():
         "agent_no_limit":      lambda pos: agent_no_limit.alpha_beta(pos, depth=ab_depth),
         "agent":               lambda pos: agent.do_move(pos, MOVE_TIME_LIMIT),
         "agent_limit":         lambda pos: agent_limit.do_move(pos, MOVE_TIME_LIMIT),
+        "agent_actual":        lambda pos: agent_actual.do_move(pos, MOVE_TIME_LIMIT),
     }
 
 _AGENT_DISPATCH = _build_dispatch()
