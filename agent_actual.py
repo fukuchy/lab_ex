@@ -194,7 +194,7 @@ class SearchContext:
 # ==============================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_middle_best_weights.json")
+GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_feature_weights_best.json")
 
 
 DEFAULT_FEATURE_WEIGHTS = {
