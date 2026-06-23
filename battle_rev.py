@@ -44,7 +44,7 @@ import agent_final_tt
 # ==============================
 
 AGENT_A = "agent_final"
-AGENT_B = "agent_actual"
+AGENT_B = "agent_final_tt"
 
 ab_depth       = 4
 mcts_depth     = 1000
