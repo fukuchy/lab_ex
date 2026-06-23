@@ -1,0 +1,1788 @@
+[Weights] /Users/taichi/git/lab_ex/ga_feature_weights_best.json が見つかりません。初期重みを使用します。
+
+===== Game 1 / 10 =====
+[Move Time] turn=00, color=black, agent=mcts, time=0.000005 sec
+[Move Time] turn=01, color=white, agent=agent_actual, time=0.000002 sec
+[Move Time] turn=02, color=black, agent=mcts, time=0.000002 sec
+[Move Time] turn=03, color=white, agent=agent_actual, time=0.000002 sec
+[Move Time] turn=04, color=black, agent=mcts, time=0.176151 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F5  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=F6  elapsed=0.006s  remaining=2.992s
+[do_move] depth= 5  action=F6  elapsed=0.018s  remaining=2.974s
+[do_move] depth= 6  action=F6  elapsed=0.055s  remaining=2.919s
+[do_move] depth= 7  action=F7  elapsed=0.221s  remaining=2.698s
+[do_move] depth= 8  action=F5  elapsed=0.493s  remaining=2.205s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F5  到達深さ: 8  合計時間: 3.024s
+[Move Time] turn=05, color=white, agent=agent_actual, time=3.026536 sec
+[Move Time] turn=06, color=black, agent=mcts, time=0.086100 sec
+[do_move] depth= 1  action=G5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=F6  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=F6  elapsed=0.023s  remaining=2.969s
+[do_move] depth= 6  action=F6  elapsed=0.060s  remaining=2.909s
+[do_move] depth= 7  action=F4  elapsed=0.367s  remaining=2.542s
+[do_move] depth= 8  action=F6  elapsed=0.822s  remaining=1.721s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F6  到達深さ: 8  合計時間: 3.034s
+[Move Time] turn=07, color=white, agent=agent_actual, time=3.035552 sec
+[Move Time] turn=08, color=black, agent=mcts, time=0.081204 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=F4  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=F4  elapsed=0.045s  remaining=2.947s
+[do_move] depth= 6  action=F4  elapsed=0.125s  remaining=2.821s
+[do_move] depth= 7  action=F4  elapsed=0.712s  remaining=2.109s
+[do_move] depth= 8  action=F8  elapsed=1.323s  remaining=0.787s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F8  到達深さ: 8  合計時間: 3.035s
+[Move Time] turn=09, color=white, agent=agent_actual, time=3.037376 sec
+[Move Time] turn=10, color=black, agent=mcts, time=0.077830 sec
+[do_move] depth= 1  action=E3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=E3  elapsed=0.008s  remaining=2.989s
+[do_move] depth= 5  action=E3  elapsed=0.045s  remaining=2.944s
+[do_move] depth= 6  action=C5  elapsed=0.103s  remaining=2.841s
+[do_move] depth= 7  action=C5  elapsed=0.490s  remaining=2.351s
+[do_move] depth= 8  action=C6  elapsed=1.371s  remaining=0.980s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C6  到達深さ: 8  合計時間: 3.017s
+[Move Time] turn=11, color=white, agent=agent_actual, time=3.019505 sec
+[Move Time] turn=12, color=black, agent=mcts, time=0.076509 sec
+[do_move] depth= 1  action=G6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D8  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E3  elapsed=0.005s  remaining=2.995s
+[do_move] depth= 4  action=H3  elapsed=0.009s  remaining=2.985s
+[do_move] depth= 5  action=H3  elapsed=0.058s  remaining=2.928s
+[do_move] depth= 6  action=E8  elapsed=0.162s  remaining=2.765s
+[do_move] depth= 7  action=G5  elapsed=1.053s  remaining=1.712s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: G5  到達深さ: 7  合計時間: 3.003s
+[Move Time] turn=13, color=white, agent=agent_actual, time=3.005339 sec
+[Move Time] turn=14, color=black, agent=mcts, time=0.072850 sec
+[do_move] depth= 1  action=F3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.004s  remaining=2.996s
+[do_move] depth= 4  action=C5  elapsed=0.008s  remaining=2.987s
+[do_move] depth= 5  action=C8  elapsed=0.054s  remaining=2.933s
+[do_move] depth= 6  action=C8  elapsed=0.176s  remaining=2.757s
+[do_move] depth= 7  action=C8  elapsed=0.691s  remaining=2.066s
+[do_move] depth= 8  action=H8  elapsed=1.336s  remaining=0.731s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H8  到達深さ: 8  合計時間: 3.001s
+[Move Time] turn=15, color=white, agent=agent_actual, time=3.002979 sec
+[Move Time] turn=16, color=black, agent=mcts, time=0.068784 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=C8  elapsed=0.007s  remaining=2.990s
+[do_move] depth= 5  action=C8  elapsed=0.041s  remaining=2.949s
+[do_move] depth= 6  action=C8  elapsed=0.111s  remaining=2.838s
+[do_move] depth= 7  action=C8  elapsed=0.579s  remaining=2.259s
+[do_move] depth= 8  action=C8  elapsed=1.597s  remaining=0.662s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C8  到達深さ: 8  合計時間: 3.041s
+[Move Time] turn=17, color=white, agent=agent_actual, time=3.043112 sec
+[Move Time] turn=18, color=black, agent=mcts, time=0.066111 sec
+[do_move] depth= 1  action=E8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=G6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=H5  elapsed=0.009s  remaining=2.987s
+[do_move] depth= 5  action=E8  elapsed=0.058s  remaining=2.929s
+[do_move] depth= 6  action=G6  elapsed=0.151s  remaining=2.778s
+[do_move] depth= 7  action=E8  elapsed=1.039s  remaining=1.739s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E8  到達深さ: 7  合計時間: 3.000s
+[Move Time] turn=19, color=white, agent=agent_actual, time=3.002363 sec
+[Move Time] turn=20, color=black, agent=mcts, time=0.061682 sec
+[do_move] depth= 1  action=D8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=D8  elapsed=0.004s  remaining=2.996s
+[do_move] depth= 4  action=D8  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 5  action=D8  elapsed=0.056s  remaining=2.932s
+[do_move] depth= 6  action=D8  elapsed=0.119s  remaining=2.813s
+[do_move] depth= 7  action=D8  elapsed=0.848s  remaining=1.965s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D8  到達深さ: 7  合計時間: 3.007s
+[Move Time] turn=21, color=white, agent=agent_actual, time=3.009284 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H5  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=H5  elapsed=0.006s  remaining=2.990s
+[do_move] depth= 5  action=G6  elapsed=0.051s  remaining=2.939s
+[do_move] depth= 6  action=H5  elapsed=0.095s  remaining=2.845s
+[do_move] depth= 7  action=G6  elapsed=0.734s  remaining=2.111s
+[do_move] depth= 8  action=B8  elapsed=1.219s  remaining=0.892s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B8  到達深さ: 8  合計時間: 3.035s
+[Move Time] turn=22, color=white, agent=agent_actual, time=3.037060 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C5  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=H5  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=C5  elapsed=0.046s  remaining=2.945s
+[do_move] depth= 6  action=C5  elapsed=0.100s  remaining=2.845s
+[do_move] depth= 7  action=C5  elapsed=0.692s  remaining=2.153s
+[do_move] depth= 8  action=C5  elapsed=1.543s  remaining=0.610s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C5  到達深さ: 8  合計時間: 3.026s
+[Move Time] turn=23, color=white, agent=agent_actual, time=3.027783 sec
+[Move Time] turn=24, color=black, agent=mcts, time=0.054297 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=G8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=A8  elapsed=0.005s  remaining=2.991s
+[do_move] depth= 5  action=A8  elapsed=0.040s  remaining=2.951s
+[do_move] depth= 6  action=A8  elapsed=0.071s  remaining=2.880s
+[do_move] depth= 7  action=A8  elapsed=0.504s  remaining=2.376s
+[do_move] depth= 8  action=H5  elapsed=0.884s  remaining=1.492s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H5  到達深さ: 8  合計時間: 3.020s
+[Move Time] turn=25, color=white, agent=agent_actual, time=3.022255 sec
+[Move Time] turn=26, color=black, agent=mcts, time=0.051129 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H4  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=D3  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=D3  elapsed=0.029s  remaining=2.963s
+[do_move] depth= 6  action=D3  elapsed=0.090s  remaining=2.874s
+[do_move] depth= 7  action=D3  elapsed=0.502s  remaining=2.372s
+[do_move] depth= 8  action=D3  elapsed=1.338s  remaining=1.033s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: D3  到達深さ: 8  合計時間: 3.036s
+[Move Time] turn=27, color=white, agent=agent_actual, time=3.037969 sec
+[Move Time] turn=28, color=black, agent=mcts, time=0.049422 sec
+[do_move] depth= 1  action=A8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A8  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=G8  elapsed=0.005s  remaining=2.991s
+[do_move] depth= 5  action=G8  elapsed=0.040s  remaining=2.951s
+[do_move] depth= 6  action=G8  elapsed=0.084s  remaining=2.867s
+[do_move] depth= 7  action=G8  elapsed=0.515s  remaining=2.352s
+[do_move] depth= 8  action=A8  elapsed=0.970s  remaining=1.382s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A8  到達深さ: 8  合計時間: 3.003s
+[Move Time] turn=29, color=white, agent=agent_actual, time=3.004720 sec
+[Move Time] turn=30, color=black, agent=mcts, time=0.045352 sec
+[do_move] depth= 1  action=G6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=G8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=G8  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=C3  elapsed=0.042s  remaining=2.949s
+[do_move] depth= 6  action=A6  elapsed=0.068s  remaining=2.881s
+[do_move] depth= 7  action=A6  elapsed=0.371s  remaining=2.509s
+[do_move] depth= 8  action=G8  elapsed=0.800s  remaining=1.710s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: G8  到達深さ: 8  合計時間: 3.012s
+[Move Time] turn=31, color=white, agent=agent_actual, time=3.014142 sec
+[Move Time] turn=32, color=black, agent=mcts, time=0.043165 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A4  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=H4  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=A6  elapsed=0.027s  remaining=2.966s
+[do_move] depth= 6  action=H4  elapsed=0.056s  remaining=2.909s
+[do_move] depth= 7  action=A6  elapsed=0.316s  remaining=2.594s
+[do_move] depth= 8  action=A6  elapsed=0.505s  remaining=2.089s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A6  到達深さ: 8  合計時間: 3.015s
+[Move Time] turn=33, color=white, agent=agent_actual, time=3.016641 sec
+[Move Time] turn=34, color=black, agent=mcts, time=0.039956 sec
+[do_move] depth= 1  action=A4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A4  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=A4  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=A4  elapsed=0.020s  remaining=2.973s
+[do_move] depth= 6  action=A4  elapsed=0.038s  remaining=2.935s
+[do_move] depth= 7  action=A4  elapsed=0.191s  remaining=2.744s
+[do_move] depth= 8  action=A4  elapsed=0.338s  remaining=2.406s
+[do_move] depth= 9  action=A4  elapsed=1.652s  remaining=0.754s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: A4  到達深さ: 9  合計時間: 3.023s
+[Move Time] turn=35, color=white, agent=agent_actual, time=3.025258 sec
+[Move Time] turn=36, color=black, agent=mcts, time=0.036598 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A3  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=A3  elapsed=0.003s  remaining=2.995s
+[do_move] depth= 5  action=A3  elapsed=0.014s  remaining=2.981s
+[do_move] depth= 6  action=A3  elapsed=0.024s  remaining=2.957s
+[do_move] depth= 7  action=A3  elapsed=0.117s  remaining=2.840s
+[do_move] depth= 8  action=A3  elapsed=0.213s  remaining=2.628s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A3  到達深さ: 8  合計時間: 3.006s
+[Move Time] turn=37, color=white, agent=agent_actual, time=3.020890 sec
+[Move Time] turn=38, color=black, agent=mcts, time=0.033138 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B2  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B2  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=B2  elapsed=0.003s  remaining=2.994s
+[do_move] depth= 5  action=B2  elapsed=0.016s  remaining=2.978s
+[do_move] depth= 6  action=B2  elapsed=0.036s  remaining=2.942s
+[do_move] depth=7 探索中にタイムアウト → depth=6 の結果を使用
+[do_move] 最終選択: B2  到達深さ: 6  合計時間: 3.012s
+[Move Time] turn=39, color=white, agent=agent_actual, time=3.030858 sec
+[Move Time] turn=40, color=black, agent=mcts, time=0.029547 sec
+[do_move] depth= 1  action=A1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=A1  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=B1  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 5  action=A1  elapsed=0.159s  remaining=2.837s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A1  到達深さ: 5  合計時間: 0.163s
+[Move Time] turn=41, color=white, agent=agent_actual, time=0.163350 sec
+[Move Time] turn=42, color=black, agent=mcts, time=0.025706 sec
+[do_move] depth= 1  action=F3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=H3  elapsed=0.099s  remaining=2.900s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H3  到達深さ: 3  合計時間: 0.100s
+[Move Time] turn=43, color=white, agent=agent_actual, time=0.100086 sec
+[Move Time] turn=44, color=black, agent=mcts, time=0.022904 sec
+[do_move] depth= 1  action=C1  elapsed=0.039s  remaining=2.961s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C1  到達深さ: 1  合計時間: 0.039s
+[Move Time] turn=45, color=white, agent=agent_actual, time=0.039515 sec
+[Move Time] turn=46, color=black, agent=mcts, time=0.020005 sec
+[do_move] depth= 1  action=F3  elapsed=0.021s  remaining=2.978s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F3  到達深さ: 1  合計時間: 0.022s
+[Move Time] turn=47, color=white, agent=agent_actual, time=0.021739 sec
+[Move Time] turn=48, color=black, agent=mcts, time=0.018389 sec
+[do_move] depth= 1  action=H1  elapsed=0.004s  remaining=2.996s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H1  到達深さ: 1  合計時間: 0.004s
+[Move Time] turn=49, color=white, agent=agent_actual, time=0.003755 sec
+[Move Time] turn=50, color=black, agent=mcts, time=0.015772 sec
+[do_move] depth= 1  action=F1  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F1  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=51, color=white, agent=agent_actual, time=0.001014 sec
+[Move Time] turn=52, color=black, agent=mcts, time=0.013198 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E1  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=53, color=white, agent=agent_actual, time=0.000451 sec
+[Move Time] turn=54, color=black, agent=mcts, time=0.010806 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H4  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=55, color=white, agent=agent_actual, time=0.000263 sec
+[Move Time] turn=56, color=black, agent=mcts, time=0.008514 sec
+[do_move] depth= 1  action=D2  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: D2  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=57, color=white, agent=agent_actual, time=0.000198 sec
+[do_move] depth= 1  action=F2  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F2  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=58, color=white, agent=agent_actual, time=0.000173 sec
+[Move Time] turn=59, color=black, agent=mcts, time=0.001945 sec
+winner: white  (black=mcts, white=agent_actual)
+
+===== Game 2 / 10 =====
+[Move Time] turn=00, color=black, agent=agent_actual, time=0.000003 sec
+[Move Time] turn=01, color=white, agent=mcts, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=agent_actual, time=0.000002 sec
+[Move Time] turn=03, color=white, agent=mcts, time=0.000002 sec
+[do_move] depth= 1  action=E7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=E7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 4  action=E7  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 5  action=E7  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 6  action=F7  elapsed=0.013s  remaining=2.980s
+[do_move] depth= 7  action=F7  elapsed=0.052s  remaining=2.928s
+[do_move] depth= 8  action=F7  elapsed=0.210s  remaining=2.718s
+[do_move] depth= 9  action=F7  elapsed=0.695s  remaining=2.023s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: F7  到達深さ: 9  合計時間: 3.051s
+[Move Time] turn=04, color=black, agent=agent_actual, time=3.053776 sec
+[Move Time] turn=05, color=white, agent=mcts, time=0.096525 sec
+[do_move] depth= 1  action=C6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=C6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=C6  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 5  action=C6  elapsed=0.005s  remaining=2.993s
+[do_move] depth= 6  action=C6  elapsed=0.012s  remaining=2.981s
+[do_move] depth= 7  action=C6  elapsed=0.066s  remaining=2.915s
+[do_move] depth= 8  action=C6  elapsed=0.150s  remaining=2.765s
+[do_move] depth= 9  action=C6  elapsed=0.731s  remaining=2.034s
+[do_move] depth=10  action=C6  elapsed=1.965s  remaining=0.069s
+[do_move] depth=11 探索中にタイムアウト → depth=10 の結果を使用
+[do_move] 最終選択: C6  到達深さ: 10  合計時間: 3.026s
+[Move Time] turn=06, color=black, agent=agent_actual, time=3.027729 sec
+[Move Time] turn=07, color=white, agent=mcts, time=0.081115 sec
+[do_move] depth= 1  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=C5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=C5  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 5  action=C5  elapsed=0.010s  remaining=2.987s
+[do_move] depth= 6  action=C5  elapsed=0.033s  remaining=2.954s
+[do_move] depth= 7  action=C5  elapsed=0.122s  remaining=2.831s
+[do_move] depth= 8  action=C5  elapsed=0.381s  remaining=2.450s
+[do_move] depth= 9  action=C5  elapsed=1.516s  remaining=0.934s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: C5  到達深さ: 9  合計時間: 3.009s
+[Move Time] turn=08, color=black, agent=agent_actual, time=3.011147 sec
+[Move Time] turn=09, color=white, agent=mcts, time=0.079428 sec
+[do_move] depth= 1  action=D3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=D3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=D3  elapsed=0.010s  remaining=2.987s
+[do_move] depth= 5  action=D3  elapsed=0.052s  remaining=2.935s
+[do_move] depth= 6  action=F5  elapsed=0.153s  remaining=2.782s
+[do_move] depth= 7  action=D3  elapsed=0.586s  remaining=2.196s
+[do_move] depth= 8  action=D3  elapsed=2.202s  remaining=-0.006s
+[do_move] 残り時間なし → depth=9 の探索を開始せず終了
+[do_move] 最終選択: D3  到達深さ: 8  合計時間: 3.006s
+[Move Time] turn=10, color=black, agent=agent_actual, time=3.008087 sec
+[Move Time] turn=11, color=white, agent=mcts, time=0.078615 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=E3  elapsed=0.009s  remaining=2.988s
+[do_move] depth= 5  action=E3  elapsed=0.032s  remaining=2.956s
+[do_move] depth= 6  action=E3  elapsed=0.099s  remaining=2.857s
+[do_move] depth= 7  action=E3  elapsed=0.409s  remaining=2.447s
+[do_move] depth= 8  action=E3  elapsed=1.354s  remaining=1.093s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E3  到達深さ: 8  合計時間: 3.007s
+[Move Time] turn=12, color=black, agent=agent_actual, time=3.008729 sec
+[Move Time] turn=13, color=white, agent=mcts, time=0.077016 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=F5  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=B4  elapsed=0.015s  remaining=2.980s
+[do_move] depth= 5  action=B4  elapsed=0.070s  remaining=2.910s
+[do_move] depth= 6  action=F5  elapsed=0.234s  remaining=2.676s
+[do_move] depth= 7  action=B4  elapsed=1.000s  remaining=1.676s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: B4  到達深さ: 7  合計時間: 3.016s
+[Move Time] turn=14, color=black, agent=agent_actual, time=3.017624 sec
+[Move Time] turn=15, color=white, agent=mcts, time=0.072964 sec
+[do_move] depth= 1  action=G4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C7  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=F5  elapsed=0.008s  remaining=2.986s
+[do_move] depth= 5  action=C2  elapsed=0.066s  remaining=2.920s
+[do_move] depth= 6  action=A3  elapsed=0.131s  remaining=2.788s
+[do_move] depth= 7  action=A3  elapsed=0.793s  remaining=1.995s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: A3  到達深さ: 7  合計時間: 3.022s
+[Move Time] turn=16, color=black, agent=agent_actual, time=3.024489 sec
+[Move Time] turn=17, color=white, agent=mcts, time=0.068310 sec
+[do_move] depth= 1  action=A4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B5  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=B5  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=C2  elapsed=0.034s  remaining=2.958s
+[do_move] depth= 6  action=C2  elapsed=0.072s  remaining=2.885s
+[do_move] depth= 7  action=B5  elapsed=0.484s  remaining=2.402s
+[do_move] depth= 8  action=C2  elapsed=0.974s  remaining=1.428s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C2  到達深さ: 8  合計時間: 3.039s
+[Move Time] turn=18, color=black, agent=agent_actual, time=3.041261 sec
+[Move Time] turn=19, color=white, agent=mcts, time=0.064309 sec
+[do_move] depth= 1  action=B5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B5  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=B5  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=B5  elapsed=0.040s  remaining=2.950s
+[do_move] depth= 6  action=B5  elapsed=0.093s  remaining=2.857s
+[do_move] depth= 7  action=B5  elapsed=0.571s  remaining=2.286s
+[do_move] depth= 8  action=B5  elapsed=1.146s  remaining=1.140s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B5  到達深さ: 8  合計時間: 3.039s
+[Move Time] turn=20, color=black, agent=agent_actual, time=3.040542 sec
+[Move Time] turn=21, color=white, agent=mcts, time=0.060915 sec
+[do_move] depth= 1  action=A6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A6  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=A6  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=A6  elapsed=0.033s  remaining=2.958s
+[do_move] depth= 6  action=A6  elapsed=0.070s  remaining=2.888s
+[do_move] depth= 7  action=A6  elapsed=0.472s  remaining=2.415s
+[do_move] depth= 8  action=A6  elapsed=0.863s  remaining=1.553s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A6  到達深さ: 8  合計時間: 3.000s
+[Move Time] turn=22, color=black, agent=agent_actual, time=3.001892 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A7  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=A7  elapsed=0.007s  remaining=2.989s
+[do_move] depth= 5  action=A7  elapsed=0.050s  remaining=2.938s
+[do_move] depth= 6  action=A7  elapsed=0.110s  remaining=2.829s
+[do_move] depth= 7  action=A7  elapsed=0.712s  remaining=2.116s
+[do_move] depth= 8  action=A7  elapsed=1.552s  remaining=0.564s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A7  到達深さ: 8  合計時間: 3.023s
+[Move Time] turn=23, color=black, agent=agent_actual, time=3.025040 sec
+[Move Time] turn=24, color=white, agent=mcts, time=0.056563 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=F2  elapsed=0.007s  remaining=2.989s
+[do_move] depth= 5  action=F2  elapsed=0.048s  remaining=2.941s
+[do_move] depth= 6  action=A2  elapsed=0.115s  remaining=2.826s
+[do_move] depth= 7  action=F2  elapsed=0.778s  remaining=2.048s
+[do_move] depth= 8  action=F2  elapsed=1.491s  remaining=0.557s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F2  到達深さ: 8  合計時間: 3.014s
+[Move Time] turn=25, color=black, agent=agent_actual, time=3.016215 sec
+[Move Time] turn=26, color=white, agent=mcts, time=0.053293 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A2  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=A2  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=A8  elapsed=0.041s  remaining=2.950s
+[do_move] depth= 6  action=A2  elapsed=0.090s  remaining=2.860s
+[do_move] depth= 7  action=A2  elapsed=0.576s  remaining=2.284s
+[do_move] depth= 8  action=A2  elapsed=1.169s  remaining=1.115s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A2  到達深さ: 8  合計時間: 3.013s
+[Move Time] turn=27, color=black, agent=agent_actual, time=3.015083 sec
+[Move Time] turn=28, color=white, agent=mcts, time=0.049726 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=F5  elapsed=0.007s  remaining=2.989s
+[do_move] depth= 5  action=E1  elapsed=0.050s  remaining=2.939s
+[do_move] depth= 6  action=F5  elapsed=0.091s  remaining=2.848s
+[do_move] depth= 7  action=E1  elapsed=0.696s  remaining=2.152s
+[do_move] depth= 8  action=E1  elapsed=1.219s  remaining=0.933s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E1  到達深さ: 8  合計時間: 3.012s
+[Move Time] turn=29, color=black, agent=agent_actual, time=3.014111 sec
+[Move Time] turn=30, color=white, agent=mcts, time=0.047265 sec
+[do_move] depth= 1  action=F1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F1  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=F1  elapsed=0.006s  remaining=2.990s
+[do_move] depth= 5  action=A1  elapsed=0.038s  remaining=2.952s
+[do_move] depth= 6  action=F1  elapsed=0.071s  remaining=2.881s
+[do_move] depth= 7  action=F1  elapsed=0.357s  remaining=2.524s
+[do_move] depth= 8  action=F1  elapsed=0.702s  remaining=1.821s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F1  到達深さ: 8  合計時間: 3.005s
+[Move Time] turn=31, color=black, agent=agent_actual, time=3.006706 sec
+[Move Time] turn=32, color=white, agent=mcts, time=0.043188 sec
+[do_move] depth= 1  action=H1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A1  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=A8  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=A8  elapsed=0.038s  remaining=2.952s
+[do_move] depth= 6  action=A8  elapsed=0.069s  remaining=2.883s
+[do_move] depth= 7  action=A1  elapsed=0.401s  remaining=2.481s
+[do_move] depth= 8  action=A8  elapsed=0.715s  remaining=1.767s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A8  到達深さ: 8  合計時間: 3.003s
+[Move Time] turn=33, color=black, agent=agent_actual, time=3.003929 sec
+[Move Time] turn=34, color=white, agent=mcts, time=0.039650 sec
+[do_move] depth= 1  action=H1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H1  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=H1  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=A1  elapsed=0.025s  remaining=2.968s
+[do_move] depth= 6  action=H1  elapsed=0.044s  remaining=2.924s
+[do_move] depth= 7  action=A1  elapsed=0.243s  remaining=2.681s
+[do_move] depth= 8  action=H1  elapsed=0.435s  remaining=2.246s
+[do_move] depth= 9  action=A1  elapsed=2.106s  remaining=0.140s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: A1  到達深さ: 9  合計時間: 3.032s
+[Move Time] turn=35, color=black, agent=agent_actual, time=3.033702 sec
+[Move Time] turn=36, color=white, agent=mcts, time=0.036288 sec
+[do_move] depth= 1  action=E7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H1  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=H1  elapsed=0.004s  remaining=2.994s
+[do_move] depth= 5  action=H1  elapsed=0.020s  remaining=2.973s
+[do_move] depth= 6  action=H1  elapsed=0.036s  remaining=2.938s
+[do_move] depth= 7  action=H1  elapsed=0.190s  remaining=2.748s
+[do_move] depth= 8  action=H1  elapsed=0.325s  remaining=2.423s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H1  到達深さ: 8  合計時間: 3.007s
+[Move Time] turn=37, color=black, agent=agent_actual, time=3.016682 sec
+[Move Time] turn=38, color=white, agent=mcts, time=0.033059 sec
+[do_move] depth= 1  action=E7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=C1  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=C1  elapsed=0.013s  remaining=2.983s
+[do_move] depth= 6  action=C1  elapsed=0.023s  remaining=2.961s
+[do_move] depth= 7  action=C8  elapsed=0.775s  remaining=2.185s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C8  到達深さ: 7  合計時間: 0.815s
+[Move Time] turn=39, color=black, agent=agent_actual, time=0.817633 sec
+[Move Time] turn=40, color=white, agent=mcts, time=0.030403 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=C1  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=C1  elapsed=0.141s  remaining=2.855s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C1  到達深さ: 5  合計時間: 0.145s
+[Move Time] turn=41, color=black, agent=agent_actual, time=0.145369 sec
+[Move Time] turn=42, color=white, agent=mcts, time=0.026936 sec
+[do_move] depth= 1  action=E7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=E8  elapsed=0.082s  remaining=2.918s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E8  到達深さ: 3  合計時間: 0.082s
+[Move Time] turn=43, color=black, agent=agent_actual, time=0.082457 sec
+[Move Time] turn=44, color=white, agent=mcts, time=0.023935 sec
+[do_move] depth= 1  action=F5  elapsed=0.073s  remaining=2.927s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F5  到達深さ: 1  合計時間: 0.073s
+[Move Time] turn=45, color=black, agent=agent_actual, time=0.073597 sec
+[Move Time] turn=46, color=white, agent=mcts, time=0.022363 sec
+[do_move] depth= 1  action=H6  elapsed=0.015s  remaining=2.984s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H6  到達深さ: 1  合計時間: 0.016s
+[Move Time] turn=47, color=black, agent=agent_actual, time=0.015587 sec
+[Move Time] turn=48, color=white, agent=mcts, time=0.018950 sec
+[do_move] depth= 1  action=H3  elapsed=0.005s  remaining=2.995s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H3  到達深さ: 1  合計時間: 0.005s
+[Move Time] turn=49, color=black, agent=agent_actual, time=0.004696 sec
+[Move Time] turn=50, color=white, agent=mcts, time=0.015622 sec
+[do_move] depth= 1  action=G4  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G4  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=51, color=black, agent=agent_actual, time=0.000984 sec
+[Move Time] turn=52, color=white, agent=mcts, time=0.012957 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H4  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=53, color=black, agent=agent_actual, time=0.000385 sec
+[Move Time] turn=54, color=white, agent=mcts, time=0.009800 sec
+[do_move] depth= 1  action=G6  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G6  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=55, color=black, agent=agent_actual, time=0.000238 sec
+[Move Time] turn=56, color=white, agent=mcts, time=0.006161 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=57, color=black, agent=agent_actual, time=0.000210 sec
+[Move Time] turn=58, color=white, agent=mcts, time=0.003968 sec
+[do_move] depth= 1  action=G8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=59, color=black, agent=agent_actual, time=0.000179 sec
+winner: black  (black=agent_actual, white=mcts)
+
+===== Game 3 / 10 =====
+[Move Time] turn=00, color=black, agent=mcts, time=0.000002 sec
+[Move Time] turn=01, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=mcts, time=0.000001 sec
+[Move Time] turn=03, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=04, color=black, agent=mcts, time=0.086505 sec
+[do_move] depth= 1  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=D6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=C5  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=C5  elapsed=0.011s  remaining=2.985s
+[do_move] depth= 6  action=C5  elapsed=0.032s  remaining=2.952s
+[do_move] depth= 7  action=C5  elapsed=0.157s  remaining=2.795s
+[do_move] depth= 8  action=C5  elapsed=0.434s  remaining=2.362s
+[do_move] depth= 9  action=C5  elapsed=1.468s  remaining=0.893s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: C5  到達深さ: 9  合計時間: 3.019s
+[Move Time] turn=05, color=white, agent=agent_actual, time=3.021205 sec
+[Move Time] turn=06, color=black, agent=mcts, time=0.085119 sec
+[do_move] depth= 1  action=G7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=C1  elapsed=0.003s  remaining=2.995s
+[do_move] depth= 5  action=F3  elapsed=0.016s  remaining=2.979s
+[do_move] depth= 6  action=B3  elapsed=0.048s  remaining=2.931s
+[do_move] depth= 7  action=C1  elapsed=0.189s  remaining=2.741s
+[do_move] depth= 8  action=B3  elapsed=0.611s  remaining=2.130s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B3  到達深さ: 8  合計時間: 3.002s
+[Move Time] turn=07, color=white, agent=agent_actual, time=3.003378 sec
+[Move Time] turn=08, color=black, agent=mcts, time=0.080834 sec
+[do_move] depth= 1  action=F3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=F3  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=F3  elapsed=0.003s  remaining=2.995s
+[do_move] depth= 5  action=F3  elapsed=0.015s  remaining=2.980s
+[do_move] depth= 6  action=F3  elapsed=0.044s  remaining=2.937s
+[do_move] depth= 7  action=F3  elapsed=0.175s  remaining=2.762s
+[do_move] depth= 8  action=F4  elapsed=0.618s  remaining=2.143s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F4  到達深さ: 8  合計時間: 3.018s
+[Move Time] turn=09, color=white, agent=agent_actual, time=3.019996 sec
+[Move Time] turn=10, color=black, agent=mcts, time=0.085422 sec
+[do_move] depth= 1  action=B4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B5  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=B5  elapsed=0.004s  remaining=2.994s
+[do_move] depth= 5  action=B4  elapsed=0.019s  remaining=2.975s
+[do_move] depth= 6  action=B4  elapsed=0.049s  remaining=2.926s
+[do_move] depth= 7  action=B5  elapsed=0.315s  remaining=2.611s
+[do_move] depth= 8  action=B6  elapsed=0.735s  remaining=1.876s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B6  到達深さ: 8  合計時間: 3.011s
+[Move Time] turn=11, color=white, agent=agent_actual, time=3.012823 sec
+[Move Time] turn=12, color=black, agent=mcts, time=0.075654 sec
+[do_move] depth= 1  action=C7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B4  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=B4  elapsed=0.005s  remaining=2.993s
+[do_move] depth= 5  action=C1  elapsed=0.021s  remaining=2.972s
+[do_move] depth= 6  action=C1  elapsed=0.045s  remaining=2.927s
+[do_move] depth= 7  action=C1  elapsed=0.267s  remaining=2.659s
+[do_move] depth= 8  action=C1  elapsed=0.733s  remaining=1.926s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C1  到達深さ: 8  合計時間: 3.014s
+[Move Time] turn=13, color=white, agent=agent_actual, time=3.015706 sec
+[Move Time] turn=14, color=black, agent=mcts, time=0.071985 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=E1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=E1  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=E1  elapsed=0.010s  remaining=2.986s
+[do_move] depth= 6  action=E1  elapsed=0.023s  remaining=2.963s
+[do_move] depth= 7  action=E1  elapsed=0.093s  remaining=2.870s
+[do_move] depth= 8  action=E1  elapsed=0.295s  remaining=2.574s
+[do_move] depth= 9  action=E1  elapsed=1.681s  remaining=0.894s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: E1  到達深さ: 9  合計時間: 3.029s
+[Move Time] turn=15, color=white, agent=agent_actual, time=3.032875 sec
+[Move Time] turn=16, color=black, agent=mcts, time=0.085011 sec
+[do_move] depth= 1  action=D3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=D3  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=D3  elapsed=0.006s  remaining=2.990s
+[do_move] depth= 5  action=D3  elapsed=0.040s  remaining=2.950s
+[do_move] depth= 6  action=D3  elapsed=0.121s  remaining=2.828s
+[do_move] depth= 7  action=D3  elapsed=0.648s  remaining=2.180s
+[do_move] depth= 8  action=D3  elapsed=1.437s  remaining=0.744s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: D3  到達深さ: 8  合計時間: 3.018s
+[Move Time] turn=17, color=white, agent=agent_actual, time=3.019816 sec
+[Move Time] turn=18, color=black, agent=mcts, time=0.067048 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F5  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=F5  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 5  action=F5  elapsed=0.050s  remaining=2.939s
+[do_move] depth= 6  action=F2  elapsed=0.146s  remaining=2.793s
+[do_move] depth= 7  action=B5  elapsed=0.874s  remaining=1.919s
+[do_move] depth= 8  action=F5  elapsed=1.892s  remaining=0.027s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F5  到達深さ: 8  合計時間: 3.036s
+[Move Time] turn=19, color=white, agent=agent_actual, time=3.038602 sec
+[Move Time] turn=20, color=black, agent=mcts, time=0.065494 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=H5  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=H5  elapsed=0.014s  remaining=2.980s
+[do_move] depth= 5  action=H5  elapsed=0.107s  remaining=2.873s
+[do_move] depth= 6  action=H5  elapsed=0.223s  remaining=2.650s
+[do_move] depth= 7  action=G3  elapsed=1.581s  remaining=1.069s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: G3  到達深さ: 7  合計時間: 3.007s
+[Move Time] turn=21, color=white, agent=agent_actual, time=3.009097 sec
+[Move Time] turn=22, color=black, agent=mcts, time=0.061392 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H5  elapsed=0.006s  remaining=2.993s
+[do_move] depth= 4  action=F3  elapsed=0.012s  remaining=2.980s
+[do_move] depth= 5  action=F3  elapsed=0.092s  remaining=2.888s
+[do_move] depth= 6  action=D2  elapsed=0.186s  remaining=2.702s
+[do_move] depth= 7  action=D2  elapsed=1.389s  remaining=1.314s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D2  到達深さ: 7  合計時間: 3.033s
+[Move Time] turn=23, color=white, agent=agent_actual, time=3.034543 sec
+[Move Time] turn=24, color=black, agent=mcts, time=0.057976 sec
+[do_move] depth= 1  action=F3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F3  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F3  elapsed=0.008s  remaining=2.987s
+[do_move] depth= 5  action=F3  elapsed=0.058s  remaining=2.930s
+[do_move] depth= 6  action=F3  elapsed=0.111s  remaining=2.819s
+[do_move] depth= 7  action=F3  elapsed=0.753s  remaining=2.066s
+[do_move] depth= 8  action=F3  elapsed=1.475s  remaining=0.591s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F3  到達深さ: 8  合計時間: 3.039s
+[Move Time] turn=25, color=white, agent=agent_actual, time=3.041128 sec
+[Move Time] turn=26, color=black, agent=mcts, time=0.054014 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=A1  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=A1  elapsed=0.013s  remaining=2.982s
+[do_move] depth= 5  action=A1  elapsed=0.066s  remaining=2.916s
+[do_move] depth= 6  action=H6  elapsed=0.200s  remaining=2.716s
+[do_move] depth= 7  action=A1  elapsed=0.935s  remaining=1.782s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: A1  到達深さ: 7  合計時間: 3.030s
+[Move Time] turn=27, color=white, agent=agent_actual, time=3.032697 sec
+[Move Time] turn=28, color=black, agent=mcts, time=0.052146 sec
+[do_move] depth= 1  action=H4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H3  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H4  elapsed=0.005s  remaining=2.995s
+[do_move] depth= 4  action=B1  elapsed=0.009s  remaining=2.985s
+[do_move] depth= 5  action=B1  elapsed=0.068s  remaining=2.917s
+[do_move] depth= 6  action=B1  elapsed=0.121s  remaining=2.797s
+[do_move] depth= 7  action=B1  elapsed=0.982s  remaining=1.815s
+[do_move] depth= 8  action=H1  elapsed=1.794s  remaining=0.021s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H1  到達深さ: 8  合計時間: 3.035s
+[Move Time] turn=29, color=white, agent=agent_actual, time=3.037434 sec
+[Move Time] turn=30, color=black, agent=mcts, time=0.048246 sec
+[do_move] depth= 1  action=F1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F1  elapsed=0.004s  remaining=2.996s
+[do_move] depth= 4  action=F1  elapsed=0.006s  remaining=2.989s
+[do_move] depth= 5  action=F1  elapsed=0.053s  remaining=2.935s
+[do_move] depth= 6  action=F1  elapsed=0.194s  remaining=2.741s
+[do_move] depth= 7  action=A4  elapsed=1.527s  remaining=1.214s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: A4  到達深さ: 7  合計時間: 3.027s
+[Move Time] turn=31, color=white, agent=agent_actual, time=3.029103 sec
+[Move Time] turn=32, color=black, agent=mcts, time=0.043529 sec
+[do_move] depth= 1  action=F1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F1  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=F1  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=F1  elapsed=0.028s  remaining=2.963s
+[do_move] depth= 6  action=F1  elapsed=0.057s  remaining=2.906s
+[do_move] depth= 7  action=F1  elapsed=0.273s  remaining=2.633s
+[do_move] depth= 8  action=F1  elapsed=0.516s  remaining=2.117s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F1  到達深さ: 8  合計時間: 3.002s
+[Move Time] turn=33, color=white, agent=agent_actual, time=3.003741 sec
+[Move Time] turn=34, color=black, agent=mcts, time=0.039847 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E2  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=H4  elapsed=0.007s  remaining=2.990s
+[do_move] depth= 5  action=E2  elapsed=0.053s  remaining=2.937s
+[do_move] depth= 6  action=E2  elapsed=0.099s  remaining=2.838s
+[do_move] depth= 7  action=E2  elapsed=0.563s  remaining=2.274s
+[do_move] depth= 8  action=E2  elapsed=1.293s  remaining=0.981s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E2  到達深さ: 8  合計時間: 3.015s
+[Move Time] turn=35, color=white, agent=agent_actual, time=3.017327 sec
+[Move Time] turn=36, color=black, agent=mcts, time=0.036249 sec
+[do_move] depth= 1  action=F7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A5  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=A5  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=A5  elapsed=0.027s  remaining=2.966s
+[do_move] depth= 6  action=A5  elapsed=0.055s  remaining=2.911s
+[do_move] depth= 7  action=A5  elapsed=0.249s  remaining=2.662s
+[do_move] depth= 8  action=A5  elapsed=0.458s  remaining=2.204s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A5  到達深さ: 8  合計時間: 3.012s
+[Move Time] turn=37, color=white, agent=agent_actual, time=3.053380 sec
+[Move Time] turn=38, color=black, agent=mcts, time=0.038867 sec
+[do_move] depth= 1  action=F7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A7  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=A7  elapsed=0.005s  remaining=2.991s
+[do_move] depth= 5  action=A7  elapsed=0.027s  remaining=2.965s
+[do_move] depth= 6  action=A7  elapsed=0.037s  remaining=2.927s
+[do_move] depth=7 探索中にタイムアウト → depth=6 の結果を使用
+[do_move] 最終選択: A7  到達深さ: 6  合計時間: 3.002s
+[Move Time] turn=39, color=white, agent=agent_actual, time=3.029299 sec
+[Move Time] turn=40, color=black, agent=mcts, time=0.038046 sec
+[do_move] depth= 1  action=H6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=F7  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=A8  elapsed=0.004s  remaining=2.992s
+[do_move] depth=5 探索中にタイムアウト → depth=4 の結果を使用
+[do_move] 最終選択: A8  到達深さ: 4  合計時間: 3.010s
+[Move Time] turn=41, color=white, agent=agent_actual, time=3.025565 sec
+[Move Time] turn=42, color=black, agent=mcts, time=0.027730 sec
+[do_move] depth= 1  action=H6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H3  elapsed=2.169s  remaining=0.830s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H3  到達深さ: 3  合計時間: 2.170s
+[Move Time] turn=43, color=white, agent=agent_actual, time=2.181611 sec
+[Move Time] turn=44, color=black, agent=mcts, time=0.024774 sec
+[do_move] depth= 1  action=C8  elapsed=0.761s  remaining=2.239s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C8  到達深さ: 1  合計時間: 0.761s
+[Move Time] turn=45, color=white, agent=agent_actual, time=0.765057 sec
+[Move Time] turn=46, color=black, agent=mcts, time=0.022157 sec
+[do_move] depth= 1  action=F8  elapsed=0.102s  remaining=2.897s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F8  到達深さ: 1  合計時間: 0.103s
+[Move Time] turn=47, color=white, agent=agent_actual, time=0.103200 sec
+[Move Time] turn=48, color=black, agent=mcts, time=0.019231 sec
+[do_move] depth= 1  action=H6  elapsed=0.022s  remaining=2.978s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H6  到達深さ: 1  合計時間: 0.022s
+[Move Time] turn=49, color=white, agent=agent_actual, time=0.022350 sec
+[Move Time] turn=50, color=black, agent=mcts, time=0.016555 sec
+[do_move] depth= 1  action=H5  elapsed=0.002s  remaining=2.998s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H5  到達深さ: 1  合計時間: 0.002s
+[Move Time] turn=51, color=white, agent=agent_actual, time=0.002142 sec
+[Move Time] turn=52, color=black, agent=mcts, time=0.013626 sec
+[do_move] depth= 1  action=E8  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E8  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=53, color=white, agent=agent_actual, time=0.001142 sec
+[Move Time] turn=54, color=black, agent=mcts, time=0.011110 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=55, color=white, agent=agent_actual, time=0.000353 sec
+[Move Time] turn=56, color=black, agent=mcts, time=0.007191 sec
+[do_move] depth= 1  action=H7  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H7  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=57, color=white, agent=agent_actual, time=0.000224 sec
+[Move Time] turn=58, color=black, agent=mcts, time=0.003982 sec
+[do_move] depth= 1  action=D8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: D8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=59, color=white, agent=agent_actual, time=0.000159 sec
+winner: white  (black=mcts, white=agent_actual)
+
+===== Game 4 / 10 =====
+[Move Time] turn=00, color=black, agent=agent_actual, time=0.000002 sec
+[Move Time] turn=01, color=white, agent=mcts, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=03, color=white, agent=mcts, time=0.000001 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=C3  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=C3  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 5  action=C4  elapsed=0.008s  remaining=2.990s
+[do_move] depth= 6  action=C4  elapsed=0.021s  remaining=2.969s
+[do_move] depth= 7  action=C4  elapsed=0.082s  remaining=2.887s
+[do_move] depth= 8  action=C4  elapsed=0.206s  remaining=2.681s
+[do_move] depth= 9  action=C4  elapsed=0.820s  remaining=1.861s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: C4  到達深さ: 9  合計時間: 3.004s
+[Move Time] turn=04, color=black, agent=agent_actual, time=3.006050 sec
+[Move Time] turn=05, color=white, agent=mcts, time=0.085787 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=C3  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=C3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 5  action=C3  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 6  action=C3  elapsed=0.025s  remaining=2.964s
+[do_move] depth= 7  action=C3  elapsed=0.109s  remaining=2.855s
+[do_move] depth= 8  action=C3  elapsed=0.296s  remaining=2.559s
+[do_move] depth= 9  action=C6  elapsed=1.364s  remaining=1.195s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: C6  到達深さ: 9  合計時間: 3.032s
+[Move Time] turn=06, color=black, agent=agent_actual, time=3.033986 sec
+[Move Time] turn=07, color=white, agent=mcts, time=0.082972 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=D3  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=F5  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=D3  elapsed=0.013s  remaining=2.983s
+[do_move] depth= 6  action=F5  elapsed=0.048s  remaining=2.935s
+[do_move] depth= 7  action=F5  elapsed=0.159s  remaining=2.776s
+[do_move] depth= 8  action=F5  elapsed=0.610s  remaining=2.166s
+[do_move] depth= 9  action=F5  elapsed=1.350s  remaining=0.815s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: F5  到達深さ: 9  合計時間: 3.004s
+[Move Time] turn=08, color=black, agent=agent_actual, time=3.006364 sec
+[Move Time] turn=09, color=white, agent=mcts, time=0.082632 sec
+[do_move] depth= 1  action=B5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=C3  elapsed=0.009s  remaining=2.987s
+[do_move] depth= 5  action=C3  elapsed=0.039s  remaining=2.948s
+[do_move] depth= 6  action=F3  elapsed=0.222s  remaining=2.726s
+[do_move] depth= 7  action=F3  elapsed=0.898s  remaining=1.829s
+[do_move] depth= 8  action=C3  elapsed=1.575s  remaining=0.254s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C3  到達深さ: 8  合計時間: 3.005s
+[Move Time] turn=10, color=black, agent=agent_actual, time=3.006526 sec
+[Move Time] turn=11, color=white, agent=mcts, time=0.081751 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=B5  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F3  elapsed=0.009s  remaining=2.985s
+[do_move] depth= 5  action=F3  elapsed=0.058s  remaining=2.928s
+[do_move] depth= 6  action=F3  elapsed=0.118s  remaining=2.810s
+[do_move] depth= 7  action=F3  elapsed=0.733s  remaining=2.077s
+[do_move] depth= 8  action=F3  elapsed=1.368s  remaining=0.709s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F3  到達深さ: 8  合計時間: 3.034s
+[Move Time] turn=12, color=black, agent=agent_actual, time=3.035433 sec
+[Move Time] turn=13, color=white, agent=mcts, time=0.124354 sec
+[do_move] depth= 1  action=B3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=B4  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=D3  elapsed=0.010s  remaining=2.986s
+[do_move] depth= 5  action=B3  elapsed=0.064s  remaining=2.921s
+[do_move] depth= 6  action=D3  elapsed=0.161s  remaining=2.760s
+[do_move] depth= 7  action=F1  elapsed=0.777s  remaining=1.983s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: F1  到達深さ: 7  合計時間: 3.026s
+[Move Time] turn=14, color=black, agent=agent_actual, time=3.028576 sec
+[Move Time] turn=15, color=white, agent=mcts, time=0.074906 sec
+[do_move] depth= 1  action=D6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=D6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=D6  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 5  action=D6  elapsed=0.046s  remaining=2.942s
+[do_move] depth= 6  action=D6  elapsed=0.138s  remaining=2.804s
+[do_move] depth= 7  action=D6  elapsed=0.712s  remaining=2.093s
+[do_move] depth= 8  action=D6  elapsed=1.771s  remaining=0.321s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: D6  到達深さ: 8  合計時間: 3.023s
+[Move Time] turn=16, color=black, agent=agent_actual, time=3.024766 sec
+[Move Time] turn=17, color=white, agent=mcts, time=0.072208 sec
+[do_move] depth= 1  action=D7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=D7  elapsed=0.006s  remaining=2.993s
+[do_move] depth= 4  action=D7  elapsed=0.015s  remaining=2.978s
+[do_move] depth= 5  action=D7  elapsed=0.110s  remaining=2.868s
+[do_move] depth= 6  action=D7  elapsed=0.232s  remaining=2.636s
+[do_move] depth= 7  action=D7  elapsed=1.939s  remaining=0.697s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D7  到達深さ: 7  合計時間: 3.001s
+[Move Time] turn=18, color=black, agent=agent_actual, time=3.002853 sec
+[Move Time] turn=19, color=white, agent=mcts, time=0.068751 sec
+[do_move] depth= 1  action=D1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=D1  elapsed=0.006s  remaining=2.993s
+[do_move] depth= 4  action=D1  elapsed=0.013s  remaining=2.980s
+[do_move] depth= 5  action=D1  elapsed=0.095s  remaining=2.885s
+[do_move] depth= 6  action=D1  elapsed=0.198s  remaining=2.687s
+[do_move] depth= 7  action=D1  elapsed=1.336s  remaining=1.351s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D1  到達深さ: 7  合計時間: 3.009s
+[Move Time] turn=20, color=black, agent=agent_actual, time=3.011088 sec
+[Move Time] turn=21, color=white, agent=mcts, time=0.063529 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E2  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=H5  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=E2  elapsed=0.015s  remaining=2.979s
+[do_move] depth= 5  action=H5  elapsed=0.093s  remaining=2.886s
+[do_move] depth= 6  action=B5  elapsed=0.289s  remaining=2.596s
+[do_move] depth= 7  action=H5  elapsed=1.800s  remaining=0.796s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: H5  到達深さ: 7  合計時間: 3.037s
+[Move Time] turn=22, color=black, agent=agent_actual, time=3.037891 sec
+[Move Time] turn=23, color=white, agent=mcts, time=0.061235 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=C8  elapsed=0.009s  remaining=2.986s
+[do_move] depth= 5  action=D3  elapsed=0.077s  remaining=2.909s
+[do_move] depth= 6  action=D3  elapsed=0.169s  remaining=2.740s
+[do_move] depth= 7  action=D3  elapsed=1.250s  remaining=1.490s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D3  到達深さ: 7  合計時間: 3.037s
+[Move Time] turn=24, color=black, agent=agent_actual, time=3.038692 sec
+[Move Time] turn=25, color=white, agent=mcts, time=0.057488 sec
+[do_move] depth= 1  action=D2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D2  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=D2  elapsed=0.006s  remaining=2.993s
+[do_move] depth= 4  action=D2  elapsed=0.012s  remaining=2.981s
+[do_move] depth= 5  action=D2  elapsed=0.105s  remaining=2.876s
+[do_move] depth= 6  action=D2  elapsed=0.179s  remaining=2.697s
+[do_move] depth= 7  action=H3  elapsed=1.150s  remaining=1.548s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: H3  到達深さ: 7  合計時間: 3.037s
+[Move Time] turn=26, color=black, agent=agent_actual, time=3.039653 sec
+[Move Time] turn=27, color=white, agent=mcts, time=0.053519 sec
+[do_move] depth= 1  action=E8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E2  elapsed=0.005s  remaining=2.995s
+[do_move] depth= 4  action=H4  elapsed=0.010s  remaining=2.985s
+[do_move] depth= 5  action=E2  elapsed=0.084s  remaining=2.900s
+[do_move] depth= 6  action=G6  elapsed=0.189s  remaining=2.711s
+[do_move] depth= 7  action=E2  elapsed=1.231s  remaining=1.480s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E2  到達深さ: 7  合計時間: 3.033s
+[Move Time] turn=28, color=black, agent=agent_actual, time=3.035391 sec
+[Move Time] turn=29, color=white, agent=mcts, time=0.049381 sec
+[do_move] depth= 1  action=H6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F8  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F8  elapsed=0.008s  remaining=2.987s
+[do_move] depth= 5  action=G1  elapsed=0.066s  remaining=2.922s
+[do_move] depth= 6  action=F8  elapsed=0.120s  remaining=2.802s
+[do_move] depth= 7  action=H1  elapsed=0.819s  remaining=1.983s
+[do_move] depth= 8  action=G1  elapsed=1.474s  remaining=0.509s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: G1  到達深さ: 8  合計時間: 3.001s
+[Move Time] turn=30, color=black, agent=agent_actual, time=3.002933 sec
+[Move Time] turn=31, color=white, agent=mcts, time=0.044691 sec
+[do_move] depth= 1  action=F8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H1  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=F8  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=H1  elapsed=0.035s  remaining=2.958s
+[do_move] depth= 6  action=H4  elapsed=0.063s  remaining=2.895s
+[do_move] depth= 7  action=H4  elapsed=0.427s  remaining=2.468s
+[do_move] depth= 8  action=H4  elapsed=0.766s  remaining=1.702s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H4  到達深さ: 8  合計時間: 3.024s
+[Move Time] turn=32, color=black, agent=agent_actual, time=3.025823 sec
+[Move Time] turn=33, color=white, agent=mcts, time=0.042417 sec
+[do_move] depth= 1  action=F8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H1  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=H1  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=H1  elapsed=0.029s  remaining=2.964s
+[do_move] depth= 6  action=H1  elapsed=0.055s  remaining=2.909s
+[do_move] depth= 7  action=H1  elapsed=0.328s  remaining=2.581s
+[do_move] depth= 8  action=H1  elapsed=0.597s  remaining=1.984s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H1  到達深さ: 8  合計時間: 3.038s
+[Move Time] turn=34, color=black, agent=agent_actual, time=3.039948 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=B4  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=F8  elapsed=0.031s  remaining=2.961s
+[do_move] depth= 6  action=F8  elapsed=0.054s  remaining=2.906s
+[do_move] depth= 7  action=E8  elapsed=0.436s  remaining=2.470s
+[do_move] depth= 8  action=F8  elapsed=0.630s  remaining=1.840s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F8  到達深さ: 8  合計時間: 3.009s
+[Move Time] turn=35, color=black, agent=agent_actual, time=3.010779 sec
+[Move Time] turn=36, color=white, agent=mcts, time=0.037281 sec
+[do_move] depth= 1  action=D8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=C1  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=E8  elapsed=0.037s  remaining=2.955s
+[do_move] depth= 6  action=C1  elapsed=0.061s  remaining=2.894s
+[do_move] depth= 7  action=E8  elapsed=0.404s  remaining=2.489s
+[do_move] depth= 8  action=E8  elapsed=0.646s  remaining=1.843s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E8  到達深さ: 8  合計時間: 3.001s
+[Move Time] turn=37, color=black, agent=agent_actual, time=3.009848 sec
+[Move Time] turn=38, color=white, agent=mcts, time=0.033784 sec
+[do_move] depth= 1  action=B4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B4  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=C8  elapsed=0.006s  remaining=2.990s
+[do_move] depth= 5  action=C1  elapsed=0.024s  remaining=2.966s
+[do_move] depth= 6  action=C1  elapsed=0.041s  remaining=2.925s
+[do_move] depth=7 探索中にタイムアウト → depth=6 の結果を使用
+[do_move] 最終選択: C1  到達深さ: 6  合計時間: 3.002s
+[Move Time] turn=39, color=black, agent=agent_actual, time=3.014437 sec
+[Move Time] turn=40, color=white, agent=mcts, time=0.030410 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H8  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=H8  elapsed=0.003s  remaining=2.994s
+[do_move] depth= 5  action=H8  elapsed=0.475s  remaining=2.520s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H8  到達深さ: 5  合計時間: 0.481s
+[Move Time] turn=41, color=black, agent=agent_actual, time=0.483004 sec
+[Move Time] turn=42, color=white, agent=mcts, time=0.027747 sec
+[do_move] depth= 1  action=C8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A6  elapsed=0.203s  remaining=2.797s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A6  到達深さ: 3  合計時間: 0.203s
+[Move Time] turn=43, color=black, agent=agent_actual, time=0.204381 sec
+[Move Time] turn=44, color=white, agent=mcts, time=0.024372 sec
+[do_move] depth= 1  action=C8  elapsed=0.009s  remaining=2.991s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C8  到達深さ: 1  合計時間: 0.009s
+[Move Time] turn=45, color=black, agent=agent_actual, time=0.009470 sec
+[Move Time] turn=46, color=white, agent=mcts, time=0.021208 sec
+[do_move] depth= 1  action=A8  elapsed=0.004s  remaining=2.996s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A8  到達深さ: 1  合計時間: 0.004s
+[Move Time] turn=47, color=black, agent=agent_actual, time=0.003874 sec
+[Move Time] turn=48, color=white, agent=mcts, time=0.018573 sec
+[do_move] depth= 1  action=A4  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A4  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=49, color=black, agent=agent_actual, time=0.000847 sec
+[Move Time] turn=50, color=white, agent=mcts, time=0.015795 sec
+[do_move] depth= 1  action=B3  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: B3  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=51, color=black, agent=agent_actual, time=0.002114 sec
+[Move Time] turn=52, color=white, agent=mcts, time=0.013393 sec
+[do_move] depth= 1  action=A1  elapsed=0.000s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A1  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=53, color=black, agent=agent_actual, time=0.000569 sec
+[Move Time] turn=54, color=white, agent=mcts, time=0.011044 sec
+[do_move] depth= 1  action=A3  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A3  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=55, color=black, agent=agent_actual, time=0.000292 sec
+[Move Time] turn=56, color=white, agent=mcts, time=0.005719 sec
+[do_move] depth= 1  action=B4  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: B4  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=57, color=black, agent=agent_actual, time=0.000196 sec
+[Move Time] turn=58, color=white, agent=mcts, time=0.003805 sec
+[do_move] depth= 1  action=G8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=59, color=black, agent=agent_actual, time=0.000162 sec
+winner: black  (black=agent_actual, white=mcts)
+
+===== Game 5 / 10 =====
+[Move Time] turn=00, color=black, agent=mcts, time=0.000002 sec
+[Move Time] turn=01, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=mcts, time=0.000001 sec
+[Move Time] turn=03, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=04, color=black, agent=mcts, time=0.088195 sec
+[do_move] depth= 1  action=D6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=C2  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=F6  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=E6  elapsed=0.009s  remaining=2.988s
+[do_move] depth= 6  action=E6  elapsed=0.027s  remaining=2.960s
+[do_move] depth= 7  action=E6  elapsed=0.140s  remaining=2.821s
+[do_move] depth= 8  action=E6  elapsed=0.345s  remaining=2.476s
+[do_move] depth= 9  action=E6  elapsed=1.470s  remaining=1.006s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: E6  到達深さ: 9  合計時間: 3.032s
+[Move Time] turn=05, color=white, agent=agent_actual, time=3.033865 sec
+[Move Time] turn=06, color=black, agent=mcts, time=0.084903 sec
+[do_move] depth= 1  action=D6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=D6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=D6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 5  action=F6  elapsed=0.010s  remaining=2.986s
+[do_move] depth= 6  action=F6  elapsed=0.029s  remaining=2.957s
+[do_move] depth= 7  action=F6  elapsed=0.118s  remaining=2.839s
+[do_move] depth= 8  action=F6  elapsed=0.393s  remaining=2.446s
+[do_move] depth= 9  action=D6  elapsed=1.398s  remaining=1.048s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: D6  到達深さ: 9  合計時間: 3.015s
+[Move Time] turn=07, color=white, agent=agent_actual, time=3.017315 sec
+[Move Time] turn=08, color=black, agent=mcts, time=0.088363 sec
+[do_move] depth= 1  action=B6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F6  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=F6  elapsed=0.005s  remaining=2.993s
+[do_move] depth= 5  action=E3  elapsed=0.029s  remaining=2.965s
+[do_move] depth= 6  action=E3  elapsed=0.102s  remaining=2.863s
+[do_move] depth= 7  action=F6  elapsed=0.428s  remaining=2.435s
+[do_move] depth= 8  action=E3  elapsed=1.128s  remaining=1.307s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E3  到達深さ: 8  合計時間: 3.024s
+[Move Time] turn=09, color=white, agent=agent_actual, time=3.026378 sec
+[Move Time] turn=10, color=black, agent=mcts, time=0.082147 sec
+[do_move] depth= 1  action=F6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=F6  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=F6  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=F6  elapsed=0.033s  remaining=2.958s
+[do_move] depth= 6  action=D7  elapsed=0.113s  remaining=2.845s
+[do_move] depth= 7  action=F6  elapsed=0.411s  remaining=2.434s
+[do_move] depth= 8  action=F6  elapsed=1.443s  remaining=0.991s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: F6  到達深さ: 8  合計時間: 3.032s
+[Move Time] turn=11, color=white, agent=agent_actual, time=3.033716 sec
+[Move Time] turn=12, color=black, agent=mcts, time=0.078305 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=G5  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=D7  elapsed=0.019s  remaining=2.975s
+[do_move] depth= 5  action=D7  elapsed=0.101s  remaining=2.874s
+[do_move] depth= 6  action=D7  elapsed=0.376s  remaining=2.499s
+[do_move] depth= 7  action=B4  elapsed=1.465s  remaining=1.033s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: B4  到達深さ: 7  合計時間: 3.009s
+[Move Time] turn=13, color=white, agent=agent_actual, time=3.010342 sec
+[Move Time] turn=14, color=black, agent=mcts, time=0.076075 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=B5  elapsed=0.006s  remaining=2.993s
+[do_move] depth= 4  action=B5  elapsed=0.025s  remaining=2.968s
+[do_move] depth= 5  action=G6  elapsed=0.125s  remaining=2.842s
+[do_move] depth= 6  action=B5  elapsed=0.323s  remaining=2.520s
+[do_move] depth= 7  action=B5  elapsed=1.557s  remaining=0.963s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: B5  到達深さ: 7  合計時間: 3.012s
+[Move Time] turn=15, color=white, agent=agent_actual, time=3.013000 sec
+[Move Time] turn=16, color=black, agent=mcts, time=0.111205 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E7  elapsed=0.007s  remaining=2.992s
+[do_move] depth= 4  action=B6  elapsed=0.021s  remaining=2.971s
+[do_move] depth= 5  action=E2  elapsed=0.120s  remaining=2.851s
+[do_move] depth= 6  action=E2  elapsed=0.365s  remaining=2.485s
+[do_move] depth= 7  action=E2  elapsed=1.772s  remaining=0.713s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E2  到達深さ: 7  合計時間: 3.001s
+[Move Time] turn=17, color=white, agent=agent_actual, time=3.002310 sec
+[Move Time] turn=18, color=black, agent=mcts, time=0.071557 sec
+[do_move] depth= 1  action=F1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B6  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 3  action=C2  elapsed=0.007s  remaining=2.991s
+[do_move] depth= 4  action=E7  elapsed=0.021s  remaining=2.971s
+[do_move] depth= 5  action=C1  elapsed=0.126s  remaining=2.845s
+[do_move] depth= 6  action=C1  elapsed=0.278s  remaining=2.567s
+[do_move] depth= 7  action=F1  elapsed=1.516s  remaining=1.051s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: F1  到達深さ: 7  合計時間: 3.042s
+[Move Time] turn=19, color=white, agent=agent_actual, time=3.043716 sec
+[Move Time] turn=20, color=black, agent=mcts, time=0.071712 sec
+[do_move] depth= 1  action=G5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=G6  elapsed=0.007s  remaining=2.992s
+[do_move] depth= 4  action=C1  elapsed=0.019s  remaining=2.973s
+[do_move] depth= 5  action=G5  elapsed=0.135s  remaining=2.838s
+[do_move] depth= 6  action=A3  elapsed=0.285s  remaining=2.553s
+[do_move] depth= 7  action=C1  elapsed=1.973s  remaining=0.580s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: C1  到達深さ: 7  合計時間: 3.027s
+[Move Time] turn=21, color=white, agent=agent_actual, time=3.029004 sec
+[Move Time] turn=22, color=black, agent=mcts, time=0.067535 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E1  elapsed=0.005s  remaining=2.993s
+[do_move] depth= 4  action=E1  elapsed=0.012s  remaining=2.982s
+[do_move] depth= 5  action=E1  elapsed=0.080s  remaining=2.902s
+[do_move] depth= 6  action=E1  elapsed=0.214s  remaining=2.688s
+[do_move] depth= 7  action=E1  elapsed=1.061s  remaining=1.627s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E1  到達深さ: 7  合計時間: 3.025s
+[Move Time] turn=23, color=white, agent=agent_actual, time=3.026440 sec
+[Move Time] turn=24, color=black, agent=mcts, time=0.059091 sec
+[do_move] depth= 1  action=G5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=A5  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=C2  elapsed=0.010s  remaining=2.985s
+[do_move] depth= 5  action=C2  elapsed=0.061s  remaining=2.924s
+[do_move] depth= 6  action=C2  elapsed=0.175s  remaining=2.748s
+[do_move] depth= 7  action=C2  elapsed=1.134s  remaining=1.614s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: C2  到達深さ: 7  合計時間: 3.018s
+[Move Time] turn=25, color=white, agent=agent_actual, time=3.019745 sec
+[Move Time] turn=26, color=black, agent=mcts, time=0.055129 sec
+[do_move] depth= 1  action=A5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A5  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=A5  elapsed=0.008s  remaining=2.989s
+[do_move] depth= 5  action=A5  elapsed=0.048s  remaining=2.941s
+[do_move] depth= 6  action=A5  elapsed=0.123s  remaining=2.818s
+[do_move] depth= 7  action=A5  elapsed=0.696s  remaining=2.122s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: A5  到達深さ: 7  合計時間: 3.039s
+[Move Time] turn=27, color=white, agent=agent_actual, time=3.041774 sec
+[Move Time] turn=28, color=black, agent=mcts, time=0.051733 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=B6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=B6  elapsed=0.007s  remaining=2.989s
+[do_move] depth= 5  action=A1  elapsed=0.040s  remaining=2.949s
+[do_move] depth= 6  action=B6  elapsed=0.106s  remaining=2.843s
+[do_move] depth= 7  action=A1  elapsed=0.588s  remaining=2.254s
+[do_move] depth= 8  action=A1  elapsed=0.865s  remaining=1.389s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A1  到達深さ: 8  合計時間: 3.037s
+[Move Time] turn=29, color=white, agent=agent_actual, time=3.038618 sec
+[Move Time] turn=30, color=black, agent=mcts, time=0.046843 sec
+[do_move] depth= 1  action=A2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A2  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A2  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=A2  elapsed=0.006s  remaining=2.991s
+[do_move] depth= 5  action=A2  elapsed=0.044s  remaining=2.947s
+[do_move] depth= 6  action=A2  elapsed=0.088s  remaining=2.859s
+[do_move] depth= 7  action=A6  elapsed=0.442s  remaining=2.416s
+[do_move] depth= 8  action=B6  elapsed=0.928s  remaining=1.488s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B6  到達深さ: 8  合計時間: 3.029s
+[Move Time] turn=31, color=white, agent=agent_actual, time=3.031165 sec
+[Move Time] turn=32, color=black, agent=mcts, time=0.043425 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=H8  elapsed=0.005s  remaining=2.992s
+[do_move] depth= 5  action=C8  elapsed=0.045s  remaining=2.947s
+[do_move] depth= 6  action=H8  elapsed=0.093s  remaining=2.854s
+[do_move] depth= 7  action=B1  elapsed=0.542s  remaining=2.312s
+[do_move] depth= 8  action=C8  elapsed=0.862s  remaining=1.450s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C8  到達深さ: 8  合計時間: 3.009s
+[Move Time] turn=33, color=white, agent=agent_actual, time=3.011239 sec
+[Move Time] turn=34, color=black, agent=mcts, time=0.042158 sec
+[do_move] depth= 1  action=A8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=G4  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=A8  elapsed=0.004s  remaining=2.992s
+[do_move] depth= 5  action=A8  elapsed=0.025s  remaining=2.967s
+[do_move] depth= 6  action=A8  elapsed=0.049s  remaining=2.918s
+[do_move] depth= 7  action=A8  elapsed=0.290s  remaining=2.628s
+[do_move] depth= 8  action=A8  elapsed=0.616s  remaining=2.012s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: A8  到達深さ: 8  合計時間: 3.031s
+[Move Time] turn=35, color=white, agent=agent_actual, time=3.032914 sec
+[Move Time] turn=36, color=black, agent=mcts, time=0.037847 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=H8  elapsed=0.005s  remaining=2.993s
+[do_move] depth= 5  action=G1  elapsed=0.034s  remaining=2.958s
+[do_move] depth= 6  action=B1  elapsed=0.082s  remaining=2.877s
+[do_move] depth= 7  action=H8  elapsed=0.447s  remaining=2.430s
+[do_move] depth= 8  action=B1  elapsed=1.149s  remaining=1.281s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: B1  到達深さ: 8  合計時間: 3.018s
+[Move Time] turn=37, color=white, agent=agent_actual, time=3.026269 sec
+[Move Time] turn=38, color=black, agent=mcts, time=0.033549 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=G4  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=A6  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=A6  elapsed=0.009s  remaining=2.987s
+[do_move] depth= 6  action=A6  elapsed=0.017s  remaining=2.970s
+[do_move] depth=7 探索中にタイムアウト → depth=6 の結果を使用
+[do_move] 最終選択: A6  到達深さ: 6  合計時間: 3.004s
+[Move Time] turn=39, color=white, agent=agent_actual, time=3.019018 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H8  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=G1  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 5  action=G1  elapsed=0.013s  remaining=2.983s
+[do_move] depth=6 探索中にタイムアウト → depth=5 の結果を使用
+[do_move] 最終選択: G1  到達深さ: 5  合計時間: 3.007s
+[Move Time] turn=40, color=white, agent=agent_actual, time=3.022595 sec
+[Move Time] turn=41, color=black, agent=mcts, time=0.028156 sec
+[do_move] depth= 1  action=F7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H8  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=H1  elapsed=1.825s  remaining=1.172s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H1  到達深さ: 4  合計時間: 1.828s
+[Move Time] turn=42, color=white, agent=agent_actual, time=1.836712 sec
+[Move Time] turn=43, color=black, agent=mcts, time=0.025002 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.622s  remaining=2.378s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H8  到達深さ: 2  合計時間: 0.622s
+[Move Time] turn=44, color=white, agent=agent_actual, time=0.625648 sec
+[Move Time] turn=45, color=black, agent=mcts, time=0.023648 sec
+[do_move] depth= 1  action=H3  elapsed=0.065s  remaining=2.935s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H3  到達深さ: 1  合計時間: 0.065s
+[Move Time] turn=46, color=white, agent=agent_actual, time=0.065103 sec
+[Move Time] turn=47, color=black, agent=mcts, time=0.019181 sec
+[do_move] depth= 1  action=H6  elapsed=0.018s  remaining=2.982s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H6  到達深さ: 1  合計時間: 0.018s
+[Move Time] turn=48, color=white, agent=agent_actual, time=0.018134 sec
+[Move Time] turn=49, color=black, agent=mcts, time=0.016169 sec
+[do_move] depth= 1  action=F8  elapsed=0.006s  remaining=2.994s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F8  到達深さ: 1  合計時間: 0.006s
+[Move Time] turn=50, color=white, agent=agent_actual, time=0.006153 sec
+[Move Time] turn=51, color=black, agent=mcts, time=0.014403 sec
+[do_move] depth= 1  action=H4  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: H4  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=52, color=white, agent=agent_actual, time=0.001414 sec
+[Move Time] turn=53, color=black, agent=mcts, time=0.011871 sec
+[do_move] depth= 1  action=E8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=54, color=white, agent=agent_actual, time=0.000397 sec
+[Move Time] turn=55, color=black, agent=mcts, time=0.008847 sec
+[do_move] depth= 1  action=D8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: D8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=56, color=white, agent=agent_actual, time=0.000230 sec
+[Move Time] turn=57, color=black, agent=mcts, time=0.006263 sec
+[do_move] depth= 1  action=G5  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G5  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=58, color=white, agent=agent_actual, time=0.000177 sec
+[do_move] depth= 1  action=G8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=59, color=white, agent=agent_actual, time=0.000163 sec
+winner: white  (black=mcts, white=agent_actual)
+
+===== Game 6 / 10 =====
+[Move Time] turn=00, color=black, agent=agent_actual, time=0.000002 sec
+[Move Time] turn=01, color=white, agent=mcts, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=03, color=white, agent=mcts, time=0.000001 sec
+[do_move] depth= 1  action=E6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 3  action=D6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 4  action=D6  elapsed=0.002s  remaining=2.996s
+[do_move] depth= 5  action=D6  elapsed=0.010s  remaining=2.987s
+[do_move] depth= 6  action=D6  elapsed=0.041s  remaining=2.946s
+[do_move] depth= 7  action=D6  elapsed=0.139s  remaining=2.807s
+[do_move] depth= 8  action=D6  elapsed=0.399s  remaining=2.407s
+[do_move] depth= 9  action=D6  elapsed=1.324s  remaining=1.084s
+[do_move] depth=10 探索中にタイムアウト → depth=9 の結果を使用
+[do_move] 最終選択: D6  到達深さ: 9  合計時間: 3.031s
+[Move Time] turn=04, color=black, agent=agent_actual, time=3.033215 sec
+[Move Time] turn=05, color=white, agent=mcts, time=0.085664 sec
+[do_move] depth= 1  action=G5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=G5  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=G6  elapsed=0.006s  remaining=2.992s
+[do_move] depth= 5  action=G6  elapsed=0.023s  remaining=2.969s
+[do_move] depth= 6  action=G5  elapsed=0.063s  remaining=2.906s
+[do_move] depth= 7  action=G6  elapsed=0.228s  remaining=2.677s
+[do_move] depth= 8  action=G5  elapsed=0.756s  remaining=1.921s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: G5  到達深さ: 8  合計時間: 3.019s
+[Move Time] turn=06, color=black, agent=agent_actual, time=3.020516 sec
+[Move Time] turn=07, color=white, agent=mcts, time=0.081906 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C4  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=G4  elapsed=0.004s  remaining=2.994s
+[do_move] depth= 5  action=D3  elapsed=0.020s  remaining=2.974s
+[do_move] depth= 6  action=C3  elapsed=0.056s  remaining=2.918s
+[do_move] depth= 7  action=C4  elapsed=0.278s  remaining=2.640s
+[do_move] depth= 8  action=C3  elapsed=0.622s  remaining=2.018s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C3  到達深さ: 8  合計時間: 3.037s
+[Move Time] turn=08, color=black, agent=agent_actual, time=3.038760 sec
+[Move Time] turn=09, color=white, agent=mcts, time=0.081269 sec
+[do_move] depth= 1  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=G4  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=E3  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=C5  elapsed=0.009s  remaining=2.988s
+[do_move] depth= 5  action=D3  elapsed=0.027s  remaining=2.962s
+[do_move] depth= 6  action=E3  elapsed=0.102s  remaining=2.860s
+[do_move] depth= 7  action=E3  elapsed=0.373s  remaining=2.486s
+[do_move] depth= 8  action=E3  elapsed=1.067s  remaining=1.419s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E3  到達深さ: 8  合計時間: 3.002s
+[Move Time] turn=10, color=black, agent=agent_actual, time=3.003956 sec
+[Move Time] turn=11, color=white, agent=mcts, time=0.079224 sec
+[do_move] depth= 1  action=G4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C5  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=C5  elapsed=0.006s  remaining=2.992s
+[do_move] depth= 5  action=H6  elapsed=0.031s  remaining=2.961s
+[do_move] depth= 6  action=C5  elapsed=0.085s  remaining=2.876s
+[do_move] depth= 7  action=C5  elapsed=0.429s  remaining=2.447s
+[do_move] depth= 8  action=G3  elapsed=1.342s  remaining=1.105s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: G3  到達深さ: 8  合計時間: 3.000s
+[Move Time] turn=12, color=black, agent=agent_actual, time=3.002168 sec
+[Move Time] turn=13, color=white, agent=mcts, time=0.075047 sec
+[do_move] depth= 1  action=C2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=H6  elapsed=0.003s  remaining=2.997s
+[do_move] depth= 4  action=H6  elapsed=0.012s  remaining=2.984s
+[do_move] depth= 5  action=C4  elapsed=0.044s  remaining=2.940s
+[do_move] depth= 6  action=C2  elapsed=0.183s  remaining=2.757s
+[do_move] depth= 7  action=H6  elapsed=0.541s  remaining=2.216s
+[do_move] depth= 8  action=C2  elapsed=2.055s  remaining=0.160s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C2  到達深さ: 8  合計時間: 3.014s
+[Move Time] turn=14, color=black, agent=agent_actual, time=3.016487 sec
+[Move Time] turn=15, color=white, agent=mcts, time=0.073485 sec
+[do_move] depth= 1  action=B3  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B3  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=B3  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=B3  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 5  action=B3  elapsed=0.045s  remaining=2.943s
+[do_move] depth= 6  action=C4  elapsed=0.110s  remaining=2.833s
+[do_move] depth= 7  action=C4  elapsed=0.639s  remaining=2.194s
+[do_move] depth= 8  action=C4  elapsed=1.645s  remaining=0.549s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C4  到達深さ: 8  合計時間: 3.031s
+[Move Time] turn=16, color=black, agent=agent_actual, time=3.033053 sec
+[Move Time] turn=17, color=white, agent=mcts, time=0.074262 sec
+[do_move] depth= 1  action=F1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=F1  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F1  elapsed=0.012s  remaining=2.984s
+[do_move] depth= 5  action=F1  elapsed=0.062s  remaining=2.922s
+[do_move] depth= 6  action=F1  elapsed=0.150s  remaining=2.772s
+[do_move] depth= 7  action=F1  elapsed=0.844s  remaining=1.928s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: F1  到達深さ: 7  合計時間: 3.003s
+[Move Time] turn=18, color=black, agent=agent_actual, time=3.004845 sec
+[Move Time] turn=19, color=white, agent=mcts, time=0.068144 sec
+[do_move] depth= 1  action=E1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E1  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=E1  elapsed=0.017s  remaining=2.976s
+[do_move] depth= 5  action=E1  elapsed=0.081s  remaining=2.896s
+[do_move] depth= 6  action=E1  elapsed=0.227s  remaining=2.669s
+[do_move] depth= 7  action=E1  elapsed=1.375s  remaining=1.294s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E1  到達深さ: 7  合計時間: 3.020s
+[Move Time] turn=20, color=black, agent=agent_actual, time=3.022015 sec
+[Move Time] turn=21, color=white, agent=mcts, time=0.063410 sec
+[do_move] depth= 1  action=D1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=D1  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=D1  elapsed=0.010s  remaining=2.986s
+[do_move] depth= 5  action=D1  elapsed=0.052s  remaining=2.934s
+[do_move] depth= 6  action=D1  elapsed=0.158s  remaining=2.777s
+[do_move] depth= 7  action=D1  elapsed=0.734s  remaining=2.043s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: D1  到達深さ: 7  合計時間: 3.039s
+[Move Time] turn=22, color=black, agent=agent_actual, time=3.041415 sec
+[Move Time] turn=23, color=white, agent=mcts, time=0.059680 sec
+[do_move] depth= 1  action=E6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=C5  elapsed=0.011s  remaining=2.983s
+[do_move] depth= 5  action=H1  elapsed=0.070s  remaining=2.913s
+[do_move] depth= 6  action=C5  elapsed=0.174s  remaining=2.739s
+[do_move] depth= 7  action=H1  elapsed=0.768s  remaining=1.971s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: H1  到達深さ: 7  合計時間: 3.023s
+[Move Time] turn=24, color=black, agent=agent_actual, time=3.025614 sec
+[Move Time] turn=25, color=white, agent=mcts, time=0.055301 sec
+[do_move] depth= 1  action=C5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=C1  elapsed=0.029s  remaining=2.967s
+[do_move] depth= 5  action=H3  elapsed=0.070s  remaining=2.897s
+[do_move] depth= 6  action=H3  elapsed=0.429s  remaining=2.467s
+[do_move] depth= 7  action=H3  elapsed=1.129s  remaining=1.338s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: H3  到達深さ: 7  合計時間: 3.007s
+[Move Time] turn=26, color=black, agent=agent_actual, time=3.008520 sec
+[Move Time] turn=27, color=white, agent=mcts, time=0.051623 sec
+[do_move] depth= 1  action=H5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H5  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=G6  elapsed=0.012s  remaining=2.983s
+[do_move] depth= 5  action=H5  elapsed=0.049s  remaining=2.934s
+[do_move] depth= 6  action=H5  elapsed=0.215s  remaining=2.719s
+[do_move] depth= 7  action=H5  elapsed=0.865s  remaining=1.854s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: H5  到達深さ: 7  合計時間: 3.030s
+[Move Time] turn=28, color=black, agent=agent_actual, time=3.032575 sec
+[Move Time] turn=29, color=white, agent=mcts, time=0.048048 sec
+[do_move] depth= 1  action=H7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=H7  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=G6  elapsed=0.015s  remaining=2.980s
+[do_move] depth= 5  action=G6  elapsed=0.068s  remaining=2.911s
+[do_move] depth= 6  action=G6  elapsed=0.206s  remaining=2.705s
+[do_move] depth= 7  action=A1  elapsed=1.183s  remaining=1.522s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: A1  到達深さ: 7  合計時間: 3.025s
+[Move Time] turn=30, color=black, agent=agent_actual, time=3.026260 sec
+[Move Time] turn=31, color=white, agent=mcts, time=0.045562 sec
+[do_move] depth= 1  action=H7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=H7  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=G6  elapsed=0.009s  remaining=2.986s
+[do_move] depth= 5  action=D8  elapsed=0.161s  remaining=2.825s
+[do_move] depth= 6  action=G6  elapsed=0.733s  remaining=2.092s
+[do_move] depth=7 探索中にタイムアウト → depth=6 の結果を使用
+[do_move] 最終選択: G6  到達深さ: 6  合計時間: 3.039s
+[Move Time] turn=32, color=black, agent=agent_actual, time=3.040345 sec
+[Move Time] turn=33, color=white, agent=mcts, time=0.042553 sec
+[do_move] depth= 1  action=C1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H7  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=D8  elapsed=0.005s  remaining=2.995s
+[do_move] depth= 4  action=C1  elapsed=0.009s  remaining=2.985s
+[do_move] depth= 5  action=C1  elapsed=0.056s  remaining=2.929s
+[do_move] depth= 6  action=C1  elapsed=0.109s  remaining=2.820s
+[do_move] depth= 7  action=C1  elapsed=0.579s  remaining=2.241s
+[do_move] depth= 8  action=C1  elapsed=1.022s  remaining=1.219s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C1  到達深さ: 8  合計時間: 3.040s
+[Move Time] turn=34, color=black, agent=agent_actual, time=3.042266 sec
+[Move Time] turn=35, color=white, agent=mcts, time=0.039340 sec
+[do_move] depth= 1  action=H8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=H8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=H8  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=H8  elapsed=0.005s  remaining=2.991s
+[do_move] depth= 5  action=H8  elapsed=0.040s  remaining=2.951s
+[do_move] depth= 6  action=H8  elapsed=0.078s  remaining=2.873s
+[do_move] depth= 7  action=H8  elapsed=0.419s  remaining=2.454s
+[do_move] depth= 8  action=H8  elapsed=0.853s  remaining=1.600s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: H8  到達深さ: 8  合計時間: 3.038s
+[Move Time] turn=36, color=black, agent=agent_actual, time=3.039769 sec
+[Move Time] turn=37, color=white, agent=mcts, time=0.035473 sec
+[do_move] depth= 1  action=B6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=B6  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=B6  elapsed=0.010s  remaining=2.984s
+[do_move] depth= 5  action=A6  elapsed=0.056s  remaining=2.928s
+[do_move] depth= 6  action=G7  elapsed=0.165s  remaining=2.763s
+[do_move] depth= 7  action=G7  elapsed=0.757s  remaining=2.006s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: G7  到達深さ: 7  合計時間: 3.003s
+[Move Time] turn=38, color=black, agent=agent_actual, time=3.014530 sec
+[Move Time] turn=39, color=white, agent=mcts, time=0.032043 sec
+[do_move] depth= 1  action=B6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=B6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=D8  elapsed=0.008s  remaining=2.988s
+[do_move] depth= 5  action=B6  elapsed=0.046s  remaining=2.942s
+[do_move] depth=6 探索中にタイムアウト → depth=5 の結果を使用
+[do_move] 最終選択: B6  到達深さ: 5  合計時間: 3.007s
+[Move Time] turn=40, color=black, agent=agent_actual, time=3.022475 sec
+[Move Time] turn=41, color=white, agent=mcts, time=0.030017 sec
+[do_move] depth= 1  action=A8  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=A8  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A8  elapsed=0.002s  remaining=2.997s
+[do_move] depth= 4  action=A8  elapsed=2.962s  remaining=0.035s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A8  到達深さ: 4  合計時間: 2.965s
+[Move Time] turn=42, color=black, agent=agent_actual, time=2.980853 sec
+[Move Time] turn=43, color=white, agent=mcts, time=0.027297 sec
+[do_move] depth= 1  action=A6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F8  elapsed=0.570s  remaining=2.430s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: F8  到達深さ: 2  合計時間: 0.570s
+[Move Time] turn=44, color=black, agent=agent_actual, time=0.573665 sec
+[Move Time] turn=45, color=white, agent=mcts, time=0.022829 sec
+[do_move] depth= 1  action=A3  elapsed=0.270s  remaining=2.730s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A3  到達深さ: 1  合計時間: 0.270s
+[Move Time] turn=46, color=black, agent=agent_actual, time=0.272027 sec
+[Move Time] turn=47, color=white, agent=mcts, time=0.019893 sec
+[do_move] depth= 1  action=C8  elapsed=0.177s  remaining=2.822s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: C8  到達深さ: 1  合計時間: 0.178s
+[Move Time] turn=48, color=black, agent=agent_actual, time=0.178687 sec
+[Move Time] turn=49, color=white, agent=mcts, time=0.017554 sec
+[do_move] depth= 1  action=A4  elapsed=0.018s  remaining=2.982s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A4  到達深さ: 1  合計時間: 0.018s
+[Move Time] turn=50, color=black, agent=agent_actual, time=0.017864 sec
+[Move Time] turn=51, color=white, agent=mcts, time=0.014342 sec
+[do_move] depth= 1  action=E7  elapsed=0.001s  remaining=2.999s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E7  到達深さ: 1  合計時間: 0.001s
+[Move Time] turn=52, color=black, agent=agent_actual, time=0.001246 sec
+[Move Time] turn=53, color=white, agent=mcts, time=0.011131 sec
+[do_move] depth= 1  action=E8  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: E8  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=54, color=black, agent=agent_actual, time=0.000425 sec
+[Move Time] turn=55, color=white, agent=mcts, time=0.006902 sec
+[do_move] depth= 1  action=G1  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: G1  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=56, color=black, agent=agent_actual, time=0.000229 sec
+[Move Time] turn=57, color=white, agent=mcts, time=0.003472 sec
+[do_move] depth= 1  action=A6  elapsed=0.000s  remaining=3.000s
+[do_move] 終盤完全読み完了 → 確定 (結果: 自分が勝利)
+[do_move] 最終選択: A6  到達深さ: 1  合計時間: 0.000s
+[Move Time] turn=58, color=black, agent=agent_actual, time=0.000178 sec
+[Move Time] turn=59, color=white, agent=mcts, time=0.001960 sec
+winner: black  (black=agent_actual, white=mcts)
+
+===== Game 7 / 10 =====
+[Move Time] turn=00, color=black, agent=mcts, time=0.000002 sec
+[Move Time] turn=01, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=02, color=black, agent=mcts, time=0.000001 sec
+[Move Time] turn=03, color=white, agent=agent_actual, time=0.000001 sec
+[Move Time] turn=04, color=black, agent=mcts, time=0.088788 sec
+[do_move] depth= 1  action=D2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=D2  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A3  elapsed=0.001s  remaining=2.998s
+[do_move] depth= 4  action=D2  elapsed=0.007s  remaining=2.990s
+[do_move] depth= 5  action=D2  elapsed=0.027s  remaining=2.964s
+[do_move] depth= 6  action=D2  elapsed=0.091s  remaining=2.873s
+[do_move] depth= 7  action=A3  elapsed=0.172s  remaining=2.701s
+[do_move] depth= 8  action=D2  elapsed=1.146s  remaining=1.555s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: D2  到達深さ: 8  合計時間: 3.035s
+[Move Time] turn=05, color=white, agent=agent_actual, time=3.037558 sec
+[Move Time] turn=06, color=black, agent=mcts, time=0.087804 sec
+[do_move] depth= 1  action=C6  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C6  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C6  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=C6  elapsed=0.009s  remaining=2.989s
+[do_move] depth= 5  action=B5  elapsed=0.058s  remaining=2.931s
+[do_move] depth= 6  action=E3  elapsed=0.122s  remaining=2.809s
+[do_move] depth= 7  action=C6  elapsed=0.447s  remaining=2.362s
+[do_move] depth= 8  action=C6  elapsed=1.414s  remaining=0.949s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C6  到達深さ: 8  合計時間: 3.013s
+[Move Time] turn=07, color=white, agent=agent_actual, time=3.014844 sec
+[Move Time] turn=08, color=black, agent=mcts, time=0.082597 sec
+[do_move] depth= 1  action=E2  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E2  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=C1  elapsed=0.016s  remaining=2.979s
+[do_move] depth= 5  action=C1  elapsed=0.066s  remaining=2.913s
+[do_move] depth= 6  action=E2  elapsed=0.253s  remaining=2.660s
+[do_move] depth= 7  action=E3  elapsed=1.125s  remaining=1.535s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E3  到達深さ: 7  合計時間: 3.020s
+[Move Time] turn=09, color=white, agent=agent_actual, time=3.022004 sec
+[Move Time] turn=10, color=black, agent=mcts, time=0.079535 sec
+[do_move] depth= 1  action=C1  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=C1  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=C1  elapsed=0.002s  remaining=2.998s
+[do_move] depth= 4  action=C1  elapsed=0.004s  remaining=2.993s
+[do_move] depth= 5  action=C1  elapsed=0.033s  remaining=2.960s
+[do_move] depth= 6  action=C1  elapsed=0.085s  remaining=2.875s
+[do_move] depth= 7  action=C1  elapsed=0.549s  remaining=2.325s
+[do_move] depth= 8  action=C1  elapsed=0.729s  remaining=1.597s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: C1  到達深さ: 8  合計時間: 3.004s
+[Move Time] turn=11, color=white, agent=agent_actual, time=3.005679 sec
+[Move Time] turn=12, color=black, agent=mcts, time=0.075920 sec
+[do_move] depth= 1  action=F4  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E6  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=E6  elapsed=0.003s  remaining=2.996s
+[do_move] depth= 4  action=E6  elapsed=0.012s  remaining=2.984s
+[do_move] depth= 5  action=E6  elapsed=0.060s  remaining=2.924s
+[do_move] depth= 6  action=E6  elapsed=0.167s  remaining=2.757s
+[do_move] depth= 7  action=E6  elapsed=0.787s  remaining=1.971s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: E6  到達深さ: 7  合計時間: 3.033s
+[Move Time] turn=13, color=white, agent=agent_actual, time=3.035870 sec
+[Move Time] turn=14, color=black, agent=mcts, time=0.107460 sec
+[do_move] depth= 1  action=D7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=E7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=F4  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F5  elapsed=0.015s  remaining=2.980s
+[do_move] depth= 5  action=D7  elapsed=0.094s  remaining=2.886s
+[do_move] depth= 6  action=F4  elapsed=0.187s  remaining=2.699s
+[do_move] depth= 7  action=F4  elapsed=0.775s  remaining=1.924s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: F4  到達深さ: 7  合計時間: 3.039s
+[Move Time] turn=15, color=white, agent=agent_actual, time=3.041307 sec
+[Move Time] turn=16, color=black, agent=mcts, time=0.075053 sec
+[do_move] depth= 1  action=F7  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F7  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=F7  elapsed=0.007s  remaining=2.992s
+[do_move] depth= 4  action=D1  elapsed=0.019s  remaining=2.974s
+[do_move] depth= 5  action=A3  elapsed=0.113s  remaining=2.860s
+[do_move] depth= 6  action=A3  elapsed=0.200s  remaining=2.660s
+[do_move] depth= 7  action=B3  elapsed=1.331s  remaining=1.330s
+[do_move] depth=8 探索中にタイムアウト → depth=7 の結果を使用
+[do_move] 最終選択: B3  到達深さ: 7  合計時間: 3.029s
+[Move Time] turn=17, color=white, agent=agent_actual, time=3.031450 sec
+[Move Time] turn=18, color=black, agent=mcts, time=0.109540 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.001s  remaining=2.999s
+[do_move] depth= 3  action=A3  elapsed=0.005s  remaining=2.994s
+[do_move] depth= 4  action=A5  elapsed=0.011s  remaining=2.984s
+[do_move] depth= 5  action=A7  elapsed=0.080s  remaining=2.903s
+[do_move] depth= 6  action=A7  elapsed=0.163s  remaining=2.740s
+[do_move] depth= 7  action=A5  elapsed=0.894s  remaining=1.846s
+[do_move] depth= 8  action=E2  elapsed=1.828s  remaining=0.018s
+[do_move] depth=9 探索中にタイムアウト → depth=8 の結果を使用
+[do_move] 最終選択: E2  到達深さ: 8  合計時間: 3.019s
+[Move Time] turn=19, color=white, agent=agent_actual, time=3.021685 sec
+[Move Time] turn=20, color=black, agent=mcts, time=0.066332 sec
+[do_move] depth= 1  action=F5  elapsed=0.000s  remaining=3.000s
+[do_move] depth= 2  action=F5  elapsed=0.000s  remaining=2.999s
+[do_move] depth= 3  action=A3  elapsed=0.004s  remaining=2.995s
+[do_move] depth= 4  action=F2  elapsed=0.010s  remaining=2.986s
+[do_move] depth= 5  action=A3  elapsed=0.047s  remaining=2.938s
+[do_move] depth= 6  action=A3  elapsed=0.105s  remaining=2.834s
+[do_move] depth= 7  action=A3  elapsed=0.905s  remaining=1.928s
