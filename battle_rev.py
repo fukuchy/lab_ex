@@ -43,13 +43,13 @@ import agent_actual
 # ==============================
 
 AGENT_A = "agent_actual"
-AGENT_B = "agent_limit"
+AGENT_B = "random"
 
 ab_depth       = 4
 mcts_depth     = 1000
 num_games      = 100
-MOVE_TIME_LIMIT = 3      # agent の思考時間 (秒)
-
+MOVE_TIME_LIMIT = 1      # agent の思考時間 (秒)
+RANDUM_NUM      = 4      # ランダム手の数 (ab_randomWalk 用)
 # ① 並列実行に使うプロセス数。
 # 時間制限エージェントを含む場合は 1 に下げることを推奨。
 MAX_WORKERS = 1
@@ -133,7 +133,10 @@ def play_game_worker(args):
         is_agent_a    = (current_agent == agent_a_name)
 
         t0   = time.perf_counter()
-        move = select_agent_move(current_agent, pos)
+        if pos.empty_square_count > 60 - RANDUM_NUM:
+            move = random_agent.select_move(pos) 
+        else:
+            move = select_agent_move(current_agent, pos)
         t1   = time.perf_counter()
         elapsed = t1 - t0
 
