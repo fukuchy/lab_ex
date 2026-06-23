@@ -16,14 +16,16 @@ import agent
 import agent_no_limit
 import agent_limit
 import agent_actual
+import agent_final
+import agent_final_tt
 
 ab_depth = 4
 mcts_depth = 500
 num_games = 10
 random_num = 4
 
-AGENT_A = "mcts"
-AGENT_B = "agent_actual"
+AGENT_A = "agent_final"
+AGENT_B = "agent_final_tt"
 
 
 def play_game(black_agent, white_agent):
@@ -133,6 +135,10 @@ def select_agent_move(agent_name, pos):
     
     if agent_name == "agent_actual":
         return agent_actual.do_move(pos, 3)
+    if agent_name == "agent_final":
+        return agent_final.do_move(pos, 3)
+    if agent_name == "agent_final_tt":
+        return agent_final_tt.do_move(pos, 3)
 
     raise ValueError(f"unknown agent: {agent_name}")
 

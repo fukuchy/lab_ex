@@ -530,7 +530,7 @@ def order_moves_endgame_with_flips(pos, actions):
 # 終盤探索 (完全読み)
 # ==============================
 
-def endgame_search(pos, alpha, beta, tt, ctx, ply):
+def endgame_search(pos, alpha, beta, tt_eg, ctx, ply):
     """
     終盤の完全読み探索。
 
@@ -542,6 +542,9 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
         ctx.deadline を超えていたら _SearchTimeout を送出する。
         do_move の反復深化ループがこれをキャッチし、
         最後に完了した深さの結果を返す。
+
+    tt_eg: 終盤探索専用の置換表。通常αβ探索の tt_ab とは分離されており、
+           ヒューリスティック値と WIN_SCORE の混在を防ぐ。
     """
     # タイムアウトチェック (4096ノードごと、ビット演算で剰余を回避)
     ctx.node_count += 1
@@ -561,7 +564,7 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
     orig_alpha   = alpha
     orig_beta    = beta
 
-    entry = tt.get(key)
+    entry = tt_eg.get(key)
     if entry is not None:
         _, flag, value = entry
         if flag == TT_EXACT:
@@ -583,9 +586,9 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
         pos.copy_to(next_pos)
         next_pos.do_pass()
 
-        score = -endgame_search(next_pos, -beta, -alpha, tt, ctx, ply + 1)
+        score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, ply + 1)
 
-        _store_tt(tt, key, TT_FULL_DEPTH, score, orig_alpha, orig_beta)
+        _store_tt(tt_eg, key, TT_FULL_DEPTH, score, orig_alpha, orig_beta)
         return score
 
     # ctx 引数を削除した軽量版
@@ -598,13 +601,13 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
         pos.copy_to(next_pos)
         next_pos.do_move(action, flip_bits)  # ④ 合法手判定なし
 
-        score = -endgame_search(next_pos, -beta, -alpha, tt, ctx, ply + 1)
+        score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, ply + 1)
 
         if score > best_score:
             best_score = score
 
         if score == WIN_SCORE:
-            _store_tt(tt, key, TT_FULL_DEPTH, WIN_SCORE, orig_alpha, orig_beta)
+            _store_tt(tt_eg, key, TT_FULL_DEPTH, WIN_SCORE, orig_alpha, orig_beta)
             return WIN_SCORE
 
         if score >= beta:
@@ -614,7 +617,7 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
         if score > alpha:
             alpha = score
 
-    _store_tt(tt, key, TT_FULL_DEPTH, best_score, orig_alpha, orig_beta)
+    _store_tt(tt_eg, key, TT_FULL_DEPTH, best_score, orig_alpha, orig_beta)
     return best_score
 
 
@@ -622,7 +625,7 @@ def endgame_search(pos, alpha, beta, tt, ctx, ply):
 # αβ 探索 (メイン)
 # ==============================
 
-def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
+def alpha_beta_rec(pos, alpha, beta, depth, tt_ab, ctx, ply, feat_state):
     """
     αβ 探索の再帰関数。
 
@@ -637,6 +640,9 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
         endgame_search と同様に 4096 ノードごとに ctx.deadline を確認し、
         超えていたら _SearchTimeout を送出する。これにより、中盤探索の
         途中であっても time_limit_sec を過ぎた時点で打ち切れる。
+
+    tt_ab: 通常αβ探索専用の置換表。終盤探索の tt_eg とは分離されており、
+           ヒューリスティック値と WIN_SCORE の混在を防ぐ。
     """
     # タイムアウトチェック (4096ノードごと、endgame_search と同じカウンタを共有)
     ctx.node_count += 1
@@ -661,7 +667,7 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
     orig_alpha = alpha
     orig_beta  = beta
 
-    entry = tt.get(key)
+    entry = tt_ab.get(key)
     if entry is not None:
         e_depth, flag, value = entry
         if e_depth >= depth:
@@ -685,11 +691,11 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
         next_pos.do_pass()
 
         score = -alpha_beta_rec(
-            next_pos, -beta, -alpha, depth - 1, tt, ctx, ply + 1,
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, ply + 1,
             _apply_pass(feat_state)
         )
 
-        _store_tt(tt, key, depth, score, orig_alpha, orig_beta)
+        _store_tt(tt_ab, key, depth, score, orig_alpha, orig_beta)
         return score
 
     # ① flip を先行計算して返す (do_move での再計算を排除)
@@ -707,7 +713,7 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
         next_feat = _apply_move(action, flip_bits, next_pos, feat_state)
 
         score = -alpha_beta_rec(
-            next_pos, -beta, -alpha, depth - 1, tt, ctx, ply + 1,
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, ply + 1,
             next_feat
         )
 
@@ -721,11 +727,12 @@ def alpha_beta_rec(pos, alpha, beta, depth, tt, ctx, ply, feat_state):
         if score > alpha:
             alpha = score
 
-    _store_tt(tt, key, depth, best_score, orig_alpha, orig_beta)
+    _store_tt(tt_ab, key, depth, best_score, orig_alpha, orig_beta)
     return best_score
 
 
-def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=None):
+def alpha_beta_search_only(pos, depth, deadline: float = math.inf,
+                           ctx=None, tt_ab=None, tt_eg=None):
     """
     αβ 探索のエントリポイント。
 
@@ -735,9 +742,17 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
     呼び出す。これにより αβ ツリー内部でヒューリスティック評価値と
     WIN_SCORE が混在する問題を解消する。
 
-    ⑥⑦ ctx / tt を外部 (do_move) から受け取れるようにし、反復深化の
-        全深さで使い回せるようにする。None の場合はこの呼び出し内だけで
-        使い捨てる ctx / tt を新規生成する。
+    【置換表の分離】
+    tt_ab: 通常αβ探索 (alpha_beta_rec) 専用の置換表。
+           ヒューリスティック評価値を格納する。
+    tt_eg: 終盤探索 (endgame_search) 専用の置換表。
+           WIN_SCORE / 0 / -WIN_SCORE のみを格納する。
+    2つを分離することで、異なるスケールの値が混在して
+    αβ の枝刈りや勝敗判定に悪影響を与える問題を防ぐ。
+
+    ⑥⑦ ctx / tt_ab / tt_eg を外部 (do_move) から受け取れるようにし、
+        反復深化の全深さで使い回せるようにする。None の場合はこの呼び出し内
+        だけで使い捨てる ctx / tt を新規生成する。
 
     deadline : time.perf_counter() の絶対値。
                endgame_search がこの時刻を超えたら _SearchTimeout を送出する。
@@ -751,12 +766,15 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
     else:
         ctx.deadline = deadline
 
-    if tt is None:
-        tt = {}
+    if tt_ab is None:
+        tt_ab = {}
+    if tt_eg is None:
+        tt_eg = {}
 
     # -------- 終盤読み切り (探索開始時点で判定) --------
     # ルート局面が終盤しきい値以下なら、深さに依らず完全読みへ移行する。
     # alpha_beta_rec を経由しないため、評価スケールの混在が起きない。
+    # tt_eg (終盤専用) を使用することで tt_ab への汚染も防ぐ。
     if pos.empty_square_count <= ENDGAME_EMPTY_LIMIT:
         best_action = -1
         alpha       = -math.inf
@@ -769,7 +787,7 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
             pos.copy_to(next_pos)
             next_pos.do_move(action, flip_bits)
 
-            score = -endgame_search(next_pos, -beta, -alpha, tt, ctx, 1)
+            score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, 1)
 
             if score > alpha:
                 alpha       = score
@@ -797,7 +815,7 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf, ctx=None, tt=
         next_feat = _apply_move(action, flip_bits, next_pos, feat0)
 
         score = -alpha_beta_rec(
-            next_pos, -beta, -alpha, depth - 1, tt, ctx, 1,
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, 1,
             next_feat
         )
 
@@ -869,8 +887,9 @@ def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = F
     #   ⑦ 置換表: _store_tt は既存エントリより深い探索結果でしか上書きしない
     #      設計のため、浅い深さ (depth=1,2,3...) で得た結果を次の深さでも
     #      安全に再利用できる。標準的な「反復深化 + 置換表」の手法そのもの。
-    ctx = SearchContext(deadline=deadline)
-    tt  = {}
+    ctx   = SearchContext(deadline=deadline)
+    tt_ab = {}   # 通常αβ探索専用の置換表 (ヒューリスティック値)
+    tt_eg = {}   # 終盤探索専用の置換表 (WIN_SCORE / 0 / -WIN_SCORE)
 
     for depth in range(1, 64):
 
@@ -883,7 +902,8 @@ def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = F
         t0 = time.perf_counter()
         try:
             action, score = alpha_beta_search_only(
-                position, depth, deadline=deadline, ctx=ctx, tt=tt
+                position, depth, deadline=deadline,
+                ctx=ctx, tt_ab=tt_ab, tt_eg=tt_eg
             )
         except _SearchTimeout:
             # この深さの探索中に time_limit_sec を超過 → 結果は不完全なので破棄

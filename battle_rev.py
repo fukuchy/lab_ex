@@ -37,13 +37,14 @@ import agent
 import agent_no_limit
 import agent_limit
 import agent_actual
-
+import agent_final
+import agent_final_tt
 # ==============================
 # 設定
 # ==============================
 
-AGENT_A = "agent_actual"
-AGENT_B = "random"
+AGENT_A = "agent_final"
+AGENT_B = "agent_actual"
 
 ab_depth       = 4
 mcts_depth     = 1000
@@ -80,6 +81,8 @@ def _build_dispatch():
         "agent":               lambda pos: agent.do_move(pos, MOVE_TIME_LIMIT),
         "agent_limit":         lambda pos: agent_limit.do_move(pos, MOVE_TIME_LIMIT),
         "agent_actual":        lambda pos: agent_actual.do_move(pos, MOVE_TIME_LIMIT),
+        "agent_final":         lambda pos: agent_final.do_move(pos, MOVE_TIME_LIMIT),
+        "agent_final_tt":      lambda pos: agent_final_tt.do_move(pos, MOVE_TIME_LIMIT),
     }
 
 _AGENT_DISPATCH = _build_dispatch()
