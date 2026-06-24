@@ -984,5 +984,10 @@ def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = T
         print(f"[do_move] 最終選択: {final_coord}  "
               f"到達深さ: {best_depth}  "
               f"合計時間: {time.perf_counter() - start:.3f}s")
+    
+    if best_action < 0:
+        fallback = list(position.get_legal_moves())
+        if fallback:
+            best_action = int(fallback[0])
 
     return best_action
