@@ -57,7 +57,7 @@ EVAL_TABLE = [
     120, -20,  20,   5,   5,  20, -20, 120,
 ]
 
-ENDGAME_EMPTY_LIMIT = 11
+ENDGAME_EMPTY_LIMIT = 16
 WIN_SCORE = 100000
 
 # 角・危険マス・辺
@@ -777,8 +777,8 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf,
     # tt_eg (終盤専用) を使用することで tt_ab への汚染も防ぐ。
     if pos.empty_square_count <= ENDGAME_EMPTY_LIMIT:
         best_action = -1
-        alpha       = -math.inf
-        beta        = math.inf
+        alpha       = -WIN_SCORE
+        beta        = WIN_SCORE
 
         action_flip_pairs = order_moves_endgame_with_flips(pos, actions)
 
@@ -846,7 +846,7 @@ def alpha_beta(pos, depth, test_mode=False):
 # 反復深化αβ (時間制限付き)
 # ==============================
 
-def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = False) -> int:
+def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = True) -> int:
     time_limit_sec_set = time_limit_sec - 0.05
     """
     反復深化αβ探索で time_limit_sec 秒以内に最善手を返す。
