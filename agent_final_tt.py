@@ -777,6 +777,7 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf,
     # tt_eg (終盤専用) を使用することで tt_ab への汚染も防ぐ。
     if pos.empty_square_count <= ENDGAME_EMPTY_LIMIT:
         best_action = -1
+        best_score = -(WIN_SCORE + 1)  
         alpha       = -WIN_SCORE
         beta        = WIN_SCORE
 
@@ -789,11 +790,14 @@ def alpha_beta_search_only(pos, depth, deadline: float = math.inf,
 
             score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, 1)
 
-            if score > alpha:
-                alpha       = score
+            if score > best_score:
+                best_score = score
                 best_action = action
 
-        return best_action, alpha
+            if score > alpha:
+                alpha = score
+
+        return best_action, best_score
     # ---------------------------------------------------
 
     feat0 = _compute_full_feat_state(pos)  # ② 初期値計算 (1回のみ)
