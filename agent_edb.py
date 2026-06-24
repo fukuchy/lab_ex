@@ -1,0 +1,1141 @@
+"""
+agent_edb.py - agent_final_ending.py に終盤データベース (EDB) 参照を追加したエージェント
+
+agent_final_ending.py からの追加:
+  EDB (終盤データベース) を endgame_search の先頭で参照し、
+  事前計算済みの勝敗結果があればそのまま返すことで終盤読み切りを高速化する。
+
+  EDB ファイルは generate_edb.py で事前生成しておく。
+  キー: (player_bits, opponent_bits) の整数タプル  ← 実行をまたいで安定
+  値  : WIN_SCORE / 0 / -WIN_SCORE (現在の手番側から見たスコア)
+
+  設定項目:
+    EDB_FILE         = "edb_6.pkl"  # 読み込む EDB ファイル名
+    EDB_LOOKUP_LIMIT = 6            # EDB を参照する空きマス数の上限
+                                    # generate_edb.py の --empty と合わせること
+
+ab_rainforce_no_book.py からの改善点:
+  ④ copy_to() + do_move() + SearchContext による位置プール
+     - pos.copy() の代わりに既存オブジェクトへの copy_to() でオブジェクト生成コストを削減
+     - do_move_at() の代わりに合法手判定なしの do_move() で着手コストを削減
+  ⑤ 置換表キーを calc_hash_code() (Zobrist) に一本化
+     - 64マス走査のフォールバックを削除し、整数キーに一本化
+  ⑥(旧) 特徴量計算の最適化 (position_score の差分更新)
+     - player_disc_count / opponent_disc_count / empty_square_count プロパティで O(1) 取得
+     - get_square_owner_at() (条件分岐なし、README で推奨) でマス所有者を取得
+
+さらに以下を追加実装:
+  ① order_moves_with_flips の軽量化
+     - 候補手ごとの copy_to + do_move + 角4マス走査 + get_legal_moves を全廃
+     - EVAL_TABLE (角・X/C-squareの価値を内包済み) + フリップ数のみで並べ替え
+  ② corner_score / edge_score / x_square_score / c_square_score の差分更新
+     - corner_score, edge_score: ビットマスク + 着手マス判定のみで常に O(1) 差分更新
+       (角はフリップされない、辺は popcount で正確に計算できるため)
+     - x_square_score, c_square_score: 角の占有状態に依存するため、
+       「角 or 危険マスに変化があったときだけ」next_pos からフル再計算する
+       fast path (変化なし: 単純に符号反転のみ) / slow path (まれに発生するフル再計算)
+       の2段構成にすることで、ほとんどのノードで O(1) 化する
+  ⑥ SearchContext の使い回し
+     - do_move の反復深化ループの外側で1回だけ生成し、全深さで使い回す
+     - 毎深さ 40個 (MAX_PLY) の Position オブジェクトを再生成するコストを排除
+  ⑦ 置換表の使い回し
+     - tt も同様にループ外側で1回だけ生成し、深さをまたいで再利用する
+     - _store_tt は depth が浅いエントリを上書きしない設計のため、
+       浅い深さで得た探索結果を次の深さでも安全に活用できる
+       (標準的な反復深化+置換表の手法そのもの)
+"""
+
+import math
+import os
+import json
+import pickle
+import time
+
+import numpy as np
+import pyrev
+from pyrev import BoardCoordinateIterator
+
+
+# ==============================
+# 定数
+# ==============================
+
+EVAL_TABLE = [
+    120, -20,  20,   5,   5,  20, -20, 120,
+    -20, -40,  -5,  -5,  -5,  -5, -40, -20,
+     20,  -5,  15,   3,   3,  15,  -5,  20,
+      5,  -5,   3,   3,   3,   3,  -5,   5,
+      5,  -5,   3,   3,   3,   3,  -5,   5,
+     20,  -5,  15,   3,   3,  15,  -5,  20,
+    -20, -40,  -5,  -5,  -5,  -5, -40, -20,
+    120, -20,  20,   5,   5,  20, -20, 120,
+]
+
+ENDGAME_EMPTY_LIMIT = 16
+WIN_SCORE = 100000
+
+# 角・危険マス・辺
+CORNERS     = [0, 7, 56, 63]
+CORNER_SET  = frozenset(CORNERS)   # O(1) 判定用
+
+X_SQUARES = {0: [9],  7: [14], 56: [49], 63: [54]}
+C_SQUARES = {0: [1, 8], 7: [6, 15], 56: [48, 57], 63: [55, 62]}
+
+EDGES = [
+     1,  2,  3,  4,  5,  6,
+     8, 16, 24, 32, 40, 48,
+    15, 23, 31, 39, 47, 55,
+    57, 58, 59, 60, 61, 62,
+]
+EDGE_SET = frozenset(EDGES)
+
+
+# ==============================
+# ビットマスク定数 (② 差分更新用)
+# ==============================
+#
+# corner_score / edge_score を O(1) で差分更新するため、
+# 各特徴量に対応するマスをビット集合として事前計算しておく。
+# x_square_score / c_square_score は角の占有状態に依存するため、
+# 「角 or 危険マスのいずれかが変化したか」を判定する DANGER_MASK として使う。
+
+def _mask_from_squares(squares):
+    m = 0
+    for s in squares:
+        m |= (1 << s)
+    return m
+
+
+CORNER_MASK = _mask_from_squares(CORNERS)
+EDGE_MASK   = _mask_from_squares(EDGES)
+XSQ_MASK    = _mask_from_squares([sq for lst in X_SQUARES.values() for sq in lst])
+CSQ_MASK    = _mask_from_squares([sq for lst in C_SQUARES.values() for sq in lst])
+
+# 角・X-square・C-square のいずれかに触れた場合のみ
+# x_square_score / c_square_score の再計算が必要になる。
+DANGER_MASK = CORNER_MASK | XSQ_MASK | CSQ_MASK
+
+
+# ==============================
+# 置換表 (Transposition Table)
+# ==============================
+
+TT_EXACT = 0
+TT_LOWER = 1
+TT_UPPER = 2
+
+# 終盤の完全読みは深さ概念がないため大きな値で代用
+TT_FULL_DEPTH = 1 << 30
+
+
+# ==============================
+# タイムアウト例外
+# ==============================
+
+class _SearchTimeout(Exception):
+    """
+    endgame_search からタイムアウトを通知する内部例外。
+    do_move の反復深化ループでキャッチし、
+    最後に完了した深さの結果を返すために使う。
+    """
+    pass
+
+
+def _make_tt_key(pos):
+    """
+    置換表キーを生成する。
+
+    GitHub README で calc_hash_code() (Zobrist) の存在が確認されているため、
+    フォールバックなしで直接使用する。
+    side_to_move をキーに含めることで、同一石配置で手番が異なる局面を区別する。
+    """
+    return int(pos.calc_hash_code()) * 2 + int(pos.side_to_move)
+
+
+def _store_tt(tt, key, depth, score, orig_alpha, orig_beta):
+    """
+    探索結果を置換表に格納する。
+    同キーの既存エントリより探索深さが深い場合のみ上書きする。
+    """
+    if score <= orig_alpha:
+        flag = TT_UPPER
+    elif score >= orig_beta:
+        flag = TT_LOWER
+    else:
+        flag = TT_EXACT
+
+    existing = tt.get(key)
+    if existing is None or existing[0] <= depth:
+        tt[key] = (depth, flag, score)
+
+
+# ==============================
+# SearchContext (④ 位置プール)
+# ==============================
+
+class SearchContext:
+    """
+    1回の探索 (alpha_beta_search_only 呼び出し) で使い捨てる作業領域。
+
+    pos_pool:
+        深さ(ply)ごとに事前確保した Position オブジェクトのリスト。
+        copy_to() + do_move() で使い回すことで、
+        各ノードでの pos.copy() によるオブジェクト生成コストを排除する。
+
+        pool[ply] は "ply 番目に再帰する際の子ノード位置" として使用する。
+        ply=0 ... alpha_beta_search_only の直接の子
+        ply=1 ... alpha_beta_rec(ply=1) の子
+        ...
+
+    scratch_pos:
+        order_moves / extract_features 内での一時的な局面計算専用。
+        探索ループと競合しないよう、必ず使用後に上書きされる形で使う。
+    """
+    # 盤面は64マスなので、パスを考慮しても ply が 64 を超えることは実質的にない。
+    # ⑥ で SearchContext を反復深化の全深さで使い回すようになったため、
+    # 安全マージンとして盤面サイズと同じ 64 に設定する。
+    MAX_PLY = 64
+
+    def __init__(self, deadline: float = math.inf):
+        self.pos_pool    = [pyrev.Position() for _ in range(self.MAX_PLY)]
+        self.scratch_pos = pyrev.Position()
+        self.node_count  = 0          # タイムアウトチェック用ノードカウンタ
+        self.deadline    = deadline   # 探索期限 (time.perf_counter() の絶対値)
+
+
+# ==============================
+# 重み設定
+# ==============================
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+GA_BEST_WEIGHTS_FILE = os.path.join(BASE_DIR, "ga_feature_weights_best.json")
+
+
+DEFAULT_FEATURE_WEIGHTS = {
+    "opening": {
+        "stone": -1.057879575503218,
+        "mobility": 8.414318362549801,
+        "position": -0.009823972577531426,
+        "corner": 15.661617473189732,
+        "x_square": -106.74159322137517,
+        "c_square": -6.844459394295814,
+        "edge": -0.10787899484266494
+    },
+    "middle": {
+        "stone": -1.8795933150765822,
+        "mobility": 2.5289310439091235,
+        "position": 0.013889032950499855,
+        "corner": 9.131581671319736,
+        "x_square": -22.964217605593127,
+        "c_square": -5.459317219241519,
+        "edge": 3.0695394948193213
+    },
+    "end": {
+        "stone": 2.756986809785344,
+        "mobility": 1.8956620499677932,
+        "position": 0.5602700812797425,
+        "corner": 97.77476018333562,
+        "x_square": -14.224791094827243,
+        "c_square": -5.339905587801405,
+        "edge": 7.480266043841487
+    },
+}
+
+
+def load_feature_weights(weights_file=GA_BEST_WEIGHTS_FILE):
+    """
+    学習済み重み JSON を読み込む。
+    opening / middle / end のいずれか、または複数を含む JSON に対応する。
+    """
+    import copy
+    weights = copy.deepcopy(DEFAULT_FEATURE_WEIGHTS)
+    try:
+        with open(weights_file, "r", encoding="utf-8") as f:
+            learned = json.load(f)
+    except FileNotFoundError:
+        print(f"[Weights] {weights_file} が見つかりません。初期重みを使用します。")
+        return weights
+    for phase in ("opening", "middle", "end"):
+        if phase in learned:
+            weights[phase].update(learned[phase])
+    return weights
+
+
+FEATURE_WEIGHTS = load_feature_weights()
+
+
+# ==============================
+# EDB (終盤データベース)
+# ==============================
+#
+# generate_edb.py で事前生成した pkl ファイルを起動時に読み込み、
+# endgame_search の先頭で参照することで完全読みを高速化する。
+#
+# キー: (player_bits, opponent_bits) の整数タプル
+#   - player_bits : pos.side_to_move の石の 64bit ビットボード
+#   - opponent_bits: 相手の石の 64bit ビットボード
+#   - Python の hash() は実行ごとに変わるため不使用
+#   - 整数ビット列はプログラム実行をまたいでも常に同じ値になる
+#
+# 値: WIN_SCORE / 0 / -WIN_SCORE (pos.side_to_move 視点のスコア)
+#
+# EDB_LOOKUP_LIMIT は generate_edb.py の --empty に合わせる。
+# (例: --empty 6 で生成した場合は EDB_LOOKUP_LIMIT = 6)
+
+EDB_FILE         = os.path.join(BASE_DIR, "edb_6.pkl")
+EDB_LOOKUP_LIMIT = 6   # EDB を参照する空きマス数の上限
+
+
+def _get_bitboards(pos) -> tuple:
+    """
+    局面から (player_bits, opponent_bits) のタプルを取得する。
+    EDB のキーとして使用する。
+    """
+    p = o = 0
+    for coord in pos.get_player_disc_coords():
+        p |= (1 << int(coord))
+    for coord in pos.get_opponent_disc_coords():
+        o |= (1 << int(coord))
+    return (p, o)
+
+
+def _load_edb(filepath: str) -> dict:
+    """
+    EDB ファイルを読み込む。
+    ファイルが存在しない・読み込み失敗の場合は空辞書を返し、
+    EDB なしの通常動作にフォールバックする。
+    """
+    if not os.path.exists(filepath):
+        print(f"[EDB] {filepath} が見つかりません。EDB なしで動作します。")
+        return {}
+    try:
+        with open(filepath, "rb") as f:
+            edb = pickle.load(f)
+        print(f"[EDB] 読み込み完了: {len(edb):,} 局面  ({filepath})")
+        return edb
+    except Exception as e:
+        print(f"[EDB] 読み込み失敗: {e}  EDB なしで動作します。")
+        return {}
+
+
+EDB: dict = _load_edb(EDB_FILE)
+
+
+# ==============================
+# 局面フェーズ判定
+# ==============================
+
+def get_phase(pos):
+    """
+    石数から序盤・中盤・終盤を判定する。
+    disc_count プロパティは O(1)。
+    """
+    total = pos.disc_count
+    if total <= 20:
+        return "opening"
+    elif total <= 40:
+        return "middle"
+    else:
+        return "end"
+
+
+# ==============================
+# 特徴量計算 (⑥ 最適化版)
+# ==============================
+
+def _compute_danger_squares_full(pos):
+    """
+    x_square_score, c_square_score を pos から直接フル計算する。
+
+    角が空いている場合のみ、その周辺マスを危険マスとして評価する。
+    DANGER_MASK に変化があった場合 (② のレアパス) にのみ呼ばれる。
+    呼び出し頻度が低いため、64マス全走査ではなく対象マスのみを
+    直接チェックする従来通りのロジックで十分高速。
+    """
+    x_square_score = 0
+    for corner, danger_squares in X_SQUARES.items():
+        if pos.get_square_owner_at(corner) != pyrev.NULL_OWNER:
+            continue
+        for idx in danger_squares:
+            owner = pos.get_square_owner_at(idx)
+            if owner == pyrev.PLAYER:
+                x_square_score += 1
+            elif owner == pyrev.OPPONENT:
+                x_square_score -= 1
+
+    c_square_score = 0
+    for corner, danger_squares in C_SQUARES.items():
+        if pos.get_square_owner_at(corner) != pyrev.NULL_OWNER:
+            continue
+        for idx in danger_squares:
+            owner = pos.get_square_owner_at(idx)
+            if owner == pyrev.PLAYER:
+                c_square_score += 1
+            elif owner == pyrev.OPPONENT:
+                c_square_score -= 1
+
+    return x_square_score, c_square_score
+
+
+def _compute_full_feat_state(pos):
+    """
+    探索開始時 (alpha_beta_search_only の呼び出し時) に1回だけ呼ばれる、
+    feat_state = (position_score, corner_score, edge_score,
+                  x_square_score, c_square_score)
+    のフル計算。以降は _apply_move / _apply_pass で差分更新される。
+
+    position_score・corner_score・edge_score は1回の64マス走査でまとめて
+    計算する (それぞれ別ループにする必要がないため統合)。
+    x_square_score・c_square_score は角の占有状態に依存するため
+    _compute_danger_squares_full() に分離する。
+    """
+    pos_score    = 0
+    corner_score = 0
+    edge_score   = 0
+
+    for i in range(64):
+        owner = pos.get_square_owner_at(i)
+        bit = 1 << i
+        if owner == pyrev.PLAYER:
+            pos_score += EVAL_TABLE[i]
+            if bit & CORNER_MASK:
+                corner_score += 1
+            if bit & EDGE_MASK:
+                edge_score += 1
+        elif owner == pyrev.OPPONENT:
+            pos_score -= EVAL_TABLE[i]
+            if bit & CORNER_MASK:
+                corner_score -= 1
+            if bit & EDGE_MASK:
+                edge_score -= 1
+
+    xsq_score, csq_score = _compute_danger_squares_full(pos)
+
+    return (pos_score, corner_score, edge_score, xsq_score, csq_score)
+
+
+def _apply_move(action, flip_bits, next_pos, cur_feat):
+    """
+    ② 着手 (action, flip_bits) 適用後の feat_state を差分更新で計算する。
+
+    cur_feat: 着手前の feat_state (pos.side_to_move 視点)
+    next_pos: 着手後の局面 (do_move 済み)
+
+    戻り値は次ノード (next_pos.side_to_move 視点、つまり符号反転後) の feat_state。
+
+    - position_score: 着手マス + フリップマスの EVAL_TABLE 差分 (従来通り)
+    - corner_score  : 角はフリップされないため、着手マスが角かどうかのみで
+                      常に正確に差分更新できる (slow path 不要)
+    - edge_score    : フリップビットと EDGE_MASK の popcount で
+                      常に正確に差分更新できる (slow path 不要)
+    - x_square_score / c_square_score:
+        角の占有状態に依存するため、DANGER_MASK (角+X-square+C-square) に
+        触れた場合のみ next_pos からフル再計算する (slow path)。
+        触れていない場合は符号反転のみで済む (fast path、ほとんどのケース)。
+    """
+    action_int = int(action)
+    flip_int   = int(flip_bits)
+
+    cur_pos_score, cur_corner, cur_edge, cur_xsq, cur_csq = cur_feat
+
+    # position_score 差分 (従来通り)
+    delta_pos = EVAL_TABLE[action_int]
+    for fc in BoardCoordinateIterator(flip_bits):
+        delta_pos += 2 * EVAL_TABLE[int(fc)]
+
+    # corner_score 差分 (常に O(1)、角はフリップされないため着手マスのみ判定)
+    delta_corner = 1 if action_int in CORNER_SET else 0
+
+    # edge_score 差分 (常に O(1)、ビットマスク popcount)
+    flip_edge_hits = bin(flip_int & EDGE_MASK).count('1')
+    action_is_edge = 1 if action_int in EDGE_SET else 0
+    delta_edge = action_is_edge + 2 * flip_edge_hits
+
+    new_pos_score = -(cur_pos_score + delta_pos)
+    new_corner    = -(cur_corner + delta_corner)
+    new_edge      = -(cur_edge + delta_edge)
+
+    # x_square / c_square: 角 or 危険マスに変化があった場合のみフル再計算
+    touched_mask = (1 << action_int) | flip_int
+    if touched_mask & DANGER_MASK:
+        new_xsq, new_csq = _compute_danger_squares_full(next_pos)
+    else:
+        new_xsq = -cur_xsq
+        new_csq = -cur_csq
+
+    return (new_pos_score, new_corner, new_edge, new_xsq, new_csq)
+
+
+def _apply_pass(cur_feat):
+    """
+    パス時の feat_state 更新。盤面は変化しないため符号反転のみ。
+    """
+    a, b, c, d, e = cur_feat
+    return (-a, -b, -c, -d, -e)
+
+
+def extract_features(pos, ctx, feat_state):
+    """
+    評価用の特徴量を取り出す。
+
+    feat_state = (position_score, corner_score, edge_score,
+                  x_square_score, c_square_score)
+        探索中に _apply_move / _apply_pass で差分更新されてきた値。
+        ② により、これら4特徴量は末端ノードでの再計算が不要になっている。
+
+    mobility のみ、合法手生成が必要なため引き続き pos から直接計算する
+    (差分更新が困難なため、従来通り)。
+    stone は player_disc_count / opponent_disc_count で O(1) 取得。
+    """
+    pos_score, corner_score, edge_score, x_square_score, c_square_score = feat_state
+
+    # ---- 石数 (O(1) プロパティ) ----
+    stone_score = pos.player_disc_count - pos.opponent_disc_count
+
+    # ---- 着手可能数 ----
+    my_moves = sum(1 for _ in pos.get_legal_moves())
+
+    # 相手の着手可能数: scratch_pos に do_pass() してカウント
+    # (pos.copy() を避け、事前確保の scratch_pos を使い回す)
+    pos.copy_to(ctx.scratch_pos)
+    ctx.scratch_pos.do_pass()
+    opp_moves = sum(1 for _ in ctx.scratch_pos.get_legal_moves())
+
+    mobility_score = my_moves - opp_moves
+
+    return {
+        "stone":    stone_score,
+        "mobility": mobility_score,
+        "position": pos_score,
+        "corner":   corner_score,
+        "x_square": x_square_score,
+        "c_square": c_square_score,
+        "edge":     edge_score,
+    }
+
+
+def evaluate(pos, ctx, feat_state):
+    """
+    特徴量 × 重みの線形評価関数。
+    feat_state は αβ 探索中に差分更新された (② 参照)。
+    """
+    phase    = get_phase(pos)
+    features = extract_features(pos, ctx, feat_state)
+    weights  = FEATURE_WEIGHTS[phase]
+    return sum(weights[name] * value for name, value in features.items())
+
+
+# ==============================
+# 手の並べ替え (④⑥ 統合最適化版)
+# ==============================
+
+# フリップ数1個あたりの並べ替えペナルティ。
+# 多く取りすぎる手は中盤でモビリティを失いやすいという定番ヒューリスティック。
+_FLIP_ORDER_PENALTY = 2.0
+
+
+def order_moves_with_flips(pos, actions):
+    """
+    手の並べ替えを行い、(action, flip_bits) のペアリストを返す (① 軽量版)。
+
+    【旧実装の問題点】
+    候補手ごとに copy_to + do_move + 角4マス走査 + get_legal_moves を
+    行っており、これは中盤探索の全ノードに対して発生する重いコストだった。
+
+    【改善点】
+    copy_to を一切行わず、以下の2指標のみで並べ替える。
+      - EVAL_TABLE[action] : 着手マスの位置評価
+                             (角+120, X-square-40, C-square-20 などを
+                              すでに内包しているため、これ単体でも十分な目安)
+      - フリップ数         : 取りすぎる手にペナルティを与える
+                             (calc_flip_discs() は do_move() に再利用するため
+                              どのみち必要であり、追加コストはほぼゼロ)
+    """
+    scored = []
+    for action in actions:
+        action_int = int(action)
+        flip_bits  = pos.calc_flip_discs(action)
+        flip_count = bin(int(flip_bits)).count('1')
+
+        score = EVAL_TABLE[action_int] - flip_count * _FLIP_ORDER_PENALTY
+
+        scored.append((-score, action, flip_bits))
+
+    scored.sort()
+    return [(a, f) for _, a, f in scored]
+
+
+def _eval_one_empty(pos, ctx, ply):
+    """
+    ③ 残り1マスの局面を再帰なし・TT参照なしで直接評価する。
+
+    endgame_search の最深部（最も多く呼ばれる）の関数呼び出しオーバーヘッドを
+    完全に排除することで、終盤探索全体のノード処理速度を向上させる。
+
+    局面 pos の side_to_move（現在の手番側）から見たスコアを返す。
+
+    使用するバッファ:
+        ctx.pos_pool[ply]  : パス後・または着手後の局面
+        ctx.scratch_pos    : パス後に相手が着手する場合の局面
+    """
+    actions = list(pos.get_legal_moves())
+
+    if actions:
+        # 現在の手番側が合法手を持つ → 着手して終局
+        action    = actions[0]          # 残り1マスなので合法手は最大1手
+        flip_bits = pos.calc_flip_discs(action)
+        next_pos  = ctx.pos_pool[ply]
+        pos.copy_to(next_pos)
+        next_pos.do_move(action, flip_bits)
+        # do_move 後は side_to_move が相手に切り替わる
+        #   next_pos.player_disc_count   = 相手の石数
+        #   next_pos.opponent_disc_count = 自分(元の手番側)の石数
+        my_cnt  = next_pos.opponent_disc_count
+        opp_cnt = next_pos.player_disc_count
+        if my_cnt > opp_cnt: return  WIN_SCORE
+        if my_cnt < opp_cnt: return -WIN_SCORE
+        return 0
+
+    # 現在の手番側にパス → 相手の手番へ
+    next_pos = ctx.pos_pool[ply]
+    pos.copy_to(next_pos)
+    next_pos.do_pass()
+
+    opp_actions = list(next_pos.get_legal_moves())
+
+    if not opp_actions:
+        # 双方ともパス不可 → 現在の石数で終局
+        my_cnt  = pos.player_disc_count
+        opp_cnt = pos.opponent_disc_count
+        if my_cnt > opp_cnt: return  WIN_SCORE
+        if my_cnt < opp_cnt: return -WIN_SCORE
+        return 0
+
+    # 相手が合法手を持つ → 相手が着手して終局
+    # next_pos は ctx.pos_pool[ply] (パス後)、scratch_pos に着手結果を格納
+    opp_action = opp_actions[0]
+    flip_bits  = next_pos.calc_flip_discs(opp_action)
+    next_pos.copy_to(ctx.scratch_pos)
+    ctx.scratch_pos.do_move(opp_action, flip_bits)
+    # 相手の do_move 後は side_to_move が自分(元の手番側)に戻る
+    #   scratch_pos.player_disc_count   = 自分の石数
+    #   scratch_pos.opponent_disc_count = 相手の石数
+    my_cnt  = ctx.scratch_pos.player_disc_count
+    opp_cnt = ctx.scratch_pos.opponent_disc_count
+    if my_cnt > opp_cnt: return  WIN_SCORE
+    if my_cnt < opp_cnt: return -WIN_SCORE
+    return 0
+
+
+def order_moves_endgame_with_flips(pos, actions, ctx):
+    """
+    ① Fastest First (FF) ヒューリスティックによる終盤手の並べ替え。
+
+    「着手後に相手の合法手数が最も少ない手を最初に試す」ことで、
+    αβの枝刈りが大幅に増える。フリップ数ベースの並べ替えより
+    探索ノード数を数倍〜数十倍削減できることが多い。
+
+    ctx.scratch_pos を一時局面バッファとして使用する。
+    order_moves_with_flips と異なり、終盤では EVAL_TABLE よりも
+    相手の選択肢を狭める FF の方が枝刈り効果が高い。
+    """
+    scored = []
+    for action in actions:
+        flip_bits = pos.calc_flip_discs(action)
+
+        # ① scratch_pos に着手して相手の合法手数を数える
+        pos.copy_to(ctx.scratch_pos)
+        ctx.scratch_pos.do_move(action, flip_bits)
+        opp_moves = sum(1 for _ in ctx.scratch_pos.get_legal_moves())
+
+        # 角への着手はさらに優先 (相手の手数より強いボーナス)
+        corner_bonus = -10000 if int(action) in CORNER_SET else 0
+
+        scored.append((corner_bonus + opp_moves, action, flip_bits))
+
+    scored.sort()   # 相手の合法手数が少ない順（昇順）
+    return [(a, f) for _, a, f in scored]
+
+
+# ==============================
+# 終盤探索 (完全読み)
+# ==============================
+
+def endgame_search(pos, alpha, beta, tt_eg, ctx, ply):
+    """
+    終盤の完全読み探索。
+
+    player_disc_count / opponent_disc_count は O(1) プロパティ。
+    copy_to() + do_move() でオブジェクト生成を排除。
+
+    タイムアウト:
+        4096 ノードごとに time.perf_counter() を確認し、
+        ctx.deadline を超えていたら _SearchTimeout を送出する。
+        do_move の反復深化ループがこれをキャッチし、
+        最後に完了した深さの結果を返す。
+
+    tt_eg: 終盤探索専用の置換表。通常αβ探索の tt_ab とは分離されており、
+           ヒューリスティック値と WIN_SCORE の混在を防ぐ。
+
+    追加最適化:
+        ③ empty_square_count == 1 の場合は _eval_one_empty で直接評価し、
+           関数呼び出しオーバーヘッドを排除する。
+        ① 手の並べ替えを Fastest First (FF) ヒューリスティックに変更。
+    """
+    # タイムアウトチェック (4096ノードごと、ビット演算で剰余を回避)
+    ctx.node_count += 1
+    if not (ctx.node_count & 4095):
+        if time.perf_counter() > ctx.deadline:
+            raise _SearchTimeout()
+
+    # EDB ルックアップ: 事前計算済みの勝敗結果があればそのまま返す。
+    # endgame_search の再帰の中で何度も参照されるため、
+    # _get_bitboards のコストよりも探索省略の効果が大きい。
+    if EDB and pos.empty_square_count <= EDB_LOOKUP_LIMIT:
+        edb_val = EDB.get(_get_bitboards(pos))
+        if edb_val is not None:
+            return edb_val
+
+    # ③ 残り1マス: 再帰なし直接評価 (関数呼び出しオーバーヘッドを排除)
+    if pos.empty_square_count == 1:
+        return _eval_one_empty(pos, ctx, ply)
+
+    if pos.is_gameover():
+        # player_disc_count は pos.side_to_move の石数
+        if pos.player_disc_count > pos.opponent_disc_count:
+            return WIN_SCORE
+        elif pos.player_disc_count < pos.opponent_disc_count:
+            return -WIN_SCORE
+        return 0
+
+    key          = _make_tt_key(pos)
+    orig_alpha   = alpha
+    orig_beta    = beta
+
+    entry = tt_eg.get(key)
+    if entry is not None:
+        _, flag, value = entry
+        if flag == TT_EXACT:
+            return value
+        elif flag == TT_LOWER:
+            if value > alpha:
+                alpha = value
+        elif flag == TT_UPPER:
+            if value < beta:
+                beta = value
+        if alpha >= beta:
+            return value
+
+    actions = list(pos.get_legal_moves())
+
+    if not actions:
+        # パス: pool[ply] に copy して do_pass()
+        next_pos = ctx.pos_pool[ply]
+        pos.copy_to(next_pos)
+        next_pos.do_pass()
+
+        score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, ply + 1)
+
+        _store_tt(tt_eg, key, TT_FULL_DEPTH, score, orig_alpha, orig_beta)
+        return score
+
+    # ① Fastest First で手を並べ替える (ctx を渡す)
+    action_flip_pairs = order_moves_endgame_with_flips(pos, actions, ctx)
+
+    best_score = -math.inf
+
+    for action, flip_bits in action_flip_pairs:
+        next_pos = ctx.pos_pool[ply]
+        pos.copy_to(next_pos)
+        next_pos.do_move(action, flip_bits)  # ④ 合法手判定なし
+
+        score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, ply + 1)
+
+        if score > best_score:
+            best_score = score
+
+        if score == WIN_SCORE:
+            _store_tt(tt_eg, key, TT_FULL_DEPTH, WIN_SCORE, orig_alpha, orig_beta)
+            return WIN_SCORE
+
+        if score >= beta:
+            alpha = score
+            break
+
+        if score > alpha:
+            alpha = score
+
+    _store_tt(tt_eg, key, TT_FULL_DEPTH, best_score, orig_alpha, orig_beta)
+    return best_score
+
+
+# ==============================
+# αβ 探索 (メイン)
+# ==============================
+
+def alpha_beta_rec(pos, alpha, beta, depth, tt_ab, ctx, ply, feat_state):
+    """
+    αβ 探索の再帰関数。
+
+    ply        : pos_pool のインデックス。子ノードは pool[ply] に copy_to する。
+    feat_state : (position_score, corner_score, edge_score,
+                  x_square_score, c_square_score) の差分更新済みタプル
+                 (pos.side_to_move 視点)。終端ノード評価で再走査を避けるために使用する。
+
+    各特徴量の差分更新ルールは _apply_move / _apply_pass を参照。
+
+    タイムアウト:
+        endgame_search と同様に 4096 ノードごとに ctx.deadline を確認し、
+        超えていたら _SearchTimeout を送出する。これにより、中盤探索の
+        途中であっても time_limit_sec を過ぎた時点で打ち切れる。
+
+    tt_ab: 通常αβ探索専用の置換表。終盤探索の tt_eg とは分離されており、
+           ヒューリスティック値と WIN_SCORE の混在を防ぐ。
+    """
+    # タイムアウトチェック (4096ノードごと、endgame_search と同じカウンタを共有)
+    ctx.node_count += 1
+    if not (ctx.node_count & 4095):
+        if time.perf_counter() > ctx.deadline:
+            raise _SearchTimeout()
+
+    # ゲーム終了: 石数で正確な勝敗を返す (ヒューリスティック不要)
+    if pos.is_gameover():
+        if pos.player_disc_count > pos.opponent_disc_count:
+            return WIN_SCORE
+        elif pos.player_disc_count < pos.opponent_disc_count:
+            return -WIN_SCORE
+        return 0
+
+    # 末端ノード評価 (depth=0 のみ)
+    if depth == 0:
+        return evaluate(pos, ctx, feat_state)
+
+    # 置換表ルックアップ (⑤ 整数キー)
+    key        = _make_tt_key(pos)
+    orig_alpha = alpha
+    orig_beta  = beta
+
+    entry = tt_ab.get(key)
+    if entry is not None:
+        e_depth, flag, value = entry
+        if e_depth >= depth:
+            if flag == TT_EXACT:
+                return value
+            elif flag == TT_LOWER:
+                if value > alpha:
+                    alpha = value
+            elif flag == TT_UPPER:
+                if value < beta:
+                    beta = value
+            if alpha >= beta:
+                return value
+
+    actions = list(pos.get_legal_moves())
+
+    if not actions:
+        # パス
+        next_pos = ctx.pos_pool[ply]
+        pos.copy_to(next_pos)
+        next_pos.do_pass()
+
+        score = -alpha_beta_rec(
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, ply + 1,
+            _apply_pass(feat_state)
+        )
+
+        _store_tt(tt_ab, key, depth, score, orig_alpha, orig_beta)
+        return score
+
+    # ① flip を先行計算して返す (do_move での再計算を排除)
+    action_flip_pairs = order_moves_with_flips(pos, actions)
+
+    best_score = -math.inf
+
+    for action, flip_bits in action_flip_pairs:
+        # ④ copy_to() + do_move() でオブジェクト生成を排除
+        next_pos = ctx.pos_pool[ply]
+        pos.copy_to(next_pos)
+        next_pos.do_move(action, flip_bits)
+
+        # ② feat_state を差分更新
+        next_feat = _apply_move(action, flip_bits, next_pos, feat_state)
+
+        score = -alpha_beta_rec(
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, ply + 1,
+            next_feat
+        )
+
+        if score > best_score:
+            best_score = score
+
+        if score >= beta:
+            alpha = score
+            break
+
+        if score > alpha:
+            alpha = score
+
+    _store_tt(tt_ab, key, depth, best_score, orig_alpha, orig_beta)
+    return best_score
+
+
+def alpha_beta_search_only(pos, depth, deadline: float = math.inf,
+                           ctx=None, tt_ab=None, tt_eg=None):
+    """
+    αβ 探索のエントリポイント。
+
+    【終盤読み切りの方針】
+    探索開始時点 (このルート呼び出し時) に pos.empty_square_count が
+    ENDGAME_EMPTY_LIMIT 以下であれば、深さに関係なく即座に endgame_search を
+    呼び出す。これにより αβ ツリー内部でヒューリスティック評価値と
+    WIN_SCORE が混在する問題を解消する。
+
+    【置換表の分離】
+    tt_ab: 通常αβ探索 (alpha_beta_rec) 専用の置換表。
+           ヒューリスティック評価値を格納する。
+    tt_eg: 終盤探索 (endgame_search) 専用の置換表。
+           WIN_SCORE / 0 / -WIN_SCORE のみを格納する。
+    2つを分離することで、異なるスケールの値が混在して
+    αβ の枝刈りや勝敗判定に悪影響を与える問題を防ぐ。
+
+    ⑥⑦ ctx / tt_ab / tt_eg を外部 (do_move) から受け取れるようにし、
+        反復深化の全深さで使い回せるようにする。None の場合はこの呼び出し内
+        だけで使い捨てる ctx / tt を新規生成する。
+
+    deadline : time.perf_counter() の絶対値。
+               endgame_search がこの時刻を超えたら _SearchTimeout を送出する。
+    """
+    actions = list(pos.get_legal_moves())
+    if not actions:
+        return -1, None
+
+    if ctx is None:
+        ctx = SearchContext(deadline=deadline)
+    else:
+        ctx.deadline = deadline
+
+    if tt_ab is None:
+        tt_ab = {}
+    if tt_eg is None:
+        tt_eg = {}
+
+    # -------- 終盤読み切り (探索開始時点で判定) --------
+    # ルート局面が終盤しきい値以下なら、深さに依らず完全読みへ移行する。
+    # alpha_beta_rec を経由しないため、評価スケールの混在が起きない。
+    # tt_eg (終盤専用) を使用することで tt_ab への汚染も防ぐ。
+    if pos.empty_square_count <= ENDGAME_EMPTY_LIMIT:
+        best_action = -1
+        best_score  = -(WIN_SCORE + 1)
+        alpha       = -WIN_SCORE
+        beta        = WIN_SCORE
+
+        action_flip_pairs = order_moves_endgame_with_flips(pos, actions, ctx)
+
+        for action, flip_bits in action_flip_pairs:
+            next_pos = ctx.pos_pool[0]
+            pos.copy_to(next_pos)
+            next_pos.do_move(action, flip_bits)
+
+            score = -endgame_search(next_pos, -beta, -alpha, tt_eg, ctx, 1)
+
+            if score > best_score:
+                best_score = score
+                best_action = action
+            
+            if score > alpha:
+                alpha = score
+
+        return best_action, best_score
+    # ---------------------------------------------------
+
+    feat0 = _compute_full_feat_state(pos)  # ② 初期値計算 (1回のみ)
+
+    best_action = -1
+    alpha       = -math.inf
+    beta        = math.inf
+
+    # ① flip を先行計算して返す
+    action_flip_pairs = order_moves_with_flips(pos, actions)
+
+    for action, flip_bits in action_flip_pairs:
+        # ④ pool[0] を使って子ノードを生成
+        next_pos = ctx.pos_pool[0]
+        pos.copy_to(next_pos)
+        next_pos.do_move(action, flip_bits)
+
+        # ② feat_state 差分更新
+        next_feat = _apply_move(action, flip_bits, next_pos, feat0)
+
+        score = -alpha_beta_rec(
+            next_pos, -beta, -alpha, depth - 1, tt_ab, ctx, 1,
+            next_feat
+        )
+
+        if score > alpha:
+            alpha       = score
+            best_action = action
+
+    return best_action, alpha
+
+
+def alpha_beta(pos, depth, test_mode=False):
+    """
+    αβ エージェントの公開インターフェース。
+    ab_rainforce_no_book.py と同じシグネチャを維持する。
+    """
+    best_action, _ = alpha_beta_search_only(pos, depth)
+
+    if test_mode:
+        if best_action is None or int(best_action) < 0:
+            print("[AlphaBeta] 選択手: None")
+        else:
+            print(f"[AlphaBeta] 選択手: {pyrev.coord_to_str(np.int8(best_action))}")
+
+    return best_action
+
+
+# ==============================
+# 反復深化αβ (時間制限付き)
+# ==============================
+
+def do_move(position: pyrev.Position, time_limit_sec: float, test_mode: bool = True) -> int:
+    time_limit_sec_set = time_limit_sec - 0.05
+    """
+    反復深化αβ探索で time_limit_sec 秒以内に最善手を返す。
+
+    深さ 1 から順に alpha_beta_search_only を呼び出す。
+    打ち切りは「予測」ではなく、実際に time_limit_sec を過ぎた時点で
+    探索を中断する方式で行う:
+      - 次の深さを開始する前に残り時間を確認し、すでに time_limit_sec を
+        過ぎていれば新しい深さの探索は開始しない。
+      - 探索の最中 (alpha_beta_rec / endgame_search 内、4096ノードごと) に
+        ctx.deadline を超えたことを検知すると _SearchTimeout を送出し、
+        その深さの探索を即座に中断する。中断された深さの結果は不完全なため
+        破棄し、最後に完了した深さ (best_action / best_depth) の結果を返す。
+
+    終盤読み切り (empty_square_count <= ENDGAME_EMPTY_LIMIT) に入った場合は
+    完全読み済みのため、その深さで確定して終了する。
+
+    Parameters
+    ----------
+    position       : pyrev.Position  現在の局面
+    time_limit_sec : float           思考時間の上限 (秒)
+    test_mode      : bool            True のとき探索ログを標準出力に表示する
+
+    Returns
+    -------
+    int : 選択した着手座標。合法手がない場合は -1。
+    """
+    start       = time.perf_counter()
+    best_action = -1
+    best_depth  = 0
+
+    deadline = start + time_limit_sec_set
+
+    # ⑥⑦ SearchContext と置換表を反復深化ループの外側で1回だけ生成し、
+    # 全深さで使い回す。
+    #   ⑥ SearchContext: 深さごとに 64個 (MAX_PLY) の Position オブジェクトを
+    #      再生成するコストを排除する。
+    #   ⑦ 置換表: _store_tt は既存エントリより深い探索結果でしか上書きしない
+    #      設計のため、浅い深さ (depth=1,2,3...) で得た結果を次の深さでも
+    #      安全に再利用できる。標準的な「反復深化 + 置換表」の手法そのもの。
+    ctx   = SearchContext(deadline=deadline)
+    tt_ab = {}   # 通常αβ探索専用の置換表 (ヒューリスティック値)
+    tt_eg = {}   # 終盤探索専用の置換表 (WIN_SCORE / 0 / -WIN_SCORE)
+
+    for depth in range(1, 64):
+
+        # 探索開始前に残り時間を確認し、ゼロ以下なら新しい深さを開始しない
+        if time.perf_counter() - start >= time_limit_sec_set:
+            if test_mode:
+                print(f"[do_move] 残り時間なし → depth={depth} の探索を開始せず終了")
+            break
+
+        t0 = time.perf_counter()
+        try:
+            action, score = alpha_beta_search_only(
+                position, depth, deadline=deadline,
+                ctx=ctx, tt_ab=tt_ab, tt_eg=tt_eg
+            )
+        except _SearchTimeout:
+            # この深さの探索中に time_limit_sec を超過 → 結果は不完全なので破棄
+            # best_action は直近に完了した depth=best_depth の結果のまま使う
+            if test_mode:
+                print(f"[do_move] depth={depth} 探索中にタイムアウト "
+                      f"→ depth={best_depth} の結果を使用")
+            break
+        t1 = time.perf_counter()
+
+        elapsed_this = t1 - t0          # この深さにかかった時間
+        elapsed_total = t1 - start      # 開始からの合計時間
+        remaining     = time_limit_sec_set - elapsed_total
+
+        # 合法手が存在した場合のみ結果を更新 (この深さの探索は完了している)
+        if int(action) >= 0:
+            best_action = action
+            best_depth  = depth
+
+        if test_mode:
+            coord = (pyrev.coord_to_str(np.int8(action))
+                     if int(action) >= 0 else "None")
+            print(f"[do_move] depth={depth:2d}  action={coord}"
+                  f"  elapsed={elapsed_this:.3f}s  remaining={remaining:.3f}s")
+
+        # ==============================
+        # 探索完了の判定 (2通り)
+        # ==============================
+        #
+        # 【ケース1】ルート局面が終盤域
+        #   pos.empty_square_count <= ENDGAME_EMPTY_LIMIT のとき、
+        #   alpha_beta_search_only が endgame_search を直接呼ぶため
+        #   depth=1 で完全読みが完了する。
+        #
+        # 【ケース2】αβ木が全通路を探索済み
+        #   alpha_beta_rec 内の終盤遷移を削除した新設計では、αβ木の
+        #   完全読みは「depth >= empty_square_count」になった時点で起きる。
+        #   それ以上深くしても結果は変わらないためループを終了する。
+        #   例: 空きマス13手番で depth=13 以降は全経路が game-over に到達する。
+
+        if position.empty_square_count <= ENDGAME_EMPTY_LIMIT:
+            if test_mode:
+                if score is not None and score >= WIN_SCORE:
+                    result_str = "自分が勝利"
+                elif score is not None and score <= -WIN_SCORE:
+                    result_str = "相手が勝利"
+                elif score == 0:
+                    result_str = "引き分け"
+                else:
+                    result_str = f"スコア={score}"
+                print(f"[do_move] 終盤完全読み完了 (ルート終盤) → 確定 (結果: {result_str})")
+            break
+
+        if depth >= position.empty_square_count:
+            if test_mode:
+                if score is not None and score >= WIN_SCORE:
+                    result_str = "自分が勝利"
+                elif score is not None and score <= -WIN_SCORE:
+                    result_str = "相手が勝利"
+                elif score == 0:
+                    result_str = "引き分け"
+                else:
+                    result_str = f"スコア={score}"
+                print(f"[do_move] αβ木全探索完了 (depth={depth} >= "
+                      f"empty={position.empty_square_count}) → 確定 (結果: {result_str})")
+            break
+
+        # 次のループの先頭にある残り時間チェックと、探索内部の _SearchTimeout
+        # だけで打ち切りを判断する (予測ベースの早期打ち切りは行わない)。
+
+    if test_mode:
+        final_coord = (pyrev.coord_to_str(np.int8(best_action))
+                       if best_action >= 0 else "None")
+        print(f"[do_move] 最終選択: {final_coord}  "
+              f"到達深さ: {best_depth}  "
+              f"合計時間: {time.perf_counter() - start:.3f}s")
+    
+    if best_action < 0:
+        fallback = list(position.get_legal_moves())
+        if fallback:
+            best_action = int(fallback[0])
+
+    return best_action
